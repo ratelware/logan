@@ -1,0 +1,12 @@
+[submodule "tests/libs/Celero/Celero"]
+	path = tests/libs/Celero/Celero
+	url = https://github.com/DigitalInBlue/Celero
+[submodule "tests/libs/turtle/turtle"]
+	path = tests/libs/turtle/turtle
+	url = https://github.com/mat007/turtle
+[submodule "production/libs/ChaiScript/ChaiScript"]
+	path = production/libs/ChaiScript/ChaiScript
+	url = https://github.com/ChaiScript/ChaiScript
+[submodule "production/libs/pugixml/pugixml"]
+	path = production/libs/pugixml/pugixml
+	url = https://github.com/zeux/pugixml
