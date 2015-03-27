@@ -10,3 +10,6 @@
 [submodule "production/libs/pugixml/pugixml"]
 	path = production/libs/pugixml/pugixml
 	url = https://github.com/zeux/pugixml
+[submodule "production\\libs\\spdlog\\spdlog"]
+	path = production\\libs\\spdlog\\spdlog
+	url = https://github.com/gabime/spdlog
