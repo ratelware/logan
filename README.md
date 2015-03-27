@@ -41,7 +41,8 @@ These include:
  * Celero (master branch) as benchmarking library (only in tests)
  * ChaiScript (develop branch) as scripting language (in production code)
  * PugiXML (master branch) as, well, XML library (in production code)
- * spdlog (master branch) as logger
+ * spdlog (master branch) as logger (in production code)
+ * sqlite (3.8.8.3 amalgamation) as database management library (in production code)
 
 Some or all might be included as submodules, so make sure you fetch them all before compiling
 
