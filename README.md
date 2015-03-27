@@ -40,7 +40,8 @@ These include:
  * Turtle (master branch) as mocking library (only in tests)
  * Celero (master branch) as benchmarking library (only in tests)
  * ChaiScript (develop branch) as scripting language (in production code)
- * PugiXML (master branch) as, well, XML library
+ * PugiXML (master branch) as, well, XML library (in production code)
+ * spdlog (master branch) as logger
 
 Some or all might be included as submodules, so make sure you fetch them all before compiling
 
