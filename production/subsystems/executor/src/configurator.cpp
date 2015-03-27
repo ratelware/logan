@@ -5,7 +5,7 @@
 
 namespace executor
 {
-	configurator::configurator(const boost::program_options::variables_map& vars)
+	configurator::configurator(const boost::program_options::variables_map&)
 	{
 		app = std::make_unique<executor::whole_application>();
 	}
