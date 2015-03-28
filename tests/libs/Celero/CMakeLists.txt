@@ -3,7 +3,7 @@ CMAKE_POLICY(VERSION 2.8.1)
 
 PROJECT(Celero)
 
-MESSAGE(STATUS "Fetching Celero")
+MESSAGE(STATUS "Configuring Celero")
 SET(CELERO_ENABLE_EXPERIMENTS OFF CACHE BOOL "Set to ON to automatically build all examples.")
 SET(CELERO_ENABLE_TESTS OFF CACHE BOOL "Enable building and running unit tests.")
 
