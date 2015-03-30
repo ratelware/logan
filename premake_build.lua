@@ -7,6 +7,11 @@ location "build_premake"
 global = {}
 global.library_type = "StaticLib"
 
+global.target = {}
+global.target.libdir = _SCRIPT_DIR .. "/bin/%{cfg.buildcfg}/lib/"
+global.target.exedir = _SCRIPT_DIR .. "/bin/%{cfg.buildcfg}/exe/"
+
+
 libs = {}
 include "buildsystem/Premake/libraries"
 
