@@ -1,5 +1,22 @@
-global.libs = {}
-global.libs.boost = {
-    includes = "E:/Boost/boost_1_55_0",
-	libraries = "E:/Boost/boost_1_55_0/stage/lib",
+local library = {}
+library.__index = library
+library.libnames = function(t) 
+  names = {}
+  for _,v in pairs(t.libraries) do
+    table.insert(names, v.libname)
+  end
+  
+  return table.concat(names)
+end
+
+libs.boost = {
+  includes = "E:/Boost/boost_1_55_0",
+  libdir = "E:/Boost/boost_1_55_0/stage/lib",
+  libraries = {
+    program_options = {
+      libname = "libboost_program_options-vc120-mt-gd-1_55.lib"
+    }
+  }
 }
+
+setmetatable(libs.boost, library)
