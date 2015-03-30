@@ -3,4 +3,4 @@ kind(global.library_type)
 language "C++"
 files {"src/**.cpp"}
   
-includedirs {production.includes}
+includedirs {production.includes, global.libs.boost.includes}
