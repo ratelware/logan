@@ -58,3 +58,5 @@ Project uses CMake (version 2.8 is minimal supported) as its buildsystem, so it 
 Simply invoke `cmake .` in the main directory or - in case of out-of-source (recommended) builds, invoke it from a different directory. Just like any other CMake invocation.
 
 If you wish to use provided libraries on MSVS, make sure you have installed at least MSVS 2013 Update 4, as some stuff in ChaiScript library requires it.
+
+Additionally, an experimental support for building with Premake5 is supported. Please note that this will most likely remain experimental, as Premake5 itself is in alpha phase.

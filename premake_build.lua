@@ -1,3 +1,4 @@
+include "buildsystem/Premake/utilities"
 
 solution "MainProject"
 configurations {"Debug", "Release"}
@@ -13,12 +14,9 @@ production = {}
 include "production"
 
 tests = {}
---tests = require("tests/premake5")(production, global)
+include "tests"
 
-project "executable"
-  kind "ConsoleApp"
-  language "C++"
-  targetdir "bin/%{cfg.buildcfg}"
+executable("exec")
   files {"executable/*.cpp"}
   dependson {"executor"}
   libdirs {libs.boost.libdir}
