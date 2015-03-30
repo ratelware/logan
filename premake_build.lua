@@ -3,11 +3,13 @@ solution "MainProject"
 configurations {"Debug", "Release"}
 location "build_premake"
 
-global = require("buildsystem/Premake/libraries")
-
+global = {}
 global.library_type = "StaticLib"
 
-production = require("production/premake5")(global)
+production = {}
+include "production"
+
+tests = {}
 --tests = require("tests/premake5")(production, global)
 
 project "executable"
