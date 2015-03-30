@@ -10,6 +10,6 @@ library "TestDoubles"
 
 include "testcases"
 
---include "benchmarks"
+include "benchmarks"
 
 --include "libs"
