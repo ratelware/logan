@@ -1,11 +1,10 @@
-local library = {}
-library.__index = library
-library.libnames = function(t) 
+library_metatable = {}
+library_metatable.__index = library_metatable
+library_metatable.libnames = function(t) 
   names = {}
   for _,v in pairs(t.libraries) do
     table.insert(names, v.libname)
   end
-  
   return table.concat(names)
 end
 
@@ -19,4 +18,4 @@ libs.boost = {
   }
 }
 
-setmetatable(libs.boost, library)
+setmetatable(libs.boost, library_metatable)
