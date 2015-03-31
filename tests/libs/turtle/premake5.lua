@@ -1,4 +1,3 @@
-tests.libs.turtle = {}
-tests.libs.turtle.includes = {os.realpath("turtle")}
-
-setmetatable(tests.libs.turtle, library_metatable)
+tests.libs.turtle = lib.new({
+  includes = {os.realpath("turtle")}
+})

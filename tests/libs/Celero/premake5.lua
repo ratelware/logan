@@ -1,7 +1,6 @@
-tests.libs.celero = {}
-tests.libs.celero.includes = {os.realpath("Celero/include")}
-
-setmetatable(tests.libs.celero, library_metatable)
+tests.libs.celero = lib.new({
+    includes = {os.realpath("Celero/include")}
+})
 
 library "Celero"
   files{"Celero/src/**.cpp"}

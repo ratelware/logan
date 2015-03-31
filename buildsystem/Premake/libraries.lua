@@ -1,14 +1,21 @@
 library_metatable = {}
 library_metatable.__index = library_metatable
-library_metatable.libnames = function(t) 
+library_metatable.libnames = function(self) 
   names = {}
-  for _,v in pairs(t.libraries) do
-    table.insert(names, v.libname)
+  for _,lib in pairs(self.libraries) do
+    table.insert(names, lib.libname)
   end
   return table.concat(names)
 end
 
-libs.boost = {
+lib = {}
+function lib.new(data)
+  t = data or {}
+  setmetatable(t, library_metatable)
+  return t 
+end
+
+libs.boost = lib.new({
   includes = "E:/Boost/boost_1_55_0",
   libdir = "E:/Boost/boost_1_55_0/stage/lib",
   libraries = {
@@ -16,6 +23,4 @@ libs.boost = {
       libname = "libboost_program_options-vc120-mt-gd-1_55.lib"
     }
   }
-}
-
-setmetatable(libs.boost, library_metatable)
+})
