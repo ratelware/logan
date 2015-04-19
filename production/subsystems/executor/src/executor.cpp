@@ -84,7 +84,7 @@ namespace executor
 		else if (params.count("version"))
 			std::cout << APPLICATION_NAME << " v." << VERSION_MAJOR << "." << VERSION_MINOR << "." << VERSION_SUBMINOR << std::endl;
 		else
-			return configurator(params).application().run();
+			return configurator(params).get_application().run();
 
         return 0;
     }

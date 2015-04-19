@@ -1,3 +1,4 @@
+#include <memory>
 #include <executor/configurator.h>
 #include <executor/application.h>
 
@@ -13,7 +14,7 @@ namespace executor
 	configurator::~configurator()
 	{}
 
-	executor::application& configurator::application() const
+	executor::application& configurator::get_application() const
 	{
 		return *app;
 	}

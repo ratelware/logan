@@ -21,7 +21,7 @@ namespace executor
 		configurator(const boost::program_options::variables_map& application_params);
 		~configurator();
 
-		application& application() const;
+		application& get_application() const;
 
 	private:
 		std::unique_ptr<::executor::application> app;
