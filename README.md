@@ -50,6 +50,12 @@ There is also embedded support for some common C++ libraries:
  * Boost for general-purpose utilities
  * OpenCV for stuff related to image processing
 
+It is also planned to extend range of supported out-of-the-box libraries, mainly with:
+ * Dlib for machine learning
+ * VTK for 3D graphics
+ * SOCI for ORM mapping
+ * Crypto++ as cryptographic library
+
 =================
 **Building**
 =================
@@ -59,4 +65,4 @@ Simply invoke `cmake .` in the main directory or - in case of out-of-source (rec
 
 If you wish to use provided libraries on MSVS, make sure you have installed at least MSVS 2013 Update 4, as some stuff in ChaiScript library requires it.
 
-Additionally, an experimental support for building with Premake5 is supported. Please note that this will most likely remain experimental, as Premake5 itself is in alpha phase.
+Additionally, an experimental support for building with Premake5 is (shall be) supported. Please note that this will most likely remain experimental, as Premake5 itself is in alpha phase.
