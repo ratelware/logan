@@ -1,4 +1,3 @@
-int main()
-{
-    return 0;
-}
+#include <celero/Celero.h>
+
+CELERO_MAIN
