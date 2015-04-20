@@ -21,6 +21,9 @@ libs.boost = lib.new({
   libraries = {
     program_options = {
       libname = "libboost_program_options-vc120-mt-gd-1_55.lib"
+    },
+    unit_test_framework = {
+      libname = "libboost_unit_test_framework-vc120-mt-gd-1_55.lib"
     }
   }
 })
