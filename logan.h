@@ -22,12 +22,10 @@ public:
 
 public slots:
     void displayGrepWindow();
-    void applyGrep(grep_structure g);
 
 private:
     Ui::Logan *ui;
     std::vector<std::unique_ptr<QShortcut>> shortcuts;
-    QStringList text;
     GrepWindow g;
 };
 #endif // LOGAN_H
