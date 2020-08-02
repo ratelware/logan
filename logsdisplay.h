@@ -5,6 +5,7 @@
 #include <QFile>
 
 #include "grep_structure.h"
+#include "search_structure.h"
 
 namespace Ui {
 class LogsDisplay;
@@ -24,6 +25,7 @@ public:
 
 public slots:
     void applyGrep(grep_structure g);
+    void applySearch(search_structure g);
 
 private:
     Ui::LogsDisplay *ui;

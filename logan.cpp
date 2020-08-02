@@ -20,17 +20,32 @@ Logan::Logan(QWidget *parent)
         return;
 
     shortcuts.push_back(std::unique_ptr<QShortcut>(new QShortcut(QKeySequence(Qt::CTRL + Qt::Key_G), this)));
+    shortcuts.push_back(std::unique_ptr<QShortcut>(new QShortcut(QKeySequence(Qt::CTRL + Qt::Key_F), this)));
     connect(shortcuts[0].get(), &QShortcut::activated, this, &Logan::displayGrepWindow);
+    connect(shortcuts[1].get(), &QShortcut::activated, this, &Logan::displaySearchWindow);
 
     this->ui->display->displayFile(file);
-    connect(&g, &GrepWindow::greppingRequested, this->ui->display, &LogsDisplay::applyGrep);
+    connect(&g, &GrepWindow::greppingRequested, ui->display, &LogsDisplay::applyGrep);
+    connect(&s, &SearchWindow::searchingRequested, ui->display, &LogsDisplay::applySearch);
 }
 
 void Logan::displayGrepWindow() {
-    g.cleanQuery();
-    g.show();
+    if(!g.hasFocus()) {
+        g.cleanQuery();
+        g.show();
+    }
 }
 
+void Logan::displaySearchWindow() {
+    if(!s.isVisible()) {
+        s.cleanQuery();
+        s.show();
+    }
+
+    if(!s.hasFocus()) {
+        s.activateWindow();
+    }
+}
 
 Logan::~Logan()
 {

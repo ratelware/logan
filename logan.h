@@ -7,6 +7,7 @@
 
 #include "grep_structure.h"
 #include "grepwindow.h"
+#include "searchwindow.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class Logan; }
@@ -22,10 +23,12 @@ public:
 
 public slots:
     void displayGrepWindow();
+    void displaySearchWindow();
 
 private:
     Ui::Logan *ui;
     std::vector<std::unique_ptr<QShortcut>> shortcuts;
     GrepWindow g;
+    SearchWindow s;
 };
 #endif // LOGAN_H

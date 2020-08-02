@@ -20,6 +20,7 @@ SOURCES += \
     logsdisplay.cpp \
     main.cpp \
     logan.cpp \
+    searchwindow.cpp \
     singlelogdisplay.cpp \
     taglist.cpp \
     tagpanel.cpp
@@ -29,6 +30,8 @@ HEADERS += \
     grepwindow.h \
     logan.h \
     logsdisplay.h \
+    search_structure.h \
+    searchwindow.h \
     singlelogdisplay.h \
     taglist.h \
     tagpanel.h
@@ -37,6 +40,7 @@ FORMS += \
     grepwindow.ui \
     logan.ui \
     logsdisplay.ui \
+    searchwindow.ui \
     singlelogdisplay.ui \
     taglist.ui \
     tagpanel.ui

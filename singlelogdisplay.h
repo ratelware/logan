@@ -17,7 +17,7 @@ public:
     explicit SingleLogDisplay(QStringList& l, QWidget *parent = nullptr);
     ~SingleLogDisplay();
 
-private:
+public:
     Ui::SingleLogDisplay *ui;
 };
 

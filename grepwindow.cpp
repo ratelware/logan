@@ -18,19 +18,19 @@ GrepWindow::GrepWindow(QWidget *parent) :
 
 void GrepWindow::formGrep() {
     grep_structure s;
-    s.is_regex = this->ui->useRegex->isChecked();
-    s.is_full_match = this->ui->matchFullWords->isChecked();
-    s.is_case_sensitive = this->ui->caseSensitive->isChecked();
-    s.is_reverse = this->ui->isReverse->isChecked();
+    s.is_regex = ui->useRegex->isChecked();
+    s.is_full_match = ui->matchFullWords->isChecked();
+    s.is_case_sensitive = ui->caseSensitive->isChecked();
+    s.is_reverse = ui->isReverse->isChecked();
 
-    s.search_query = this->ui->searchQuery->text().toStdString();
+    s.search_query = ui->searchQuery->text().toStdString();
 
     emit greppingRequested(s);
-    this->hide();
+    hide();
 }
 
 void GrepWindow::cleanQuery() {
-    this->ui->searchQuery->clear();
+    ui->searchQuery->clear();
 }
 
 GrepWindow::~GrepWindow()

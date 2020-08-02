@@ -13,6 +13,8 @@ SingleLogDisplay::SingleLogDisplay(QStringList& l, QWidget *parent) :
     ui->display->setLineWrapMode(QPlainTextEdit::LineWrapMode::NoWrap);
     ui->display->setWordWrapMode(QTextOption::NoWrap);
     ui->display->setReadOnly(true);
+    ui->display->setTextInteractionFlags(ui->display->textInteractionFlags() | Qt::TextSelectableByKeyboard);
+
     ui->display->setOverwriteMode(false);
 
     ui->display->setPlainText(text.join(QString("\n")));
