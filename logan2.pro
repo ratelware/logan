@@ -16,6 +16,8 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    bookmark.cpp \
+    bookmarksview.cpp \
     grepwindow.cpp \
     logsdisplay.cpp \
     main.cpp \
@@ -26,6 +28,8 @@ SOURCES += \
     tagpanel.cpp
 
 HEADERS += \
+    bookmark.h \
+    bookmarksview.h \
     grep_structure.h \
     grepwindow.h \
     logan.h \
@@ -37,6 +41,7 @@ HEADERS += \
     tagpanel.h
 
 FORMS += \
+    bookmarksview.ui \
     grepwindow.ui \
     logan.ui \
     logsdisplay.ui \

@@ -4,6 +4,9 @@
 #include <QMainWindow>
 #include <QShortcut>
 #include <QStringList>
+#include <QMap>
+#include <QList>
+#include <QListWidgetItem>
 
 #include "grep_structure.h"
 #include "grepwindow.h"
@@ -24,11 +27,13 @@ public:
 public slots:
     void displayGrepWindow();
     void displaySearchWindow();
+    void addBookmark(int lineNumber);
 
 private:
     Ui::Logan *ui;
     std::vector<std::unique_ptr<QShortcut>> shortcuts;
     GrepWindow g;
     SearchWindow s;
+    QMap<int, QList<QListWidgetItem*>> bookmarks;
 };
 #endif // LOGAN_H

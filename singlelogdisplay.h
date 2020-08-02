@@ -19,6 +19,12 @@ public:
 
 public:
     Ui::SingleLogDisplay *ui;
+
+public slots:
+    void copySelectionToClipboard();
+
+private:
+    void setUpActions();
 };
 
 #endif // SINGLELOGDISPLAY_H

@@ -47,6 +47,10 @@ void Logan::displaySearchWindow() {
     }
 }
 
+void Logan::addBookmark(int lineNumber) {
+
+}
+
 Logan::~Logan()
 {
     delete ui;
