@@ -1,10 +1,10 @@
 #ifndef FIND_STRUCTURE_H
 #define FIND_STRUCTURE_H
 
-#include <string>
+#include <QString>
 
 struct search_structure {
-    std::string search_query;
+    QString search_query;
     bool is_regex;
     bool is_case_sensitive;
     bool is_full_match;

@@ -74,10 +74,10 @@ void SingleLogDisplay::emphasiseSelection() {
 }
 
 void SingleLogDisplay::applySearch(search_structure s) {
-    qDebug((std::string("Searching for ") + s.search_query).c_str());
+    qDebug((QString("Searching for ") + s.search_query).toStdString().c_str());
 
     QStringList l;
-    QString query = QString::fromStdString(s.search_query);
+    QString query = s.search_query;
     if(!s.is_case_sensitive) {
         query = query.toUpper();
     }

@@ -17,15 +17,13 @@ LogsDisplay::LogsDisplay(QWidget *parent) :
     setObjectName(QString("MultiLogDisplay"));
 }
 
-void LogsDisplay::displayFile(QFile& file) {
-    QTextStream in(&file);
-    QStringList text = in.readAll().split(QString("\n"));
-    newTab(text, file.fileName());
+void LogsDisplay::displayFile(logfile_handler& file) {
+    newTab(file.lines, file.name());
 }
 
 void LogsDisplay::applyGrep(grep_structure g) {
     QStringList l;
-    QString query = QString::fromStdString(g.search_query);
+    QString query = g.search_query;
     if(!g.is_case_sensitive) {
         query = query.toUpper();
     }
@@ -45,7 +43,7 @@ void LogsDisplay::applyGrep(grep_structure g) {
                 }
             }
 
-            newTab(l, QString::fromStdString(g.search_query));
+            newTab(l, g.search_query);
         } else {
             auto activeTab = currentIndex();
             mutateToNewTree()->applyGrep(g);
@@ -76,11 +74,11 @@ void LogsDisplay::newTab(QStringList content, QString tabName) {
         setCurrentIndex(newTab);
     } else {
         auto newDisplay = new LogsDisplay(this);
-
         newDisplay->newTab(content, QString("base"));
         auto newTab = addTab(newDisplay, tabName);
         setCurrentIndex(newTab);
     }
+    currentWidget()->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
 }
 
 LogsDisplay* LogsDisplay::mutateToNewTree() {

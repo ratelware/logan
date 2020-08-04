@@ -11,6 +11,7 @@
 #include "grep_structure.h"
 #include "grepwindow.h"
 #include "searchwindow.h"
+#include "logfile_manager.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class Logan; }
@@ -35,5 +36,6 @@ private:
     GrepWindow g;
     SearchWindow s;
     QMap<int, QList<QListWidgetItem*>> bookmarks;
+    logfile_manager file_manager;
 };
 #endif // LOGAN_H

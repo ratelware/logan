@@ -19,6 +19,8 @@ SOURCES += \
     bookmark.cpp \
     bookmarksview.cpp \
     grepwindow.cpp \
+    logfile_handler.cpp \
+    logfile_manager.cpp \
     logsdisplay.cpp \
     main.cpp \
     logan.cpp \
@@ -33,6 +35,8 @@ HEADERS += \
     grep_structure.h \
     grepwindow.h \
     logan.h \
+    logfile_handler.h \
+    logfile_manager.h \
     logsdisplay.h \
     search_structure.h \
     searchwindow.h \

@@ -26,7 +26,7 @@ void SearchWindow::formSearch() {
     s.search_parents = ui->searchParents->isChecked();
     s.is_backwards = ui->searchBackwards->isChecked();
     s.wrap_around = ui->wrapAround->isChecked();
-    s.search_query = ui->searchQuery->text().toStdString();
+    s.search_query = ui->searchQuery->text();
 
     emit searchingRequested(s);
 }

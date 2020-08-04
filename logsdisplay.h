@@ -6,6 +6,7 @@
 
 #include "grep_structure.h"
 #include "search_structure.h"
+#include "logfile_handler.h"
 
 namespace Ui {
 class LogsDisplay;
@@ -19,7 +20,7 @@ public:
     explicit LogsDisplay(QWidget *parent = nullptr);
     ~LogsDisplay();
 
-    void displayFile(QFile& file);
+    void displayFile(logfile_handler& file);
     void newTab(QStringList content, QString tabName);
     LogsDisplay* mutateToNewTree();
 

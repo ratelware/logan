@@ -23,7 +23,7 @@ void GrepWindow::formGrep() {
     s.is_case_sensitive = ui->caseSensitive->isChecked();
     s.is_reverse = ui->isReverse->isChecked();
 
-    s.search_query = ui->searchQuery->text().toStdString();
+    s.search_query = ui->searchQuery->text();
 
     emit greppingRequested(s);
     hide();
