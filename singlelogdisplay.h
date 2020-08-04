@@ -2,6 +2,11 @@
 #define SINGLELOGDISPLAY_H
 
 #include <QWidget>
+#include <QTextBlockFormat>
+
+#include "search_structure.h"
+
+class LogsDisplay;
 
 namespace Ui {
 class SingleLogDisplay;
@@ -14,7 +19,7 @@ class SingleLogDisplay : public QWidget
 public:
     QStringList text;
 
-    explicit SingleLogDisplay(QStringList& l, QWidget *parent = nullptr);
+    explicit SingleLogDisplay(QStringList& l, LogsDisplay *parent);
     ~SingleLogDisplay();
 
 public:
@@ -22,9 +27,13 @@ public:
 
 public slots:
     void copySelectionToClipboard();
+    void emphasiseSelection();
+    void applySearch(search_structure s);
 
 private:
     void setUpActions();
+
+    QList<QTextBlockFormat> existingFormats;
 };
 
 #endif // SINGLELOGDISPLAY_H
