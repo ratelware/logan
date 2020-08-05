@@ -17,7 +17,7 @@ Logan::Logan(QWidget *parent)
 {
     ui->setupUi(this);
 
-    auto file_handler = file_manager.open_file("I:/Ratelware/logan-2/logan2/example-empty-logfile");
+    auto& file_handler = file_manager.open_file("I:/Ratelware/logan-2/logan2/example-empty-logfile");
     auto handler = file_handler.as(QString("example-empty-logfile"));
     auto newLogs = new LogsDisplay(handler, this);
     newLogs->setObjectName("RootLogDisplay");
