@@ -17,7 +17,7 @@ class LogsDisplay : public QTabWidget
     Q_OBJECT
 
 public:
-    explicit LogsDisplay(logfile_proxy handler, QWidget *parent = nullptr);
+    explicit LogsDisplay(logfile_proxy handler, QWidget *parent);
     ~LogsDisplay();
 
     void newTab(logfile_proxy logfile);

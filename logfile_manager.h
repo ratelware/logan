@@ -16,14 +16,11 @@ public:
     logfile_handler& open_file(const char* path);
     logfile_handler& open_file(const QString& path);
     logfile_handler& new_handler(QFile&& file);
-
-    logfile_handler& manage_handler(logfile_handler* h);
-
 private:
 
     typedef int logfile_id;
-
-    std::list<logfile_handler*> handlers;
+    std::list<QStringList> files_split_to_records;
+    std::list<logfile_handler> handlers;
 };
 
 #endif // LOGFILE_MANAGER_H

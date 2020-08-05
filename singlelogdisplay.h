@@ -30,6 +30,7 @@ public slots:
     void copySelectionToClipboard();
     void emphasiseSelection();
     void applySearch(search_structure s);
+    void bookmark();
 
 private:
     void setUpActions();

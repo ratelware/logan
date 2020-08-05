@@ -68,12 +68,11 @@ void LogsDisplay::newTab(logfile_proxy logfile) {
 }
 
 LogsDisplay* LogsDisplay::mutateToNewTree() {
-    auto active = dynamic_cast<SingleLogDisplay*>(currentWidget());
-    auto newHandler = log_handler.alias("base");
+    auto newHandler = dynamic_cast<SingleLogDisplay*>(currentWidget())->logfile.alias("base");
     auto newDisplay = new LogsDisplay(newHandler, this);
     newDisplay->setObjectName("LogsDisplay");
-
     newDisplay->newTab(newHandler);
+
     auto current = currentIndex();
     auto currentTitle = tabText(current);
     removeTab(current);

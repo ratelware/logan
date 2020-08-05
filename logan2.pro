@@ -19,6 +19,7 @@ SOURCES += \
     bookmark.cpp \
     bookmarksview.cpp \
     grepwindow.cpp \
+    linenumberarea.cpp \
     logfile_handler.cpp \
     logfile_manager.cpp \
     logsdisplay.cpp \
@@ -34,6 +35,7 @@ HEADERS += \
     bookmarksview.h \
     grep_structure.h \
     grepwindow.h \
+    linenumberarea.h \
     logan.h \
     logfile_handler.h \
     logfile_manager.h \
@@ -47,6 +49,7 @@ HEADERS += \
 FORMS += \
     bookmarksview.ui \
     grepwindow.ui \
+    linenumberarea.ui \
     logan.ui \
     logsdisplay.ui \
     searchwindow.ui \

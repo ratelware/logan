@@ -22,13 +22,10 @@ logfile_handler& logfile_manager::open_file(const QString& path) {
 
 logfile_handler& logfile_manager::new_handler(QFile&& file) {
     QTextStream in(&file);
-    QStringList text = in.readAll().split(QString("\n"));
+    files_split_to_records.push_back(in.readAll().split(QString("\n")));
 
-    return manage_handler(new logfile_handler(*this, text));
-}
-
-
-logfile_handler& logfile_manager::manage_handler(logfile_handler *h) {
-    handlers.push_back(h);
-    return *handlers.back();
+    std::vector<long> line_numbers(files_split_to_records.back().length());
+    std::iota(line_numbers.begin(), line_numbers.end(), 0);
+    handlers.push_back(logfile_handler(*this, files_split_to_records.back(), line_numbers));
+    return handlers.back();
 }

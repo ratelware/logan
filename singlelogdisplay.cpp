@@ -27,7 +27,7 @@ SingleLogDisplay::SingleLogDisplay(logfile_proxy l, LogsDisplay *parent) :
 
     ui->display->setOverwriteMode(false);
 
-    ui->display->setPlainText(logfile.lines().join("\n"));
+    ui->display->setPlainText(logfile.text());
 }
 
 void SingleLogDisplay::setUpActions() {
@@ -39,6 +39,7 @@ void SingleLogDisplay::setUpActions() {
 
     connect(copyAction, &QAction::triggered, this, &SingleLogDisplay::copySelectionToClipboard);
     connect(colourAction, &QAction::triggered, this, &SingleLogDisplay::emphasiseSelection);
+    connect(bookmarkAction, &QAction::triggered, this, &SingleLogDisplay::bookmark);
 
     insertActions(nullptr, all);
 }
@@ -53,21 +54,20 @@ void SingleLogDisplay::emphasiseSelection() {
 
     ui->display->setTextCursor(cursor);
 
-    int totalPos = 0;
-    for(auto c: logfile.lines()) {
-        auto index = c.indexOf(selection);
-        while(index != -1) {
-            auto tempCursor = ui->display->textCursor();
-            tempCursor.setPosition(totalPos + index);
-            tempCursor.setPosition(totalPos + index + selection.size(), QTextCursor::KeepAnchor);
-            auto format = QTextCharFormat();
-            format.setBackground(QBrush(Qt::green));
-            tempCursor.setCharFormat(format);
-            ui->display->setTextCursor(tempCursor);
+    QString text = ui->display->toPlainText();
+    int finalPos = text.indexOf(selection);
 
-            index = c.indexOf(selection, index + 1);
-        }
-        totalPos += c.size() + 1;
+    while(finalPos != -1) {
+        QTextCursor c = ui->display->textCursor();
+        c.setPosition(finalPos);
+        c.setPosition(finalPos + selection.size(), QTextCursor::KeepAnchor);
+        auto format = QTextCharFormat();
+        format.setBackground(QBrush(Qt::green));
+        c.setCharFormat(format);
+
+        ui->display->setTextCursor(c);
+        finalPos = text.indexOf(selection, finalPos + 1);
+
     }
 
     ui->display->setTextCursor(cursor);
@@ -90,6 +90,9 @@ void SingleLogDisplay::applySearch(search_structure s) {
     }
 }
 
+void SingleLogDisplay::bookmark() {
+
+}
 
 SingleLogDisplay::~SingleLogDisplay()
 {
