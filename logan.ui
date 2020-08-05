@@ -19,7 +19,7 @@
   <property name="windowTitle">
    <string>Logan</string>
   </property>
-  <widget class="QWidget" name="centralwidget">
+  <widget class="QWidget" name="loganDisplay">
    <property name="sizePolicy">
     <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
      <horstretch>5</horstretch>
@@ -28,32 +28,10 @@
    </property>
    <layout class="QHBoxLayout" name="horizontalLayout">
     <item>
-     <layout class="QHBoxLayout" name="horizontalLayout_2">
+     <layout class="QHBoxLayout" name="displayLayout">
       <property name="sizeConstraint">
        <enum>QLayout::SetNoConstraint</enum>
       </property>
-      <item>
-       <widget class="LogsDisplay" name="display" native="true">
-        <property name="enabled">
-         <bool>true</bool>
-        </property>
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-          <horstretch>5</horstretch>
-          <verstretch>5</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="minimumSize">
-         <size>
-          <width>600</width>
-          <height>600</height>
-         </size>
-        </property>
-        <property name="autoFillBackground">
-         <bool>false</bool>
-        </property>
-       </widget>
-      </item>
      </layout>
     </item>
    </layout>
@@ -126,12 +104,6 @@
   </action>
  </widget>
  <customwidgets>
-  <customwidget>
-   <class>LogsDisplay</class>
-   <extends>QWidget</extends>
-   <header>logsdisplay.h</header>
-   <container>1</container>
-  </customwidget>
   <customwidget>
    <class>BookmarksView</class>
    <extends>QDockWidget</extends>

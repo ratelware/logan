@@ -8,9 +8,9 @@
 #include <QTextDocumentFragment>
 #include <QTextCursor>
 
-SingleLogDisplay::SingleLogDisplay(QStringList& l, LogsDisplay *parent) :
+SingleLogDisplay::SingleLogDisplay(logfile_proxy l, LogsDisplay *parent) :
     QWidget(parent),
-    text(l),
+    logfile(l),
     ui(new Ui::SingleLogDisplay)
 {
     ui->setupUi(this);
@@ -27,7 +27,7 @@ SingleLogDisplay::SingleLogDisplay(QStringList& l, LogsDisplay *parent) :
 
     ui->display->setOverwriteMode(false);
 
-    ui->display->setPlainText(text.join(QString("\n")));
+    ui->display->setPlainText(logfile.lines().join("\n"));
 }
 
 void SingleLogDisplay::setUpActions() {
@@ -54,7 +54,7 @@ void SingleLogDisplay::emphasiseSelection() {
     ui->display->setTextCursor(cursor);
 
     int totalPos = 0;
-    for(auto c: text) {
+    for(auto c: logfile.lines()) {
         auto index = c.indexOf(selection);
         while(index != -1) {
             auto tempCursor = ui->display->textCursor();
@@ -74,43 +74,19 @@ void SingleLogDisplay::emphasiseSelection() {
 }
 
 void SingleLogDisplay::applySearch(search_structure s) {
-    qDebug((QString("Searching for ") + s.search_query).toStdString().c_str());
-
     QStringList l;
     QString query = s.search_query;
-    if(!s.is_case_sensitive) {
-        query = query.toUpper();
-    }
 
     auto currentPosition = ui->display->textCursor().position();
-    auto totalChars = 0;
+    QString text = ui->display->toPlainText();
 
-    qDebug("Starting search at %d", currentPosition);
-    for(auto& t : text) {
-        totalChars = t.size() + totalChars + 1;
-        if(totalChars  < currentPosition) {
-            continue;
-        }
+    auto start = text.indexOf(query, currentPosition + 1);
 
-        QString cmp = (s.is_case_sensitive) ? t : t.toUpper();
-
-        auto start = cmp.indexOf(query);
-
-        qDebug("Search of query finished at: %d", start);
-        if(totalChars - t.size() + start - 1 == currentPosition - query.size()) {
-            start = cmp.indexOf(query, start + 1);
-        }
-
-        if(start != -1) {
-            QTextCursor c = ui->display->textCursor();
-            c.setPosition(totalChars - 1 - t.size() + start);
-            c.setPosition(totalChars - 1 - t.size() + start + query.size(), QTextCursor::KeepAnchor);
-            ui->display->setTextCursor(c);
-
-            qDebug("Selecting characters between %d and %d", totalChars - 1 - t.size() + start, totalChars - 1 - t.size() + start + query.size());
-
-            break;
-        }
+    if(start != -1) {
+        QTextCursor c = ui->display->textCursor();
+        c.setPosition(start);
+        c.setPosition(start + query.size(), QTextCursor::KeepAnchor);
+        ui->display->setTextCursor(c);
     }
 }
 

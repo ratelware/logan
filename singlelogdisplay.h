@@ -5,6 +5,7 @@
 #include <QTextBlockFormat>
 
 #include "search_structure.h"
+#include "logfile_handler.h"
 
 class LogsDisplay;
 
@@ -17,9 +18,9 @@ class SingleLogDisplay : public QWidget
     Q_OBJECT
 
 public:
-    QStringList text;
+    logfile_proxy logfile;
 
-    explicit SingleLogDisplay(QStringList& l, LogsDisplay *parent);
+    explicit SingleLogDisplay(logfile_proxy l, LogsDisplay *parent);
     ~SingleLogDisplay();
 
 public:

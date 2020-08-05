@@ -30,6 +30,8 @@ public slots:
     void displaySearchWindow();
     void addBookmark(int lineNumber);
 
+    void applyGrep(grep_structure g);
+    void applySearch(search_structure g);
 private:
     Ui::Logan *ui;
     std::vector<std::unique_ptr<QShortcut>> shortcuts;

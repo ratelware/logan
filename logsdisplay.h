@@ -17,20 +17,20 @@ class LogsDisplay : public QTabWidget
     Q_OBJECT
 
 public:
-    explicit LogsDisplay(QWidget *parent = nullptr);
+    explicit LogsDisplay(logfile_proxy handler, QWidget *parent = nullptr);
     ~LogsDisplay();
 
-    void displayFile(logfile_handler& file);
-    void newTab(QStringList content, QString tabName);
+    void newTab(logfile_proxy logfile);
     LogsDisplay* mutateToNewTree();
 
-public slots:
+public:
     void applyGrep(grep_structure g);
     void applySearch(search_structure g);
 
 private:
     Ui::LogsDisplay *ui;
     QVector<LogsDisplay> children;
+    logfile_proxy log_handler;
 };
 
 #endif // LOGSDISPLAY_H

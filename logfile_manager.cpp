@@ -24,6 +24,11 @@ logfile_handler& logfile_manager::new_handler(QFile&& file) {
     QTextStream in(&file);
     QStringList text = in.readAll().split(QString("\n"));
 
-    handlers.push_back(logfile_handler(file.fileName(), text));
-    return handlers.back();
+    return manage_handler(new logfile_handler(*this, text));
+}
+
+
+logfile_handler& logfile_manager::manage_handler(logfile_handler *h) {
+    handlers.push_back(h);
+    return *handlers.back();
 }

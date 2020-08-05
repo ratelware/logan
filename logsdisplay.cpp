@@ -9,25 +9,16 @@
 #include "ui_logsdisplay.h"
 #include "ui_singlelogdisplay.h"
 
-LogsDisplay::LogsDisplay(QWidget *parent) :
+LogsDisplay::LogsDisplay(logfile_proxy log, QWidget *parent) :
     QTabWidget(parent),
-    ui(new Ui::LogsDisplay)
+    ui(new Ui::LogsDisplay),
+    log_handler(log)
 {
     ui->setupUi(this);
     setObjectName(QString("MultiLogDisplay"));
 }
 
-void LogsDisplay::displayFile(logfile_handler& file) {
-    newTab(file.lines, file.name());
-}
-
 void LogsDisplay::applyGrep(grep_structure g) {
-    QStringList l;
-    QString query = g.search_query;
-    if(!g.is_case_sensitive) {
-        query = query.toUpper();
-    }
-
     auto active = currentWidget();
     if(active == nullptr) {
         return;
@@ -35,15 +26,7 @@ void LogsDisplay::applyGrep(grep_structure g) {
 
     if(active->objectName() == QString("SingleLogDisplay")) {
         if(currentIndex() == 0) {
-            for(auto& t : dynamic_cast<SingleLogDisplay*>(active)->text) {
-                QString cmp = (g.is_case_sensitive) ? t : t.toUpper();
-
-                if(cmp.contains(query) ^ g.is_reverse) {
-                    l.push_back(t);
-                }
-            }
-
-            newTab(l, g.search_query);
+            newTab(log_handler.grep(g));
         } else {
             auto activeTab = currentIndex();
             mutateToNewTree()->applyGrep(g);
@@ -67,15 +50,18 @@ void LogsDisplay::applySearch(search_structure s) {
     }
 }
 
-void LogsDisplay::newTab(QStringList content, QString tabName) {
+void LogsDisplay::newTab(logfile_proxy logfile) {
     if(parent() != nullptr && (count() == 0 || currentIndex() == 0)) {
-        auto logDisplay = new SingleLogDisplay(content, this);
-        auto newTab = addTab(logDisplay, QString(tabName));
+        auto logDisplay = new SingleLogDisplay(logfile, this);
+        logDisplay->setObjectName("SingleLogDisplay");
+        auto newTab = addTab(logDisplay, logfile.name());
         setCurrentIndex(newTab);
     } else {
-        auto newDisplay = new LogsDisplay(this);
-        newDisplay->newTab(content, QString("base"));
-        auto newTab = addTab(newDisplay, tabName);
+        const auto aliased = logfile.alias(QString("base"));
+        auto newDisplay = new LogsDisplay(aliased, this);
+        newDisplay->setObjectName("LogsDisplay");
+        newDisplay->newTab(aliased);
+        auto newTab = addTab(newDisplay, aliased.name());
         setCurrentIndex(newTab);
     }
     currentWidget()->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
@@ -83,10 +69,11 @@ void LogsDisplay::newTab(QStringList content, QString tabName) {
 
 LogsDisplay* LogsDisplay::mutateToNewTree() {
     auto active = dynamic_cast<SingleLogDisplay*>(currentWidget());
-    QStringList displayed = active->text;
-    auto newDisplay = new LogsDisplay(this);
+    auto newHandler = log_handler.alias("base");
+    auto newDisplay = new LogsDisplay(newHandler, this);
+    newDisplay->setObjectName("LogsDisplay");
 
-    newDisplay->newTab(displayed, QString("base"));
+    newDisplay->newTab(newHandler);
     auto current = currentIndex();
     auto currentTitle = tabText(current);
     removeTab(current);
