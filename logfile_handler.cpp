@@ -2,13 +2,13 @@
 #include "logfile_manager.h"
 
 logfile_handler::logfile_handler(
-        logfile_manager& parent,
+        doc_supervisor& parent,
         QStringList& contentByLines,
         std::vector<long> lines
         )
     : content(contentByLines),
       relevantLines(lines),
-      manager(parent)
+      supervisor(parent)
 {
 
 }
@@ -38,7 +38,7 @@ logfile_handler& logfile_handler::grep(grep_structure g) {
         }
     });
 
-    auto it = children.insert(std::make_pair(g, logfile_handler(manager, content, entries)));
+    auto it = children.insert(std::make_pair(g, logfile_handler(supervisor, content, entries)));
     return it.first->second;
 }
 

@@ -6,7 +6,7 @@
 
 #include "grep_structure.h"
 
-class logfile_manager;
+class doc_supervisor;
 class logfile_proxy;
 
 extern bool operator<(const grep_structure, const grep_structure);
@@ -14,7 +14,7 @@ extern bool operator<(const grep_structure, const grep_structure);
 class logfile_handler
 {
 public:
-    logfile_handler(logfile_manager& parent, QStringList& contentByLines, std::vector<long> relevantLines);
+    logfile_handler(doc_supervisor& parent, QStringList& contentByLines, std::vector<long> relevantLines);
 
     logfile_proxy as(QString name);
     logfile_handler& grep(grep_structure g);
@@ -25,7 +25,7 @@ private:
     QStringList& content;
     std::vector<long> relevantLines;
 
-    logfile_manager& manager;
+    doc_supervisor& supervisor;
     std::map<grep_structure, logfile_handler> children;
 };
 
@@ -36,7 +36,7 @@ public:
     QString name() const;
     logfile_proxy alias(QString newName);
 
-    QString text() const;
+        QString text() const;
     logfile_proxy grep(grep_structure s);
 
 private:

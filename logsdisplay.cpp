@@ -16,6 +16,7 @@ LogsDisplay::LogsDisplay(logfile_proxy log, QWidget *parent) :
 {
     ui->setupUi(this);
     setObjectName(QString("MultiLogDisplay"));
+    this->setContentsMargins(0, 0, 0, 0);
 }
 
 void LogsDisplay::applyGrep(grep_structure g) {
@@ -53,13 +54,11 @@ void LogsDisplay::applySearch(search_structure s) {
 void LogsDisplay::newTab(logfile_proxy logfile) {
     if(parent() != nullptr && (count() == 0 || currentIndex() == 0)) {
         auto logDisplay = new SingleLogDisplay(logfile, this);
-        logDisplay->setObjectName("SingleLogDisplay");
         auto newTab = addTab(logDisplay, logfile.name());
         setCurrentIndex(newTab);
     } else {
-        const auto aliased = logfile.alias(QString("base"));
+        const auto aliased = logfile.alias(QString("<base>"));
         auto newDisplay = new LogsDisplay(aliased, this);
-        newDisplay->setObjectName("LogsDisplay");
         newDisplay->newTab(aliased);
         auto newTab = addTab(newDisplay, aliased.name());
         setCurrentIndex(newTab);
@@ -68,9 +67,8 @@ void LogsDisplay::newTab(logfile_proxy logfile) {
 }
 
 LogsDisplay* LogsDisplay::mutateToNewTree() {
-    auto newHandler = dynamic_cast<SingleLogDisplay*>(currentWidget())->logfile.alias("base");
+    auto newHandler = dynamic_cast<SingleLogDisplay*>(currentWidget())->logfile.alias("<base>");
     auto newDisplay = new LogsDisplay(newHandler, this);
-    newDisplay->setObjectName("LogsDisplay");
     newDisplay->newTab(newHandler);
 
     auto current = currentIndex();

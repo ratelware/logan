@@ -28,16 +28,12 @@ public:
 public slots:
     void displayGrepWindow();
     void displaySearchWindow();
-    void addBookmark(int lineNumber);
+    void openNewFile();
 
-    void applyGrep(grep_structure g);
-    void applySearch(search_structure g);
 private:
     Ui::Logan *ui;
     std::vector<std::unique_ptr<QShortcut>> shortcuts;
     GrepWindow g;
     SearchWindow s;
-    QMap<int, QList<QListWidgetItem*>> bookmarks;
-    logfile_manager file_manager;
 };
 #endif // LOGAN_H

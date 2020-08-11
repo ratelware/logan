@@ -1,6 +1,8 @@
-#include <qfile.h>
-#include <qtextstream.h>
-#include <qshortcut.h>
+#include <QFile>
+#include <QTextStream>
+#include <QShortcut>
+#include <QFileDialog>
+
 #include <memory>
 
 #include <iostream>
@@ -17,29 +19,21 @@ Logan::Logan(QWidget *parent)
 {
     ui->setupUi(this);
 
-    auto& file_handler = file_manager.open_file("I:/Ratelware/logan-2/logan2/example-empty-logfile");
-    auto handler = file_handler.as(QString("example-empty-logfile"));
-    auto newLogs = new LogsDisplay(handler, this);
-    newLogs->setObjectName("RootLogDisplay");
-    ui->displayLayout->addWidget(newLogs);
-
     shortcuts.push_back(std::unique_ptr<QShortcut>(new QShortcut(QKeySequence(Qt::CTRL + Qt::Key_G), this)));
     shortcuts.push_back(std::unique_ptr<QShortcut>(new QShortcut(QKeySequence(Qt::CTRL + Qt::Key_F), this)));
     connect(shortcuts[0].get(), &QShortcut::activated, this, &Logan::displayGrepWindow);
     connect(shortcuts[1].get(), &QShortcut::activated, this, &Logan::displaySearchWindow);
 
-    connect(&g, &GrepWindow::greppingRequested, this, &Logan::applyGrep);
-    connect(&s, &SearchWindow::searchingRequested, this, &Logan::applySearch);
-
-    newLogs->newTab(handler);
+    connect(&g, &GrepWindow::greppingRequested, ui->loganDisplay, &RootLogfileDisplay::applyGrepToCurrent);
+    connect(&s, &SearchWindow::searchingRequested, ui->loganDisplay, &RootLogfileDisplay::applySearchToCurrent);
+    connect(ui->actionOpen, &QAction::triggered, this, &Logan::openNewFile);
 }
 
-void Logan::applyGrep(grep_structure g) {
-    this->findChild<LogsDisplay*>("RootLogDisplay")->applyGrep(g);
-}
-
-void Logan::applySearch(search_structure g) {
-    this->findChild<LogsDisplay*>("RootLogDisplay")->applySearch(g);
+void Logan::openNewFile() {
+    QFileDialog fileOpener(this);
+    connect(&fileOpener, &QFileDialog::fileSelected, ui->loganDisplay, &RootLogfileDisplay::fileSelected);
+    fileOpener.setFileMode(QFileDialog::ExistingFile);
+    fileOpener.exec();
 }
 
 void Logan::displayGrepWindow() {
@@ -58,10 +52,6 @@ void Logan::displaySearchWindow() {
     if(!s.hasFocus()) {
         s.activateWindow();
     }
-}
-
-void Logan::addBookmark(int lineNumber) {
-
 }
 
 Logan::~Logan()

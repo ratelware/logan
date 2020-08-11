@@ -6,6 +6,7 @@
 #include <list>
 #include <memory>
 
+#include "doc_supervisor.h"
 #include "logfile_handler.h"
 
 class logfile_manager
@@ -13,14 +14,13 @@ class logfile_manager
 public:
     logfile_manager();
 
-    logfile_handler& open_file(const char* path);
-    logfile_handler& open_file(const QString& path);
-    logfile_handler& new_handler(QFile&& file);
+    doc_supervisor& open_file(const char* path);
+    doc_supervisor& open_file(const QString& path);
+    doc_supervisor& new_supervisor(QFile&& file);
 private:
 
     typedef int logfile_id;
-    std::list<QStringList> files_split_to_records;
-    std::list<logfile_handler> handlers;
+    std::list<doc_supervisor> supervisors;
 };
 
 #endif // LOGFILE_MANAGER_H

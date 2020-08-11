@@ -18,6 +18,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
     bookmark.cpp \
     bookmarksview.cpp \
+    doc_supervisor.cpp \
     grepwindow.cpp \
     linenumberarea.cpp \
     logfile_handler.cpp \
@@ -25,6 +26,7 @@ SOURCES += \
     logsdisplay.cpp \
     main.cpp \
     logan.cpp \
+    rootlogfiledisplay.cpp \
     searchwindow.cpp \
     singlelogdisplay.cpp \
     taglist.cpp \
@@ -33,6 +35,7 @@ SOURCES += \
 HEADERS += \
     bookmark.h \
     bookmarksview.h \
+    doc_supervisor.h \
     grep_structure.h \
     grepwindow.h \
     linenumberarea.h \
@@ -40,6 +43,7 @@ HEADERS += \
     logfile_handler.h \
     logfile_manager.h \
     logsdisplay.h \
+    rootlogfiledisplay.h \
     search_structure.h \
     searchwindow.h \
     singlelogdisplay.h \
@@ -52,6 +56,7 @@ FORMS += \
     linenumberarea.ui \
     logan.ui \
     logsdisplay.ui \
+    rootlogfiledisplay.ui \
     searchwindow.ui \
     singlelogdisplay.ui \
     taglist.ui \

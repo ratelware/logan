@@ -19,7 +19,6 @@ SingleLogDisplay::SingleLogDisplay(logfile_proxy l, LogsDisplay *parent) :
 
     setObjectName(QString("SingleLogDisplay"));
 
-
     ui->display->setLineWrapMode(QPlainTextEdit::LineWrapMode::NoWrap);
     ui->display->setWordWrapMode(QTextOption::NoWrap);
     ui->display->setReadOnly(true);
