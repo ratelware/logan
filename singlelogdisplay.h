@@ -26,7 +26,6 @@ public:
 
     void scrollToLine(line_number_t line);
 
-
 public:
     Ui::SingleLogDisplay *ui;
 

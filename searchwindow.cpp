@@ -21,7 +21,6 @@ SearchWindow::SearchWindow(QWidget *parent) :
 void SearchWindow::formSearch() {
     search_structure s;
     s.is_regex = ui->useRegex->isChecked();
-    s.is_full_match = ui->matchFullWords->isChecked();
     s.is_case_sensitive = ui->caseSensitive->isChecked();
     s.search_parents = ui->searchParents->isChecked();
     s.is_backwards = ui->searchBackwards->isChecked();

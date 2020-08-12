@@ -110,15 +110,17 @@
        </item>
        <item>
         <widget class="QCheckBox" name="useRegex">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
          <property name="text">
           <string>Regular Expression</string>
          </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QCheckBox" name="matchFullWords">
-         <property name="text">
-          <string>Full words only</string>
+         <property name="checkable">
+          <bool>true</bool>
+         </property>
+         <property name="checked">
+          <bool>true</bool>
          </property>
         </widget>
        </item>
@@ -148,7 +150,6 @@
   <tabstop>grepRejected</tabstop>
   <tabstop>caseSensitive</tabstop>
   <tabstop>useRegex</tabstop>
-  <tabstop>matchFullWords</tabstop>
  </tabstops>
  <resources/>
  <connections/>

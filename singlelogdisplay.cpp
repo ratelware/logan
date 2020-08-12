@@ -7,6 +7,7 @@
 #include <QClipboard>
 #include <QTextDocumentFragment>
 #include <QTextCursor>
+#include <QMessageBox>
 
 SingleLogDisplay::SingleLogDisplay(logfile_proxy l, LogsDisplay *parent, RootLogfileDisplay& root) :
     QWidget(parent),
@@ -28,6 +29,13 @@ SingleLogDisplay::SingleLogDisplay(logfile_proxy l, LogsDisplay *parent, RootLog
     ui->display->setOverwriteMode(false);
 
     ui->display->setPlainText(logfile.text());
+
+    // Set selection colors
+    // Stolen from:
+    QPalette p = ui->display->palette();
+    p.setColor(QPalette::Highlight, Qt::yellow);
+    p.setColor(QPalette::HighlightedText, Qt::black);
+    ui->display->setPalette(p);
 }
 
 void SingleLogDisplay::setUpActions() {
@@ -75,27 +83,42 @@ void SingleLogDisplay::emphasiseSelection() {
     ui->display->setTextCursor(cursor);
 }
 
+
 void SingleLogDisplay::applySearch(search_structure s) {
-    QStringList l;
-    QString query = s.search_query;
-
-    auto currentPosition = ui->display->textCursor().position();
     QString text = ui->display->toPlainText();
-
-    auto start = text.indexOf(query, currentPosition + 1);
+    auto start = s.is_backwards ?
+                text.lastIndexOf(s.search_query, ui->display->textCursor().selectionStart() - 1, s.is_case_sensitive ? Qt::CaseSensitive : Qt::CaseInsensitive) :
+                text.indexOf(s.search_query, ui->display->textCursor().selectionEnd(), s.is_case_sensitive ? Qt::CaseSensitive : Qt::CaseInsensitive);
 
     if(start != -1) {
         QTextCursor c = ui->display->textCursor();
         c.setPosition(start);
-        c.setPosition(start + query.size(), QTextCursor::KeepAnchor);
+        c.setPosition(start + s.search_query.size(), QTextCursor::KeepAnchor);
         ui->display->setTextCursor(c);
+        return;
+    } else if(s.wrap_around) {
+        auto newStart = s.is_backwards ?
+            text.lastIndexOf(s.search_query, -1, s.is_case_sensitive ? Qt::CaseSensitive : Qt::CaseInsensitive) :
+            text.indexOf(s.search_query, 0, s.is_case_sensitive ? Qt::CaseSensitive : Qt::CaseInsensitive);
+
+        if(newStart != -1) {
+            QTextCursor c = ui->display->textCursor();
+            c.setPosition(newStart);
+            c.setPosition(newStart + s.search_query.size(), QTextCursor::KeepAnchor);
+            ui->display->setTextCursor(c);
+            return;
+        }
     }
+
+    QMessageBox::warning(this, tr("Phrase not found"), tr("Failed to find searched phrase"));
 }
 
 void SingleLogDisplay::scrollToLine(line_number_t line) {
     auto location = logfile.line_start_position(line);
     auto cursor = ui->display->textCursor();
     cursor.setPosition(location);
+    cursor.select(QTextCursor::BlockUnderCursor);
+
     ui->display->moveCursor(QTextCursor::End);
     ui->display->setTextCursor(cursor);
 }

@@ -1,3 +1,5 @@
+#include <QRegularExpression>
+
 #include "logfile_handler.h"
 #include "logfile_manager.h"
 
@@ -36,16 +38,12 @@ logfile_handler& logfile_handler::grep(grep_structure g) {
         return found->second;
     }
 
-    QString query = g.search_query;
-    if(!g.is_case_sensitive) {
-        query = query.toUpper();
-    }
+    QRegularExpression regexp(g.search_query, (g.is_case_sensitive) ? QRegularExpression::NoPatternOption : QRegularExpression::CaseInsensitiveOption);
+    regexp.optimize();
 
     std::vector<line_descriptor> entries;
     std::for_each(relevantLines.begin(), relevantLines.end(), [&](line_descriptor d){
-        QString cmp = (g.is_case_sensitive) ? content[d.line_number] : content[d.line_number].toUpper();
-
-        if(cmp.contains(query) ^ g.is_reverse) {
+        if(regexp.match(content[d.line_number]).hasMatch() ^ g.is_reverse) {
             line_descriptor new_descriptor;
             new_descriptor.line_length = d.line_length;
             new_descriptor.line_start = entries.empty() ? 0 : entries.back().line_start + entries.back().line_length;
@@ -73,8 +71,8 @@ bool operator<(const grep_structure g1, const grep_structure g2) {
         return direct;
     }
 
-    auto other_g1 = (g1.is_regex << 3) | (g1.is_reverse << 2) | (g1.is_full_match << 1) | (g1.is_case_sensitive << 0);
-    auto other_g2 = (g2.is_regex << 3) | (g2.is_reverse << 2) | (g2.is_full_match << 1) | (g2.is_case_sensitive << 0);
+    auto other_g1 = (g1.is_regex << 3) | (g1.is_reverse << 2) | (g1.is_case_sensitive << 1);
+    auto other_g2 = (g2.is_regex << 3) | (g2.is_reverse << 2) | (g2.is_case_sensitive << 1);
 
     return other_g1 < other_g2;
 }

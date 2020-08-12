@@ -19,7 +19,6 @@ GrepWindow::GrepWindow(QWidget *parent) :
 void GrepWindow::formGrep() {
     grep_structure s;
     s.is_regex = ui->useRegex->isChecked();
-    s.is_full_match = ui->matchFullWords->isChecked();
     s.is_case_sensitive = ui->caseSensitive->isChecked();
     s.is_reverse = ui->isReverse->isChecked();
 
