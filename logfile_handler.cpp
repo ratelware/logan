@@ -18,6 +18,10 @@ logfile_proxy logfile_handler::as(QString name) {
     return logfile_proxy(*this, name);
 }
 
+long logfile_handler::line_number(int at) const {
+    return relevantLines[at];
+}
+
 logfile_handler& logfile_handler::grep(grep_structure g) {
     auto found = children.find(g);
     if(found != children.end()) {
@@ -74,6 +78,10 @@ QString logfile_proxy::name() const {
 
 QString logfile_proxy::text() const {
     return handler.get_text();
+}
+
+long logfile_proxy::line_number(int at) const {
+    return handler.line_number(at);
 }
 
 logfile_proxy logfile_proxy::alias(QString name) {

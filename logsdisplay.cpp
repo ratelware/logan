@@ -9,10 +9,11 @@
 #include "ui_logsdisplay.h"
 #include "ui_singlelogdisplay.h"
 
-LogsDisplay::LogsDisplay(logfile_proxy log, QWidget *parent) :
+LogsDisplay::LogsDisplay(logfile_proxy log, QWidget *parent, RootLogfileDisplay& root) :
     QTabWidget(parent),
     ui(new Ui::LogsDisplay),
-    log_handler(log)
+    log_handler(log),
+    root(root)
 {
     ui->setupUi(this);
     setObjectName(QString("MultiLogDisplay"));
@@ -53,12 +54,12 @@ void LogsDisplay::applySearch(search_structure s) {
 
 void LogsDisplay::newTab(logfile_proxy logfile) {
     if(parent() != nullptr && (count() == 0 || currentIndex() == 0)) {
-        auto logDisplay = new SingleLogDisplay(logfile, this);
+        auto logDisplay = new SingleLogDisplay(logfile, this, root);
         auto newTab = addTab(logDisplay, logfile.name());
         setCurrentIndex(newTab);
     } else {
         const auto aliased = logfile.alias(QString("<base>"));
-        auto newDisplay = new LogsDisplay(aliased, this);
+        auto newDisplay = new LogsDisplay(aliased, this, root);
         newDisplay->newTab(aliased);
         auto newTab = addTab(newDisplay, aliased.name());
         setCurrentIndex(newTab);
@@ -68,7 +69,7 @@ void LogsDisplay::newTab(logfile_proxy logfile) {
 
 LogsDisplay* LogsDisplay::mutateToNewTree() {
     auto newHandler = dynamic_cast<SingleLogDisplay*>(currentWidget())->logfile.alias("<base>");
-    auto newDisplay = new LogsDisplay(newHandler, this);
+    auto newDisplay = new LogsDisplay(newHandler, this, root);
     newDisplay->newTab(newHandler);
 
     auto current = currentIndex();

@@ -17,6 +17,7 @@ public:
     doc_supervisor& open_file(const char* path);
     doc_supervisor& open_file(const QString& path);
     doc_supervisor& new_supervisor(QFile&& file);
+    doc_supervisor& supervisor_at(int index);
 private:
 
     typedef int logfile_id;

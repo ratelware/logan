@@ -8,6 +8,7 @@
 #include "logfile_handler.h"
 
 class LogsDisplay;
+class RootLogfileDisplay;
 
 namespace Ui {
 class SingleLogDisplay;
@@ -20,7 +21,7 @@ class SingleLogDisplay : public QWidget
 public:
     logfile_proxy logfile;
 
-    explicit SingleLogDisplay(logfile_proxy l, LogsDisplay *parent);
+    explicit SingleLogDisplay(logfile_proxy l, LogsDisplay *parent, RootLogfileDisplay& root);
     ~SingleLogDisplay();
 
 public:
@@ -31,11 +32,13 @@ public slots:
     void emphasiseSelection();
     void applySearch(search_structure s);
     void bookmark();
+    void fastBookmark();
 
 private:
     void setUpActions();
 
     QList<QTextBlockFormat> existingFormats;
+    RootLogfileDisplay& root;
 };
 
 #endif // SINGLELOGDISPLAY_H

@@ -7,6 +7,7 @@
 #include "grep_structure.h"
 #include "search_structure.h"
 #include "logfile_handler.h"
+#include "rootlogfiledisplay.h"
 
 namespace Ui {
 class LogsDisplay;
@@ -17,7 +18,7 @@ class LogsDisplay : public QTabWidget
     Q_OBJECT
 
 public:
-    explicit LogsDisplay(logfile_proxy handler, QWidget *parent);
+    explicit LogsDisplay(logfile_proxy handler, QWidget *parent, RootLogfileDisplay& root);
     ~LogsDisplay();
 
     void newTab(logfile_proxy logfile);
@@ -31,6 +32,7 @@ private:
     Ui::LogsDisplay *ui;
     QVector<LogsDisplay> children;
     logfile_proxy log_handler;
+    RootLogfileDisplay& root;
 };
 
 #endif // LOGSDISPLAY_H

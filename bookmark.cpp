@@ -1,6 +1,6 @@
 #include "bookmark.h"
 
-Bookmark::Bookmark()
+Bookmark::Bookmark(bookmark_structure b): b(b)
 {
 
 }

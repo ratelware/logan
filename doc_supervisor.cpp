@@ -14,3 +14,22 @@ doc_supervisor::doc_supervisor(QStringList file)
 logfile_handler& doc_supervisor::get_root() {
     return *handler;
 }
+
+void doc_supervisor::add_bookmark(long line_number) {
+    bookmark_structure s;
+    s.line_number = line_number;
+    s.bookmark_name = files_split_to_records[0][line_number];
+
+    for(auto i = bookmarks.begin(); i != bookmarks.end(); ++i) {
+        if(i->line_number < s.line_number) {
+            bookmarks.insert(i, s);
+            return;
+        }
+    }
+
+    bookmarks.push_back(s);
+}
+
+const std::vector<bookmark_structure>& doc_supervisor::get_bookmarks() const {
+    return bookmarks;
+}

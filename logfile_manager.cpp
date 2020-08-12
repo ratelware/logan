@@ -25,3 +25,7 @@ doc_supervisor& logfile_manager::new_supervisor(QFile&& file) {
     supervisors.push_back(doc_supervisor(in.readAll().split(QString("\n"))));
     return supervisors.back();
 }
+
+doc_supervisor& logfile_manager::supervisor_at(int index) {
+    return *(std::next(supervisors.begin(), index));
+}

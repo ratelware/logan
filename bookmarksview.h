@@ -3,6 +3,8 @@
 
 #include <QDockWidget>
 
+#include "doc_supervisor.h"
+
 namespace Ui {
 class BookmarksView;
 }
@@ -15,6 +17,7 @@ public:
     explicit BookmarksView(QWidget *parent = nullptr);
     ~BookmarksView();
 
+    void reload(doc_supervisor&);
 private:
     Ui::BookmarksView *ui;
 };

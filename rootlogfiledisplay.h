@@ -18,6 +18,8 @@ public:
     explicit RootLogfileDisplay(QWidget *parent = nullptr);
     ~RootLogfileDisplay();
 
+    void addBookmarkToCurrent(long lineNumber);
+
 public slots:
     void tabChanged(int newActive);
     void fileSelected(const QString& filename);

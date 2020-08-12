@@ -20,6 +20,7 @@ public:
     logfile_handler& grep(grep_structure g);
 
     QString get_text();
+    long line_number(int at) const;
 
 private:
     QStringList& content;
@@ -36,8 +37,10 @@ public:
     QString name() const;
     logfile_proxy alias(QString newName);
 
-        QString text() const;
+    QString text() const;
     logfile_proxy grep(grep_structure s);
+
+    long line_number(int at) const;
 
 private:
     QString fileName;

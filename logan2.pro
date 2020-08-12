@@ -17,6 +17,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
     bookmark.cpp \
+    bookmarkslist.cpp \
     bookmarksview.cpp \
     doc_supervisor.cpp \
     grepwindow.cpp \
@@ -34,6 +35,8 @@ SOURCES += \
 
 HEADERS += \
     bookmark.h \
+    bookmark_structure.h \
+    bookmarkslist.h \
     bookmarksview.h \
     doc_supervisor.h \
     grep_structure.h \
@@ -51,6 +54,7 @@ HEADERS += \
     tagpanel.h
 
 FORMS += \
+    bookmarkslist.ui \
     bookmarksview.ui \
     grepwindow.ui \
     linenumberarea.ui \

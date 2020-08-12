@@ -8,10 +8,11 @@
 #include <QTextDocumentFragment>
 #include <QTextCursor>
 
-SingleLogDisplay::SingleLogDisplay(logfile_proxy l, LogsDisplay *parent) :
+SingleLogDisplay::SingleLogDisplay(logfile_proxy l, LogsDisplay *parent, RootLogfileDisplay& root) :
     QWidget(parent),
     logfile(l),
-    ui(new Ui::SingleLogDisplay)
+    ui(new Ui::SingleLogDisplay),
+    root(root)
 {
     ui->setupUi(this);
 
@@ -31,7 +32,8 @@ SingleLogDisplay::SingleLogDisplay(logfile_proxy l, LogsDisplay *parent) :
 
 void SingleLogDisplay::setUpActions() {
     auto copyAction = new QAction("Copy");
-    auto bookmarkAction = new QAction("Bookmark");
+    auto bookmarkAction = new QAction("Named bookmark");
+    auto fastBookmarkAction = new QAction("Fast bookmark");
     auto colourAction = new QAction("Make colorful");
 
     auto all = QList<QAction*>({copyAction, bookmarkAction, colourAction});
@@ -39,6 +41,7 @@ void SingleLogDisplay::setUpActions() {
     connect(copyAction, &QAction::triggered, this, &SingleLogDisplay::copySelectionToClipboard);
     connect(colourAction, &QAction::triggered, this, &SingleLogDisplay::emphasiseSelection);
     connect(bookmarkAction, &QAction::triggered, this, &SingleLogDisplay::bookmark);
+    connect(fastBookmarkAction, &QAction::triggered, this, &SingleLogDisplay::fastBookmark);
 
     insertActions(nullptr, all);
 }
@@ -90,7 +93,11 @@ void SingleLogDisplay::applySearch(search_structure s) {
 }
 
 void SingleLogDisplay::bookmark() {
+    fastBookmark();
+}
 
+void SingleLogDisplay::fastBookmark() {
+    root.addBookmarkToCurrent(logfile.line_number(ui->display->textCursor().blockNumber()));
 }
 
 SingleLogDisplay::~SingleLogDisplay()
