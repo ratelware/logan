@@ -67,6 +67,20 @@ void LogsDisplay::newTab(logfile_proxy logfile) {
     currentWidget()->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
 }
 
+void LogsDisplay::scrollToLine(line_number_t line) {
+    auto active = currentWidget();
+    if(active == nullptr) {
+        return;
+    }
+
+    if(active->objectName() == QString("SingleLogDisplay")) {
+        dynamic_cast<SingleLogDisplay*>(active)->scrollToLine(line);
+    } else if(active->objectName() == QString("MultiLogDisplay")) {
+        dynamic_cast<LogsDisplay*>(active)->scrollToLine(line);
+    }
+}
+
+
 LogsDisplay* LogsDisplay::mutateToNewTree() {
     auto newHandler = dynamic_cast<SingleLogDisplay*>(currentWidget())->logfile.alias("<base>");
     auto newDisplay = new LogsDisplay(newHandler, this, root);

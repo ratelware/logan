@@ -4,6 +4,7 @@
 #include <QWidget>
 
 #include "doc_supervisor.h"
+#include "rootlogfiledisplay.h"
 
 namespace Ui {
 class BookmarksList;
@@ -18,7 +19,10 @@ public:
     ~BookmarksList();
 
     void reload(doc_supervisor&);
+
+    void setRoot(RootLogfileDisplay*);
 private:
+    RootLogfileDisplay* root;
     Ui::BookmarksList *ui;
 };
 

@@ -6,6 +6,7 @@
 
 #include "grep_structure.h"
 #include "search_structure.h"
+#include "line_descriptor.h"
 #include "logfile_handler.h"
 #include "rootlogfiledisplay.h"
 
@@ -27,6 +28,8 @@ public:
 public:
     void applyGrep(grep_structure g);
     void applySearch(search_structure g);
+
+    void scrollToLine(line_number_t line);
 
 private:
     Ui::LogsDisplay *ui;

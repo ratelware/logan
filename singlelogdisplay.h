@@ -24,6 +24,9 @@ public:
     explicit SingleLogDisplay(logfile_proxy l, LogsDisplay *parent, RootLogfileDisplay& root);
     ~SingleLogDisplay();
 
+    void scrollToLine(line_number_t line);
+
+
 public:
     Ui::SingleLogDisplay *ui;
 

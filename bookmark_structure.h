@@ -3,8 +3,10 @@
 
 #include <QString>
 
+#include "line_descriptor.h"
+
 struct bookmark_structure {
-    long line_number;
+    line_number_t line_number;
     QString bookmark_name;
 };
 

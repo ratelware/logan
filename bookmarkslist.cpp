@@ -1,5 +1,6 @@
 #include "bookmarkslist.h"
 #include "ui_bookmarkslist.h"
+#include "bookmark.h"
 
 BookmarksList::BookmarksList(QWidget *parent) :
     QWidget(parent),
@@ -13,8 +14,13 @@ void BookmarksList::reload(doc_supervisor& s) {
     const std::vector<bookmark_structure>& bs = s.get_bookmarks();
 
     for(auto b: bs) {
-        ui->bookmarksList->addItem(b.bookmark_name);
+        ui->bookmarksList->addItem(new Bookmark(ui->bookmarksList, b));
     }
+}
+
+void BookmarksList::setRoot(RootLogfileDisplay* d) {
+    root = d;
+    connect(ui->bookmarksList, &QListWidget::itemClicked, root, &RootLogfileDisplay::scrollToLineOnCurrent);
 }
 
 BookmarksList::~BookmarksList()

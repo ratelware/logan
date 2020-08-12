@@ -92,6 +92,14 @@ void SingleLogDisplay::applySearch(search_structure s) {
     }
 }
 
+void SingleLogDisplay::scrollToLine(line_number_t line) {
+    auto location = logfile.line_start_position(line);
+    auto cursor = ui->display->textCursor();
+    cursor.setPosition(location);
+    ui->display->moveCursor(QTextCursor::End);
+    ui->display->setTextCursor(cursor);
+}
+
 void SingleLogDisplay::bookmark() {
     fastBookmark();
 }

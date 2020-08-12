@@ -34,7 +34,14 @@
        <height>38</height>
       </size>
      </property>
-     <widget class="BookmarksList" name="bookmarksList"/>
+     <widget class="BookmarksList" name="bookmarksList">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+     </widget>
     </widget>
    </item>
    <item>

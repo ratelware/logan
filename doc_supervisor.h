@@ -5,6 +5,7 @@
 #include <list>
 #include <memory>
 
+#include "line_descriptor.h"
 #include "logfile_handler.h"
 #include "bookmark_structure.h"
 
@@ -15,12 +16,11 @@ public:
 
     logfile_handler& get_root();
 
-    void add_bookmark(long line_number);
+    void add_bookmark(line_number_t line_number);
     const std::vector<bookmark_structure>& get_bookmarks() const;
 
 private:
     std::vector<QStringList> files_split_to_records;
-    std::vector<std::vector<long>> line_numbers;
     std::unique_ptr<logfile_handler> handler;
 
     std::vector<bookmark_structure> bookmarks;

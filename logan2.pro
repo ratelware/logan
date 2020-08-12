@@ -18,7 +18,6 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
     bookmark.cpp \
     bookmarkslist.cpp \
-    bookmarksview.cpp \
     doc_supervisor.cpp \
     grepwindow.cpp \
     linenumberarea.cpp \
@@ -29,18 +28,17 @@ SOURCES += \
     logan.cpp \
     rootlogfiledisplay.cpp \
     searchwindow.cpp \
-    singlelogdisplay.cpp \
-    taglist.cpp \
-    tagpanel.cpp
+    singlelogdisplay.cpp
 
 HEADERS += \
     bookmark.h \
     bookmark_structure.h \
     bookmarkslist.h \
-    bookmarksview.h \
+    constants.h \
     doc_supervisor.h \
     grep_structure.h \
     grepwindow.h \
+    line_descriptor.h \
     linenumberarea.h \
     logan.h \
     logfile_handler.h \
@@ -49,22 +47,17 @@ HEADERS += \
     rootlogfiledisplay.h \
     search_structure.h \
     searchwindow.h \
-    singlelogdisplay.h \
-    taglist.h \
-    tagpanel.h
+    singlelogdisplay.h
 
 FORMS += \
     bookmarkslist.ui \
-    bookmarksview.ui \
     grepwindow.ui \
     linenumberarea.ui \
     logan.ui \
     logsdisplay.ui \
     rootlogfiledisplay.ui \
     searchwindow.ui \
-    singlelogdisplay.ui \
-    taglist.ui \
-    tagpanel.ui
+    singlelogdisplay.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
