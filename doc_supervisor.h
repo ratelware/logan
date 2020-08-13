@@ -16,7 +16,7 @@ public:
 
     logfile_handler& get_root();
 
-    void add_bookmark(line_number_t line_number);
+    void add_bookmark(bookmark_structure bookmark);
     const std::vector<bookmark_structure>& get_bookmarks() const;
 
 private:

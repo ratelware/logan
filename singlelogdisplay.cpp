@@ -7,7 +7,9 @@
 #include <QClipboard>
 #include <QTextDocumentFragment>
 #include <QTextCursor>
+#include <QTextBlock>
 #include <QMessageBox>
+#include <QInputDialog>
 
 SingleLogDisplay::SingleLogDisplay(logfile_proxy l, LogsDisplay *parent, RootLogfileDisplay& root) :
     QWidget(parent),
@@ -44,7 +46,7 @@ void SingleLogDisplay::setUpActions() {
     auto fastBookmarkAction = new QAction("Fast bookmark");
     auto colourAction = new QAction("Make colorful");
 
-    auto all = QList<QAction*>({copyAction, bookmarkAction, colourAction});
+    auto all = QList<QAction*>({copyAction, bookmarkAction, fastBookmarkAction, colourAction});
 
     connect(copyAction, &QAction::triggered, this, &SingleLogDisplay::copySelectionToClipboard);
     connect(colourAction, &QAction::triggered, this, &SingleLogDisplay::emphasiseSelection);
@@ -147,18 +149,27 @@ void SingleLogDisplay::scrollToLine(line_number_t line) {
     auto location = logfile.line_start_position(line);
     auto cursor = ui->display->textCursor();
     cursor.setPosition(location);
-    cursor.select(QTextCursor::BlockUnderCursor);
+    cursor.select(QTextCursor::LineUnderCursor);
 
-    ui->display->moveCursor(QTextCursor::End);
     ui->display->setTextCursor(cursor);
 }
 
 void SingleLogDisplay::bookmark() {
-    fastBookmark();
+    bool ok = false;
+    QString bookmarkName = QInputDialog::getText(this, tr("Add bookmark"), tr("Bookmark name"), QLineEdit::Normal, ui->display->textCursor().block().text(), &ok);
+    if(ok && !bookmarkName.isEmpty()) {
+        bookmark_structure b;
+        b.line_number = logfile.line_number(ui->display->textCursor().blockNumber());
+        b.bookmark_name = bookmarkName;
+        root.addBookmarkToCurrent(b);
+    }
 }
 
 void SingleLogDisplay::fastBookmark() {
-    root.addBookmarkToCurrent(logfile.line_number(ui->display->textCursor().blockNumber()));
+    bookmark_structure b;
+    b.line_number = logfile.line_number(ui->display->textCursor().blockNumber());
+    b.bookmark_name = ui->display->textCursor().block().text();
+    root.addBookmarkToCurrent(b);
 }
 
 SingleLogDisplay::~SingleLogDisplay()

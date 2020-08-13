@@ -14,8 +14,7 @@ SearchWindow::SearchWindow(QWidget *parent) :
                 &SearchWindow::formSearch
                 );
 
-    connect(this->ui->searchRejected, &QPushButton::clicked, this, &SearchWindow::close);
-
+    connect(ui->searchRejected, &QPushButton::clicked, this, &SearchWindow::close);
 }
 
 void SearchWindow::formSearch() {

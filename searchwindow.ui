@@ -50,10 +50,10 @@
             <bool>true</bool>
            </property>
            <property name="text">
-            <string>RegEx</string>
+            <string>Regular expression</string>
            </property>
            <property name="checked">
-            <bool>false</bool>
+            <bool>true</bool>
            </property>
           </widget>
          </item>

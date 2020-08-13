@@ -30,11 +30,17 @@ void RootLogfileDisplay::scrollToLineOnCurrent(QListWidgetItem* bkmark) {
 }
 
 void RootLogfileDisplay::applyGrepToCurrent(grep_structure g) {
-    dynamic_cast<LogsDisplay*>(ui->tabs->currentWidget())->applyGrep(g);
+    auto logs = dynamic_cast<LogsDisplay*>(ui->tabs->currentWidget());
+    if(logs != nullptr) {
+        logs->applyGrep(g);
+    }
 }
 
 void RootLogfileDisplay::applySearchToCurrent(search_structure g) {
-    dynamic_cast<LogsDisplay*>(ui->tabs->currentWidget())->applySearch(g);
+    auto logs = dynamic_cast<LogsDisplay*>(ui->tabs->currentWidget());
+    if(logs != nullptr) {
+        logs->applySearch(g);
+    }
 }
 
 void RootLogfileDisplay::fileSelected(const QString& fileName) {
@@ -46,9 +52,9 @@ void RootLogfileDisplay::fileSelected(const QString& fileName) {
     ui->tabs->setCurrentIndex(newOne);
 }
 
-void RootLogfileDisplay::addBookmarkToCurrent(line_number_t lineNumber) {
+void RootLogfileDisplay::addBookmarkToCurrent(bookmark_structure b) {
     auto& active_supervisor = manager.supervisor_at(ui->tabs->currentIndex());
-    active_supervisor.add_bookmark(lineNumber);
+    active_supervisor.add_bookmark(b);
     ui->bookmarksList->reload(active_supervisor);
 }
 
