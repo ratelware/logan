@@ -2,6 +2,7 @@
 #include "ui_singlelogdisplay.h"
 
 #include "logsdisplay.h"
+#include "emphasis_color_manager.h"
 
 #include <QAction>
 #include <QClipboard>
@@ -69,13 +70,13 @@ void SingleLogDisplay::emphasiseSelection() {
     QString text = ui->display->toPlainText();
     int finalPos = text.indexOf(selection);
 
+    auto emphasisFormat = QTextCharFormat();
+    emphasisFormat.setBackground(QBrush(emphasis_color_manager::get_instance().get_next_color(this)));
     while(finalPos != -1) {
         QTextCursor c = ui->display->textCursor();
         c.setPosition(finalPos);
         c.setPosition(finalPos + selection.size(), QTextCursor::KeepAnchor);
-        auto format = QTextCharFormat();
-        format.setBackground(QBrush(Qt::green));
-        c.setCharFormat(format);
+        c.setCharFormat(emphasisFormat);
 
         ui->display->setTextCursor(c);
         finalPos = text.indexOf(selection, finalPos + 1);

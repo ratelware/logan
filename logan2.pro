@@ -19,6 +19,7 @@ SOURCES += \
     bookmark.cpp \
     bookmarkslist.cpp \
     doc_supervisor.cpp \
+    emphasis_color_manager.cpp \
     grepwindow.cpp \
     linenumberarea.cpp \
     logfile_handler.cpp \
@@ -36,6 +37,7 @@ HEADERS += \
     bookmarkslist.h \
     constants.h \
     doc_supervisor.h \
+    emphasis_color_manager.h \
     grep_structure.h \
     grepwindow.h \
     line_descriptor.h \
