@@ -21,7 +21,6 @@ void RootLogfileDisplay::tabChanged(int newTab) {
 }
 
 void RootLogfileDisplay::scrollToLineOnCurrent(QListWidgetItem* bkmark) {
-    qDebug("Started scrolling");
     Bookmark* bookmark = dynamic_cast<Bookmark*>(bkmark);
     auto line = bookmark->getLine();
 

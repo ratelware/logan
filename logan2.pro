@@ -18,6 +18,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
     bookmark.cpp \
     bookmarkslist.cpp \
+    configuration_manager.cpp \
     doc_supervisor.cpp \
     emphasis_color_manager.cpp \
     grepwindow.cpp \
@@ -35,6 +36,7 @@ HEADERS += \
     bookmark.h \
     bookmark_structure.h \
     bookmarkslist.h \
+    configuration_manager.h \
     constants.h \
     doc_supervisor.h \
     emphasis_color_manager.h \
