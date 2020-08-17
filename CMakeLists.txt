@@ -1,8 +1,6 @@
-cmake_minimum_required(VERSION 3.5)
+cmake_minimum_required(VERSION 3.11)
 
-set(DCMAKE_SH="CMAKE_SH-NOTFOUND")
-
-project(logan-cmake LANGUAGES CXX)
+project(logan LANGUAGES CXX)
 
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
@@ -27,28 +25,30 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 #    endif()
 #endif()
 
-find_package(Qt5 COMPONENTS Widgets LinguistTools REQUIRED)
+find_package(Qt5 COMPONENTS Widgets LinguistTools Core REQUIRED)
 
-set(TS_FILES logan-cmake_en_US.ts)
+set(TRANSLATIONS_TS translations/logan_en_US.ts)
+
+file(GLOB SOURCES_CPP src/*.cpp)
+file(GLOB HEADERS_H src/*.h)
+file(GLOB DESIGNS_UI src/*.ui)
 
 if(ANDROID)
-  add_library(logan-cmake SHARED
-    main.cpp
-    mainwindow.cpp
-    mainwindow.h
-    mainwindow.ui
-    ${TS_FILES}
+  add_library(logan SHARED
+    ${SOURCES}
+    ${HEADERS}
+    ${DESIGNS}
+    ${TRANSLATIONS}
   )
 else()
-  add_executable(logan-cmake
-    main.cpp
-    mainwindow.cpp
-    mainwindow.h
-    mainwindow.ui
-    ${TS_FILES}
+  add_executable(logan
+      ${SOURCES}
+      ${HEADERS}
+      ${DESIGNS}
+      ${TRANSLATIONS}
   )
 endif()
 
-target_link_libraries(logan-cmake PRIVATE Qt5::Widgets)
+target_link_libraries(logan PRIVATE Qt5::Widgets)
 
 qt5_create_translation(QM_FILES ${CMAKE_SOURCE_DIR} ${TS_FILES})
