@@ -28,6 +28,8 @@ SOURCES += \
     logsdisplay.cpp \
     main.cpp \
     logan.cpp \
+    project_configuration.cpp \
+    project_controller.cpp \
     rootlogfiledisplay.cpp \
     searchwindow.cpp \
     singlelogdisplay.cpp
@@ -48,6 +50,8 @@ HEADERS += \
     logfile_handler.h \
     logfile_manager.h \
     logsdisplay.h \
+    project_configuration.h \
+    project_controller.h \
     rootlogfiledisplay.h \
     search_structure.h \
     searchwindow.h \
