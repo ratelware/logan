@@ -3,29 +3,81 @@
 #include <QFile>
 #include <QTextStream>
 
+#include "archive.h"
+
+const int BUFFER_SIZE = 64 * 1024;
+
+QByteArray archive_uncompress(const char* path) {
+    QByteArray content;
+    char buffer[BUFFER_SIZE];
+
+    int result;
+    struct archive* a = archive_read_new();
+    archive_read_support_compression_all(a);
+    archive_read_support_format_raw(a);
+    result = archive_read_open_filename(a, path, BUFFER_SIZE);
+
+    if(result != ARCHIVE_OK) {
+        throw std::runtime_error("Cannot open archive");
+    }
+
+    struct archive_entry* ae;
+    result = archive_read_next_header(a, &ae);
+    if(result != ARCHIVE_OK) {
+        throw std::runtime_error("Cannot read archive entry");
+    }
+
+    ssize_t size;
+    while(true) {
+        size = archive_read_data(a, buffer, BUFFER_SIZE);
+        if(size < 0) {
+            throw std::runtime_error("Reading archive entry failed");
+        }
+
+        if(size == 0) {
+            break;
+        }
+
+        content.append(buffer, size);
+    }
+
+    archive_read_free(a);
+
+    return content;
+}
+
+bool is_compressed(QString file) {
+    return file.endsWith(".tar") || file.endsWith(".tar.gz") || file.endsWith(".zip") || file.endsWith(".tar.bz2") || file.endsWith(".7z");
+}
+
 logfile_manager::logfile_manager()
 {
 
 }
 
 doc_supervisor& logfile_manager::open_file(const char* path) {
-    QFile file(path);
-    if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
-        throw new std::runtime_error("Failed to open file");
-
-    return new_supervisor(std::move(file));
+    QString name(path);
+    if(is_compressed(name)) {
+        QTextStream buffer(archive_uncompress(path));
+        return new_supervisor(std::move(buffer));
+    } else {
+        QFile file(path);
+        if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
+            throw new std::runtime_error("Failed to open file");
+        return new_supervisor(QTextStream(&file));
+    }
 }
 
 doc_supervisor& logfile_manager::open_file(const QString& path) {
     return open_file(path.toStdString().c_str());
 }
 
-doc_supervisor& logfile_manager::new_supervisor(QFile&& file) {
-    QTextStream in(&file);
-    supervisors.push_back(doc_supervisor(in.readAll().split(QString("\n"))));
+doc_supervisor& logfile_manager::new_supervisor(QTextStream&& file) {
+    supervisors.push_back(doc_supervisor(file.readAll().split(QString("\n"))));
     return supervisors.back();
 }
 
 doc_supervisor& logfile_manager::supervisor_at(int index) {
     return *(std::next(supervisors.begin(), index));
 }
+

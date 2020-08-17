@@ -34,6 +34,7 @@ file(GLOB HEADERS_H ${PROJECT_SOURCE_DIR}/src/*.h)
 file(GLOB DESIGNS_UI ${PROJECT_SOURCE_DIR}/src/*.ui)
 
 include_directories(src)
+include_directories(libs/libarchive/libarchive)
 
 if(ANDROID)
   add_library(logan SHARED
@@ -58,6 +59,9 @@ else()
     )
 endif()
 
-target_link_libraries(logan PUBLIC Qt5::Widgets)
+add_subdirectory(libs/libarchive)
+
+target_link_libraries(logan PRIVATE Qt5::Widgets archive_static)
 
 qt5_create_translation(QM_FILES ${CMAKE_SOURCE_DIR} ${TS_FILES})
+
