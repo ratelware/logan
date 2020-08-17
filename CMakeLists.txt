@@ -29,26 +29,35 @@ find_package(Qt5 COMPONENTS Widgets LinguistTools Core REQUIRED)
 
 set(TRANSLATIONS_TS translations/logan_en_US.ts)
 
-file(GLOB SOURCES_CPP src/*.cpp)
-file(GLOB HEADERS_H src/*.h)
-file(GLOB DESIGNS_UI src/*.ui)
+file(GLOB SOURCES_CPP ${PROJECT_SOURCE_DIR}/src/*.cpp)
+file(GLOB HEADERS_H ${PROJECT_SOURCE_DIR}/src/*.h)
+file(GLOB DESIGNS_UI ${PROJECT_SOURCE_DIR}/src/*.ui)
+
+include_directories(src)
 
 if(ANDROID)
   add_library(logan SHARED
-    ${SOURCES}
-    ${HEADERS}
-    ${DESIGNS}
-    ${TRANSLATIONS}
+    ${SOURCES_CPP}
+    ${HEADERS_H}
+    ${DESIGNS_UI}
+    ${TRANSLATIONS_TS}
+  )
+elseif(WIN32)
+  add_executable(logan WIN32
+      ${SOURCES_CPP}
+      ${HEADERS_H}
+      ${DESIGNS_UI}
+      ${TRANSLATIONS_TS}
   )
 else()
-  add_executable(logan
-      ${SOURCES}
-      ${HEADERS}
-      ${DESIGNS}
-      ${TRANSLATIONS}
-  )
+    add_executable(logan
+        ${SOURCES_CPP}
+        ${HEADERS_H}
+        ${DESIGNS_UI}
+        ${TRANSLATIONS_TS}
+    )
 endif()
 
-target_link_libraries(logan PRIVATE Qt5::Widgets)
+target_link_libraries(logan PUBLIC Qt5::Widgets)
 
 qt5_create_translation(QM_FILES ${CMAKE_SOURCE_DIR} ${TS_FILES})
