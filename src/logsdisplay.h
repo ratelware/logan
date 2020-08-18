@@ -30,6 +30,7 @@ public:
     void applySearch(search_structure g);
 
     void scrollToLine(line_number_t line);
+    void handleTabClosing(int tabId);
 
 private:
     Ui::LogsDisplay *ui;

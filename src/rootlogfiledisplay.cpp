@@ -13,6 +13,15 @@ RootLogfileDisplay::RootLogfileDisplay(QWidget *parent) :
     ui->setupUi(this);
     ui->bookmarksList->setRoot(this);
     connect(ui->tabs, &QTabWidget::currentChanged, this, &RootLogfileDisplay::tabChanged);
+    connect(ui->tabs, &QTabWidget::tabCloseRequested, this, &RootLogfileDisplay::handleTabClosing);
+}
+
+void RootLogfileDisplay::handleTabClosing(int tabId) {
+    if(tabId < ui->tabs->count()) {
+        qDebug("Deleting tab %d out of %d", tabId, ui->tabs->count());
+        ui->tabs->removeTab(tabId);
+        qDebug("Deleted tab %d out of %d", tabId, ui->tabs->count());
+    }
 }
 
 void RootLogfileDisplay::tabChanged(int newTab) {

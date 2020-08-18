@@ -18,6 +18,15 @@ LogsDisplay::LogsDisplay(logfile_proxy log, QWidget *parent, RootLogfileDisplay&
     ui->setupUi(this);
     setObjectName(QString("MultiLogDisplay"));
     this->setContentsMargins(0, 0, 0, 0);
+
+    connect(this, &LogsDisplay::tabCloseRequested, this, &LogsDisplay::handleTabClosing);
+}
+
+void LogsDisplay::handleTabClosing(int tabId) {
+    if(tabId != 0 && tabId < count()) {
+        qDebug("Deleting tab %d out of %d", tabId, count());
+        removeTab(tabId);
+    }
 }
 
 void LogsDisplay::applyGrep(grep_structure g) {

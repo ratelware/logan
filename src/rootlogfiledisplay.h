@@ -29,6 +29,7 @@ public slots:
 
     void applyGrepToCurrent(grep_structure g);
     void applySearchToCurrent(search_structure s);
+    void handleTabClosing(int tabId);
 
 private:
     logfile_manager manager;

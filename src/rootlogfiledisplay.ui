@@ -45,7 +45,11 @@
     </widget>
    </item>
    <item>
-    <widget class="QTabWidget" name="tabs"/>
+    <widget class="QTabWidget" name="tabs">
+     <property name="tabsClosable">
+      <bool>true</bool>
+     </property>
+    </widget>
    </item>
   </layout>
  </widget>
