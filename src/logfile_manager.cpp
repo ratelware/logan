@@ -4,6 +4,7 @@
 #include <QTextStream>
 
 #include "archive.h"
+#include "archive_entry.h"
 
 const int BUFFER_SIZE = 64 * 1024;
 
@@ -13,7 +14,8 @@ QByteArray archive_uncompress(const char* path) {
 
     int result;
     struct archive* a = archive_read_new();
-    archive_read_support_compression_all(a);
+    archive_read_support_filter_all(a);
+    archive_read_support_format_all(a);
     archive_read_support_format_raw(a);
     result = archive_read_open_filename(a, path, BUFFER_SIZE);
 
@@ -22,25 +24,34 @@ QByteArray archive_uncompress(const char* path) {
     }
 
     struct archive_entry* ae;
-    result = archive_read_next_header(a, &ae);
-    if(result != ARCHIVE_OK) {
-        throw std::runtime_error("Cannot read archive entry");
-    }
-
-    ssize_t size;
     while(true) {
-        size = archive_read_data(a, buffer, BUFFER_SIZE);
-        if(size < 0) {
-            throw std::runtime_error("Reading archive entry failed");
-        }
-
-        if(size == 0) {
+        result = archive_read_next_header(a, &ae);
+        if(result == ARCHIVE_EOF) {
             break;
         }
 
-        content.append(buffer, size);
+        if(result != ARCHIVE_OK) {
+            throw std::runtime_error("Cannot read archive entry");
+        }
+
+        qDebug("Extracting file: %s", archive_entry_pathname(ae));
+
+        ssize_t size;
+        while(true) {
+            size = archive_read_data(a, buffer, BUFFER_SIZE);
+            if(size < 0) {
+                throw std::runtime_error("Reading archive entry failed");
+            }
+
+            if(size == 0) {
+                break;
+            }
+
+            content.append(buffer, size);
+        }
     }
 
+    archive_read_close(a);
     archive_read_free(a);
 
     return content;
