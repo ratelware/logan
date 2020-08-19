@@ -19,6 +19,8 @@ public:
     doc_supervisor& open_file(const QString& path);
     doc_supervisor& new_supervisor(QTextStream&& file);
     doc_supervisor& supervisor_at(int index);
+
+    void remove_supervisor(int index);
 private:
 
     typedef int logfile_id;

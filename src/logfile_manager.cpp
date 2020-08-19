@@ -58,12 +58,22 @@ QByteArray archive_uncompress(const char* path) {
 }
 
 bool is_compressed(QString file) {
-    return file.endsWith(".tar") || file.endsWith(".tar.gz") || file.endsWith(".zip") || file.endsWith(".tar.bz2") || file.endsWith(".7z");
+    return file.endsWith(".tar") ||
+            file.endsWith(".gz") ||
+            file.endsWith(".tgz") ||
+            file.endsWith(".zip") ||
+            file.endsWith(".bz2") ||
+            file.endsWith(".xz") ||
+            file.endsWith(".7z");
 }
 
 logfile_manager::logfile_manager()
 {
 
+}
+
+void logfile_manager::remove_supervisor(int index) {
+    supervisors.erase(std::next(supervisors.begin(), index));
 }
 
 doc_supervisor& logfile_manager::open_file(const char* path) {

@@ -18,15 +18,16 @@ RootLogfileDisplay::RootLogfileDisplay(QWidget *parent) :
 
 void RootLogfileDisplay::handleTabClosing(int tabId) {
     if(tabId < ui->tabs->count()) {
-        qDebug("Deleting tab %d out of %d", tabId, ui->tabs->count());
         ui->tabs->removeTab(tabId);
-        qDebug("Deleted tab %d out of %d", tabId, ui->tabs->count());
+        manager.remove_supervisor(tabId);
     }
 }
 
 void RootLogfileDisplay::tabChanged(int newTab) {
-    auto& active_supervisor = manager.supervisor_at(newTab);
-    ui->bookmarksList->reload(active_supervisor);
+    if(newTab >= 0 && newTab < ui->tabs->count()) {
+        auto& active_supervisor = manager.supervisor_at(newTab);
+        ui->bookmarksList->reload(active_supervisor);
+    }
 }
 
 void RootLogfileDisplay::scrollToLineOnCurrent(QListWidgetItem* bkmark) {
