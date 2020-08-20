@@ -19,6 +19,10 @@
   <property name="windowTitle">
    <string>Logan</string>
   </property>
+  <property name="windowIcon">
+   <iconset theme="badger">
+    <normaloff>../icons/icons8-badger-80.png</normaloff>../icons/icons8-badger-80.png</iconset>
+  </property>
   <widget class="RootLogfileDisplay" name="loganDisplay">
    <property name="sizePolicy">
     <sizepolicy hsizetype="Expanding" vsizetype="Expanding">

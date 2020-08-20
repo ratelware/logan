@@ -5,6 +5,7 @@ GrepWindow::GrepWindow(QWidget *parent) :
     ui(new Ui::GrepWindow)
 {
     ui->setupUi(this);
+    setWindowIcon(QIcon(":icons/filter.png"));
 
     connect(
                 this->ui->grepApproved,

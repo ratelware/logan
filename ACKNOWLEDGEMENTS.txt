@@ -1,0 +1,5 @@
+Icons are taken from OpenMoji set licensed CC BY-SA 4.0
+
+Qt is LGPL-licensed
+
+libarchive is BSD-licensed

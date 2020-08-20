@@ -36,12 +36,15 @@ file(GLOB DESIGNS_UI ${PROJECT_SOURCE_DIR}/src/*.ui)
 include_directories(src)
 include_directories(libs/libarchive/libarchive)
 
+qt5_add_resources(RESOURCES_QRC resources/resources.qrc)
+
 if(ANDROID)
   add_library(logan SHARED
     ${SOURCES_CPP}
     ${HEADERS_H}
     ${DESIGNS_UI}
     ${TRANSLATIONS_TS}
+    ${RESOURCES_QRC}
   )
 elseif(WIN32)
   add_executable(logan WIN32
@@ -49,13 +52,15 @@ elseif(WIN32)
       ${HEADERS_H}
       ${DESIGNS_UI}
       ${TRANSLATIONS_TS}
-  )
+      ${RESOURCES_QRC}
+    )
 else()
     add_executable(logan
         ${SOURCES_CPP}
         ${HEADERS_H}
         ${DESIGNS_UI}
         ${TRANSLATIONS_TS}
+        ${RESOURCES_QRC}
     )
 endif()
 

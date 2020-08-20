@@ -6,6 +6,7 @@ SearchWindow::SearchWindow(QWidget *parent) :
     ui(new Ui::SearchWindow)
 {
     ui->setupUi(this);
+    setWindowIcon(QIcon(":icons/search.png"));
 
     connect(
                 this->ui->searchApproved,

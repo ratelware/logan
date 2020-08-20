@@ -35,7 +35,7 @@
    <enum>Qt::TabFocus</enum>
   </property>
   <property name="windowTitle">
-   <string>Search</string>
+   <string>Filter</string>
   </property>
   <property name="autoFillBackground">
    <bool>true</bool>
