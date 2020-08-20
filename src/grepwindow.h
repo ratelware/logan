@@ -18,6 +18,7 @@ public:
     ~GrepWindow();
 
     void cleanQuery();
+    void setQuery(QString query);
 
 public slots:
     void formGrep();

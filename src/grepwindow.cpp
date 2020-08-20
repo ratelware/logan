@@ -28,6 +28,10 @@ void GrepWindow::formGrep() {
     hide();
 }
 
+void GrepWindow::setQuery(QString query) {
+    ui->searchQuery->setText(query);
+}
+
 void GrepWindow::cleanQuery() {
     ui->searchQuery->clear();
 }

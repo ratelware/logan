@@ -31,6 +31,8 @@ public slots:
     void openNewFile();
 
 private:
+    QString getSelectedText() const;
+
     Ui::Logan *ui;
     std::vector<std::unique_ptr<QShortcut>> shortcuts;
     GrepWindow g;

@@ -2,6 +2,7 @@
 #include <QTextStream>
 #include <QShortcut>
 #include <QFileDialog>
+#include <QTextDocumentFragment>
 
 #include <memory>
 
@@ -10,7 +11,12 @@
 
 #include "logan.h"
 #include "logsdisplay.h"
+#include "singlelogdisplay.h"
+#include "ui_singlelogdisplay.h"
+
 #include "grepwindow.h"
+
+
 #include "ui_logan.h"
 
 Logan::Logan(QWidget *parent)
@@ -37,19 +43,37 @@ void Logan::openNewFile() {
 }
 
 void Logan::displayGrepWindow() {
+    auto selectedText = getSelectedText();
     if(!g.hasFocus()) {
-        g.cleanQuery();
+        g.setQuery(selectedText);
         g.show();
     }
 }
 
+QString Logan::getSelectedText() const {
+    auto currentWidget = this->focusWidget();
+
+    if(currentWidget->objectName() == QString("display") && currentWidget->parentWidget() != nullptr && currentWidget->parentWidget()->objectName() == QString("SingleLogDisplay")) {
+        auto display = dynamic_cast<SingleLogDisplay*>(currentWidget->parentWidget());
+        auto selected = display->ui->display->textCursor().selection().toPlainText();
+        return selected;
+    }
+
+    return QString();
+}
+
 void Logan::displaySearchWindow() {
+    auto selectedText = getSelectedText();
     if(!s.isVisible()) {
-        s.cleanQuery();
+        s.setQuery(selectedText);
         s.show();
     }
 
     if(!s.hasFocus()) {
+        if(!selectedText.isEmpty()) {
+            s.setQuery(selectedText);
+        }
+
         s.activateWindow();
     }
 }

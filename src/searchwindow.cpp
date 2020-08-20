@@ -33,6 +33,10 @@ void SearchWindow::cleanQuery() {
     this->ui->searchQuery->clear();
 }
 
+void SearchWindow::setQuery(QString query) {
+    this->ui->searchQuery->setText(query);
+}
+
 SearchWindow::~SearchWindow()
 {
     delete ui;
