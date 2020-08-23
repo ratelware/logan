@@ -62,7 +62,17 @@
       <number>10</number>
      </property>
      <item>
-      <widget class="QLineEdit" name="searchQuery"/>
+      <widget class="QComboBox" name="searchQuery">
+       <property name="editable">
+        <bool>true</bool>
+       </property>
+       <property name="maxVisibleItems">
+        <number>15</number>
+       </property>
+       <property name="insertPolicy">
+        <enum>QComboBox::InsertAtTop</enum>
+       </property>
+      </widget>
      </item>
      <item>
       <spacer name="verticalSpacer">
@@ -145,7 +155,6 @@
   </layout>
  </widget>
  <tabstops>
-  <tabstop>searchQuery</tabstop>
   <tabstop>grepApproved</tabstop>
   <tabstop>grepRejected</tabstop>
   <tabstop>caseSensitive</tabstop>

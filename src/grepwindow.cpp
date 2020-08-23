@@ -23,14 +23,23 @@ void GrepWindow::formGrep() {
     s.is_case_sensitive = ui->caseSensitive->isChecked();
     s.is_reverse = ui->isReverse->isChecked();
 
-    s.search_query = ui->searchQuery->text();
+    s.search_query = ui->searchQuery->currentText();
+
+    for(int i = 0; i < ui->searchQuery->count(); ++i) {
+        if(ui->searchQuery->itemText(i) == s.search_query) {
+            ui->searchQuery->removeItem(i);
+            break;
+        }
+    }
+
+    ui->searchQuery->addItem(s.search_query);
 
     emit greppingRequested(s);
     hide();
 }
 
 void GrepWindow::setQuery(QString query) {
-    ui->searchQuery->setText(query);
+    ui->searchQuery->setCurrentText(query);
 }
 
 void GrepWindow::cleanQuery() {

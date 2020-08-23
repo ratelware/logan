@@ -25,7 +25,16 @@ void SearchWindow::formSearch() {
     s.search_parents = ui->searchParents->isChecked();
     s.is_backwards = ui->searchBackwards->isChecked();
     s.wrap_around = ui->wrapAround->isChecked();
-    s.search_query = ui->searchQuery->text();
+    s.search_query = ui->searchQuery->currentText();
+
+    for(int i = 0; i < ui->searchQuery->count(); ++i) {
+        if(ui->searchQuery->itemText(i) == s.search_query) {
+            ui->searchQuery->removeItem(i);
+            break;
+        }
+    }
+
+    ui->searchQuery->addItem(s.search_query);
 
     emit searchingRequested(s);
 }
@@ -35,7 +44,7 @@ void SearchWindow::cleanQuery() {
 }
 
 void SearchWindow::setQuery(QString query) {
-    this->ui->searchQuery->setText(query);
+    this->ui->searchQuery->setCurrentText(query);
 }
 
 SearchWindow::~SearchWindow()
