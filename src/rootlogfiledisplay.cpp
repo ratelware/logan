@@ -2,6 +2,8 @@
 #include "ui_rootlogfiledisplay.h"
 
 #include <QFileInfo>
+#include <QDropEvent>
+#include <QMimeData>
 
 #include "logsdisplay.h"
 #include "bookmark.h"
@@ -66,6 +68,23 @@ void RootLogfileDisplay::addBookmarkToCurrent(bookmark_structure b) {
     auto& active_supervisor = manager.supervisor_at(ui->tabs->currentIndex());
     active_supervisor.add_bookmark(b);
     ui->bookmarksList->reload(active_supervisor);
+}
+
+void RootLogfileDisplay::dropEvent(QDropEvent *event) {
+    const QMimeData* mime = event->mimeData();
+    if(mime->hasUrls()) {
+        for (int i = 0; i < mime->urls().size(); ++i)
+        {
+            fileSelected(mime->urls().at(i).toLocalFile());
+        }
+    }
+}
+
+void RootLogfileDisplay::dragEnterEvent(QDragEnterEvent *event) {
+    const QMimeData* mime = event->mimeData();
+    if(mime->hasUrls()) {
+        event->accept();
+    }
 }
 
 RootLogfileDisplay::~RootLogfileDisplay()

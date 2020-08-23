@@ -31,6 +31,9 @@ public slots:
     void applySearchToCurrent(search_structure s);
     void handleTabClosing(int tabId);
 
+    void dropEvent(QDropEvent *event);
+    void dragEnterEvent(QDragEnterEvent *event);
+
 private:
     logfile_manager manager;
     Ui::RootLogfileDisplay *ui;

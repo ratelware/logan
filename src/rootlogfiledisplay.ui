@@ -16,6 +16,9 @@
     <verstretch>0</verstretch>
    </sizepolicy>
   </property>
+  <property name="acceptDrops">
+   <bool>true</bool>
+  </property>
   <property name="windowTitle">
    <string>Form</string>
   </property>
@@ -47,11 +50,17 @@
       <property name="contextMenuPolicy">
        <enum>Qt::DefaultContextMenu</enum>
       </property>
+      <property name="acceptDrops">
+       <bool>false</bool>
+      </property>
      </widget>
     </widget>
    </item>
    <item>
     <widget class="QTabWidget" name="tabs">
+     <property name="acceptDrops">
+      <bool>true</bool>
+     </property>
      <property name="tabsClosable">
       <bool>true</bool>
      </property>
