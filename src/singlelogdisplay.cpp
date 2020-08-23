@@ -65,6 +65,10 @@ void SingleLogDisplay::emphasiseSelection() {
     auto cursor = ui->display->textCursor();
     auto selection = cursor.selection().toPlainText();
 
+    if(selection.length() == 0) {
+        return;
+    }
+
     ui->display->setTextCursor(cursor);
 
     QString text = ui->display->toPlainText();
@@ -171,6 +175,14 @@ void SingleLogDisplay::fastBookmark() {
     b.line_number = logfile.line_number(ui->display->textCursor().blockNumber());
     b.bookmark_name = ui->display->textCursor().block().text();
     root.addBookmarkToCurrent(b);
+}
+
+void SingleLogDisplay::mousePressEvent(QMouseEvent *event) {
+    ui->display->setTextCursor(
+                this->ui->display->cursorForPosition(
+                    ui->display->mapFromParent(event->pos())
+                    )
+                );
 }
 
 SingleLogDisplay::~SingleLogDisplay()

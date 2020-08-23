@@ -14,6 +14,7 @@ RootLogfileDisplay::RootLogfileDisplay(QWidget *parent) :
     ui->bookmarksList->setRoot(this);
     connect(ui->tabs, &QTabWidget::currentChanged, this, &RootLogfileDisplay::tabChanged);
     connect(ui->tabs, &QTabWidget::tabCloseRequested, this, &RootLogfileDisplay::handleTabClosing);
+    connect(ui->bookmarks, &QWidget::customContextMenuRequested, ui->bookmarksList, &BookmarksList::showContextMenu);
 }
 
 void RootLogfileDisplay::handleTabClosing(int tabId) {

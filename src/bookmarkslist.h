@@ -21,8 +21,19 @@ public:
     void reload(doc_supervisor&);
 
     void setRoot(RootLogfileDisplay*);
+
+public slots:
+    void copyActive();
+    void deleteActive();
+    void editActive();
+
+    void showContextMenu(const QPoint&);
+
+    void keyReleaseEvent(QKeyEvent*);
+
 private:
     RootLogfileDisplay* root;
+    doc_supervisor* supervisor;
     Ui::BookmarksList *ui;
 };
 

@@ -36,6 +36,7 @@ public slots:
     void bookmark();
     void fastBookmark();
 
+    void mousePressEvent(QMouseEvent *event);
 private:
     void setUpActions();
 

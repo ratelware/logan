@@ -14,6 +14,8 @@ public:
 
     line_number_t getLine();
 
+    bookmark_structure structure() const;
+
 private:
     bookmark_structure b;
 };

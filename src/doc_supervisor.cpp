@@ -1,6 +1,7 @@
 #include "doc_supervisor.h"
 #include <iterator>
 #include <memory>
+#include <algorithm>
 
 #include "constants.h"
 
@@ -34,4 +35,27 @@ void doc_supervisor::add_bookmark(bookmark_structure b) {
 
 const std::vector<bookmark_structure>& doc_supervisor::get_bookmarks() const {
     return bookmarks;
+}
+
+void doc_supervisor::remove_bookmarks(const std::vector<line_number_t> & removed) {
+    bookmarks.erase(std::remove_if(bookmarks.begin(), bookmarks.end(), [&removed](bookmark_structure& b) {
+                        for(auto& r: removed) {
+                            if(r == b.line_number) {
+                                return true;
+                            }
+                        }
+                        return false;
+                    }),
+            bookmarks.end()
+            );
+}
+
+
+void doc_supervisor::update_bookmark(line_length_t line, bookmark_structure structure) {
+    for(auto& b : bookmarks) {
+        if(b.line_number == line) {
+            b.bookmark_name = structure.bookmark_name;
+            return;
+        }
+    }
 }
