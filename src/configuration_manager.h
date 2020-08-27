@@ -26,8 +26,12 @@ public:
     bool get_search_default_wrap_around();
 
     QString get_root_tab_name();
+    QString icon_for_text(QString text);
 
     static configuration_manager& get_instance();
+
+    const std::vector<QString>& get_favorite_icons_paths();
+    std::vector<QString> get_all_icons_paths();
 
 private:
     configuration_manager();

@@ -51,10 +51,11 @@ void doc_supervisor::remove_bookmarks(const std::vector<line_number_t> & removed
 }
 
 
-void doc_supervisor::update_bookmark(line_length_t line, bookmark_structure structure) {
+void doc_supervisor::update_bookmark(line_number_t line, bookmark_structure structure) {
     for(auto& b : bookmarks) {
         if(b.line_number == line) {
             b.bookmark_name = structure.bookmark_name;
+            b.icon = structure.icon;
             return;
         }
     }

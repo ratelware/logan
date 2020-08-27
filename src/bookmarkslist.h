@@ -22,6 +22,8 @@ public:
 
     void setRoot(RootLogfileDisplay*);
 
+    void updateBookmark(bookmark_structure b);
+
 public slots:
     void copyActive();
     void deleteActive();

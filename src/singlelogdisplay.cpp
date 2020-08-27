@@ -3,6 +3,8 @@
 
 #include "logsdisplay.h"
 #include "emphasis_color_manager.h"
+#include "newbookmarkwindow.h"
+#include "configuration_manager.h"
 
 #include <QAction>
 #include <QClipboard>
@@ -160,29 +162,25 @@ void SingleLogDisplay::scrollToLine(line_number_t line) {
 }
 
 void SingleLogDisplay::bookmark() {
-    bool ok = false;
-    QString bookmarkName = QInputDialog::getText(this, tr("Add bookmark"), tr("Bookmark name"), QLineEdit::Normal, ui->display->textCursor().block().text(), &ok);
-    if(ok && !bookmarkName.isEmpty()) {
-        bookmark_structure b;
-        b.line_number = logfile.line_number(ui->display->textCursor().blockNumber());
-        b.bookmark_name = bookmarkName;
-        root.addBookmarkToCurrent(b);
-    }
+    line_number_t lineNum = logfile.line_number(ui->display->textCursor().blockNumber());
+    NewBookmarkWindow b(lineNum, ui->display->textCursor().block().text(), &root);
+    b.exec();
 }
 
 void SingleLogDisplay::fastBookmark() {
     bookmark_structure b;
     b.line_number = logfile.line_number(ui->display->textCursor().blockNumber());
     b.bookmark_name = ui->display->textCursor().block().text();
+    b.icon = QIcon(QPixmap(configuration_manager::get_instance().icon_for_text(b.bookmark_name)));
     root.addBookmarkToCurrent(b);
 }
 
 void SingleLogDisplay::mousePressEvent(QMouseEvent *event) {
     ui->display->setTextCursor(
-                this->ui->display->cursorForPosition(
-                    ui->display->mapFromParent(event->pos())
-                    )
-                );
+    this->ui->display->cursorForPosition(
+        ui->display->mapFromParent(event->pos())
+        )
+    );
 }
 
 SingleLogDisplay::~SingleLogDisplay()

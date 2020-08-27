@@ -1,6 +1,7 @@
 #include "bookmarkslist.h"
 #include "ui_bookmarkslist.h"
 #include "bookmark.h"
+#include "newbookmarkwindow.h"
 
 #include <QAction>
 #include <QGuiApplication>
@@ -22,6 +23,8 @@ void BookmarksList::reload(doc_supervisor& s)
     ui->bookmarksList->clear();
     supervisor = &s;
     const std::vector<bookmark_structure>& bs = supervisor->get_bookmarks();
+
+    ui->bookmarksList->setIconSize(QSize(24, 24));
 
     for(auto b: bs) {
         ui->bookmarksList->addItem(new Bookmark(ui->bookmarksList, b));
@@ -56,14 +59,13 @@ void BookmarksList::copyActive() {
 void BookmarksList::editActive() {
     for(auto i: ui->bookmarksList->selectedItems()) {
         auto bookmark = dynamic_cast<Bookmark*>(i);
-
-        bool ok = false;
-        QString bookmarkName = QInputDialog::getText(this, tr("Edit bookmark"), tr("Bookmark name"), QLineEdit::Normal, bookmark->structure().bookmark_name, &ok);
-
-        if(ok && !bookmarkName.isEmpty()) {
-            supervisor->update_bookmark(bookmark->getLine(), bookmark_structure { bookmark->getLine(), bookmarkName });
-        }
+        NewBookmarkWindow b(bookmark->structure(), this);
+        b.exec();
     }
+}
+
+void BookmarksList::updateBookmark(bookmark_structure b) {
+    supervisor->update_bookmark(b.line_number, b);
     reload(*supervisor);
 }
 
