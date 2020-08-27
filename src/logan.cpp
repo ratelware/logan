@@ -34,6 +34,11 @@ Logan::Logan(QWidget *parent)
     connect(&g, &GrepWindow::greppingRequested, ui->loganDisplay, &RootLogfileDisplay::applyGrepToCurrent);
     connect(&s, &SearchWindow::searchingRequested, ui->loganDisplay, &RootLogfileDisplay::applySearchToCurrent);
     connect(ui->actionOpen, &QAction::triggered, this, &Logan::openNewFile);
+
+    connect(ui->actionGrep, &QAction::triggered, this, &Logan::displayGrepWindow);
+    connect(ui->actionSearch, &QAction::triggered, this, &Logan::displaySearchWindow);
+
+    connect(ui->actionClose, &QAction::triggered, this, &QMainWindow::close);
 }
 
 void Logan::openNewFile() {
