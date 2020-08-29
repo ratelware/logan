@@ -19,6 +19,7 @@ public:
 
     void cleanQuery();
     void setQuery(QString query);
+    void startNewGrep();
 
 public slots:
     void formGrep();

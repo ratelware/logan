@@ -1,0 +1,1 @@
+libarchive is licensed under New BSD License

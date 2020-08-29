@@ -36,7 +36,15 @@ void SearchWindow::formSearch() {
 
     ui->searchQuery->addItem(s.search_query);
 
-    emit searchingRequested(s);
+    if(!s.search_query.isEmpty()) {
+        emit searchingRequested(s);
+    }
+
+
+}
+
+void SearchWindow::startNewSearch() {
+    ui->searchQuery->setFocus(Qt::ActiveWindowFocusReason);
 }
 
 void SearchWindow::cleanQuery() {

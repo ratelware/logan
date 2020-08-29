@@ -13,6 +13,7 @@
 #include <QTextBlock>
 #include <QMessageBox>
 #include <QInputDialog>
+#include <QScrollBar>
 
 SingleLogDisplay::SingleLogDisplay(logfile_proxy l, LogsDisplay *parent, RootLogfileDisplay& root) :
     QWidget(parent),
@@ -71,10 +72,11 @@ void SingleLogDisplay::emphasiseSelection() {
         return;
     }
 
-    ui->display->setTextCursor(cursor);
-
     QString text = ui->display->toPlainText();
     int finalPos = text.indexOf(selection);
+
+    auto horizontalSliderPos = ui->display->horizontalScrollBar()->sliderPosition();
+    auto verticalSliderPos = ui->display->verticalScrollBar()->sliderPosition();
 
     auto emphasisFormat = QTextCharFormat();
     emphasisFormat.setBackground(QBrush(emphasis_color_manager::get_instance().get_next_color(this)));
@@ -86,10 +88,11 @@ void SingleLogDisplay::emphasiseSelection() {
 
         ui->display->setTextCursor(c);
         finalPos = text.indexOf(selection, finalPos + 1);
-
     }
 
     ui->display->setTextCursor(cursor);
+    ui->display->horizontalScrollBar()->setSliderPosition(horizontalSliderPos);
+    ui->display->verticalScrollBar()->setSliderPosition(verticalSliderPos);
 }
 
 void SingleLogDisplay::applySearch(search_structure s) {
@@ -159,6 +162,7 @@ void SingleLogDisplay::scrollToLine(line_number_t line) {
     cursor.select(QTextCursor::LineUnderCursor);
 
     ui->display->setTextCursor(cursor);
+    ui->display->horizontalScrollBar()->setSliderPosition(0);
 }
 
 void SingleLogDisplay::bookmark() {
@@ -176,11 +180,12 @@ void SingleLogDisplay::fastBookmark() {
 }
 
 void SingleLogDisplay::mousePressEvent(QMouseEvent *event) {
-    ui->display->setTextCursor(
-    this->ui->display->cursorForPosition(
-        ui->display->mapFromParent(event->pos())
-        )
-    );
+    auto newCursor = this->ui->display->cursorForPosition(ui->display->mapFromParent(event->pos()));
+
+    auto oldCursor = ui->display->textCursor();
+    if(newCursor.position() < oldCursor.selectionStart() || newCursor.position() > oldCursor.selectionEnd()) {
+        ui->display->setTextCursor(newCursor);
+    }
 }
 
 SingleLogDisplay::~SingleLogDisplay()

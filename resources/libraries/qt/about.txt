@@ -1,0 +1,1 @@
+Qt is licensed mostly under LGPL, but also a bit of GPL there.

@@ -51,6 +51,7 @@ void Logan::openNewFile() {
 void Logan::displayGrepWindow() {
     auto selectedText = getSelectedText();
     if(!g.hasFocus()) {
+        g.startNewGrep();
         g.setQuery(selectedText);
         g.show();
     }
@@ -71,11 +72,13 @@ QString Logan::getSelectedText() const {
 void Logan::displaySearchWindow() {
     auto selectedText = getSelectedText();
     if(!s.isVisible()) {
+        s.startNewSearch();
         s.setQuery(selectedText);
         s.show();
     }
 
     if(!s.hasFocus()) {
+        s.startNewSearch();
         if(!selectedText.isEmpty()) {
             s.setQuery(selectedText);
         }

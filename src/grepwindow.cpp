@@ -34,7 +34,10 @@ void GrepWindow::formGrep() {
 
     ui->searchQuery->addItem(s.search_query);
 
-    emit greppingRequested(s);
+    if(!s.search_query.isEmpty()) {
+        emit greppingRequested(s);
+    }
+
     hide();
 }
 
@@ -44,6 +47,10 @@ void GrepWindow::setQuery(QString query) {
 
 void GrepWindow::cleanQuery() {
     ui->searchQuery->clear();
+}
+
+void GrepWindow::startNewGrep() {
+    ui->searchQuery->setFocus(Qt::ActiveWindowFocusReason);
 }
 
 GrepWindow::~GrepWindow()
