@@ -101,5 +101,14 @@
         <file>icons/no-handshake.png</file>
         <file>icons/nuclear-drop.png</file>
         <file>icons/radio-wave.png</file>
+        <file>libraries/icons/ABOUT.txt</file>
+        <file>libraries/icons/LICENSE.txt</file>
+        <file>libraries/libarchive/ABOUT.txt</file>
+        <file>libraries/libarchive/LICENSE.txt</file>
+        <file>libraries/logan/ABOUT.txt</file>
+        <file>libraries/logan/LICENSE.txt</file>
+        <file>libraries/qt/ABOUT.txt</file>
+        <file>libraries/qt/LICENSE.txt</file>
+        <file>libraries/list.csv</file>
     </qresource>
 </RCC>

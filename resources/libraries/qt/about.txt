@@ -1,1 +1,2 @@
-Qt is licensed mostly under LGPL, but also a bit of GPL there.
+Qt 5.15 is licensed mostly under LGPL, but some parts are BSD, others MIT, there is even GPL one.
+Regardless, none of the licenses are more restrictive than GPL. For details see https://doc.qt.io/qt-5/licenses-used-in-qt.html

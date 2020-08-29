@@ -15,6 +15,7 @@
 #include "ui_singlelogdisplay.h"
 
 #include "grepwindow.h"
+#include "aboutdialog.h"
 
 
 #include "ui_logan.h"
@@ -39,6 +40,7 @@ Logan::Logan(QWidget *parent)
     connect(ui->actionSearch, &QAction::triggered, this, &Logan::displaySearchWindow);
 
     connect(ui->actionClose, &QAction::triggered, this, &QMainWindow::close);
+    connect(ui->actionAbout, &QAction::triggered, this, &Logan::displayAboutWindow);
 }
 
 void Logan::openNewFile() {
@@ -85,6 +87,10 @@ void Logan::displaySearchWindow() {
 
         s.activateWindow();
     }
+}
+
+void Logan::displayAboutWindow() {
+    AboutDialog().exec();
 }
 
 Logan::~Logan()
