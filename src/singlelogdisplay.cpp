@@ -157,12 +157,14 @@ void SingleLogDisplay::applySearch(search_structure s) {
 
 void SingleLogDisplay::scrollToLine(line_number_t line) {
     auto location = logfile.line_start_position(line);
+    auto initialHorizontalPosition = ui->display->horizontalScrollBar()->sliderPosition();
+
     auto cursor = ui->display->textCursor();
     cursor.setPosition(location);
     cursor.select(QTextCursor::LineUnderCursor);
 
     ui->display->setTextCursor(cursor);
-    ui->display->horizontalScrollBar()->setSliderPosition(0);
+    ui->display->horizontalScrollBar()->setSliderPosition(initialHorizontalPosition);
 }
 
 void SingleLogDisplay::bookmark() {
