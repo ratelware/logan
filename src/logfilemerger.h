@@ -15,6 +15,19 @@ public:
     explicit LogfileMerger(QWidget *parent = nullptr);
     ~LogfileMerger();
 
+    void dropEvent(QDropEvent *event);
+    void dragEnterEvent(QDragEnterEvent *event);
+
+
+public slots:
+    void addActiveOptionToActiveTab();
+    void removeActiveOptionFromActiveTab();
+    void addActiveFromAllToOptions();
+    void removeActiveFromOptions();
+    void moveFileUpInTab();
+    void moveFileDownInTab();
+    void addNewTab();
+
 private:
     Ui::LogfileMerger *ui;
 };

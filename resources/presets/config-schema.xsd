@@ -1,0 +1,137 @@
+<?xml version="1.0"?>
+
+<xs:schema
+        xmlns:xs="http://www.w3.org/2001/XMLSchema"
+        targetNamespace="https://ratelware.com/api/logan/xsd"
+>
+    <xs:complexType name="grep_defaults">
+        <xs:all>
+            <xs:element name="is_regex" type="xs:boolean" />
+            <xs:element name="is_case_sensitive" type="xs:boolean" />
+            <xs:element name="is_inverse" type="xs:boolean" />
+        </xs:all>
+    </xs:complexType>
+
+    <xs:complexType name="search_defaults">
+        <xs:all>
+            <xs:element name="is_regex" type="xs:boolean" />
+            <xs:element name="is_case_sensitive" type="xs:boolean" />
+            <xs:element name="is_reverse" type="xs:boolean" />
+            <xs:element name="wrap_around" type="xs:boolean" />
+        </xs:all>
+    </xs:complexType>
+
+    <xs:complexType name="tabs_config">
+        <xs:all>
+            <xs:element name="root_tab_name" type="xs:string" />
+        </xs:all>
+    </xs:complexType>
+
+    <xs:complexType name="text_to_icon_mapping">
+        <xs:sequence>
+            <xs:element name="regex" type="xs:string" />
+            <xs:element name="icon" type="xs:string" />
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="text_to_icon_mapping_list">
+        <xs:sequence>
+            <xs:element name="mapping" type="text_to_icon_mapping" maxOccurs="unbounded" />
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="favorite_icons">
+        <xs:sequence>
+            <xs:element name="favorite" type="xs:string" maxOccurs="8" />
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="icons_paths">
+        <xs:sequence>
+            <xs:element name="dir" maxOccurs="unbounded" type="xs:anyURI" />
+            <xs:element name="file" minOccurs="0" maxOccurs="unbounded" type="xs:anyURI" />
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="icons_config">
+        <xs:all>
+            <xs:element name="mappings" type="text_to_icon_mapping_list" />
+            <xs:element name="favorites" type="favorite_icons" />
+            <xs:element name="dirs" type="icons_paths" />
+        </xs:all>
+    </xs:complexType>
+
+    <xs:simpleType name="hue" >
+        <xs:restriction base="xs:int">
+            <xs:minInclusive value="-1" />
+            <xs:maxExclusive value="360" />
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="saturation">
+        <xs:restriction base="xs:int">
+            <xs:minInclusive value="0" />
+            <xs:maxInclusive value="255"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="lightness">
+        <xs:restriction base="xs:int">
+            <xs:minInclusive value="0" />
+            <xs:maxInclusive value="255" />
+        </xs:restriction>
+    </xs:simpleType>
+    
+    <xs:simpleType name="alpha">
+        <xs:restriction base="xs:int">
+            <xs:minInclusive value="0" />
+            <xs:maxInclusive value="255" />
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:complexType name="generated_colors_config">
+        <xs:all>
+            <xs:element name="hue_min" type="hue" />
+            <xs:element name="hue_max" type="hue" />
+            <xs:element name="saturation_min" type="saturation" />
+            <xs:element name="saturation_max" type="saturation" />
+            <xs:element name="lightness_min" type="lightness" />
+            <xs:element name="lightness_max" type="lightness" />
+            <xs:element name="alpha_min" type="alpha" />
+            <xs:element name="alpha_max" type="alpha" />
+        </xs:all>
+    </xs:complexType>
+    
+    <xs:simpleType name="rgb_color">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="#[0-9A-F]{6}" />
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:complexType name="initial_emphasis_colors">
+        <xs:sequence>
+            <xs:element name="color" type="rgb_color" maxOccurs="unbounded" />
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="colors">
+        <xs:all>
+            <xs:element name="generated_colors_config" type="generated_colors_config" />
+            <xs:element name="selection_color" type="rgb_color" />
+            <xs:element name="initial_emphasis_colors" type="initial_emphasis_colors" />
+        </xs:all>
+    </xs:complexType>
+
+
+    <xs:complexType name="configuration">
+        <xs:all>
+            <xs:element name="grep_defaults" type="grep_defaults" />
+            <xs:element name="search_defaults" type="search_defaults" />
+            <xs:element name="tabs_config" type="tabs_config" />
+            <xs:element name="icons_config" type="icons_config" />
+            <xs:element name="colors" type="colors" />
+        </xs:all>
+    </xs:complexType>
+
+    <xs:element name="configuration" type="configuration" />
+</xs:schema>

@@ -110,5 +110,7 @@
         <file>libraries/qt/ABOUT.txt</file>
         <file>libraries/qt/LICENSE.txt</file>
         <file>libraries/list.csv</file>
+        <file>presets/configuration.xml</file>
+        <file>presets/config-schema.xsd</file>
     </qresource>
 </RCC>
