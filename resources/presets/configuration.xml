@@ -53,8 +53,8 @@
             <favorite>:/icons/lightning.png</favorite>
             <favorite>:/icons/bug.png</favorite>
         </favorites>
-        <dirs>
+        <paths>
             <dir>:/icons/</dir>
-        </dirs>
+        </paths>
     </icons_config>
 </configuration>

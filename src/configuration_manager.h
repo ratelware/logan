@@ -1,6 +1,8 @@
 #ifndef CONFIGURATION_MANAGER_H
 #define CONFIGURATION_MANAGER_H
 
+#include "config_file_manager.h"
+
 #include <memory>
 #include <vector>
 #include <QColor>
@@ -8,7 +10,7 @@
 class configuration_manager
 {
 public:
-    const std::vector<QColor>& get_initial_emphasis_colors();
+    const std::vector<QColor> get_initial_emphasis_colors();
     QColor selection_color();
 
     std::pair<int, int> get_emphasis_hue_range();
@@ -28,15 +30,18 @@ public:
     QString get_root_tab_name();
     QString icon_for_text(QString text);
 
+    static configuration_manager& set_up(QString config);
     static configuration_manager& get_instance();
 
-    const std::vector<QString>& get_favorite_icons_paths();
+    std::vector<QString> get_favorite_icons_paths();
     std::vector<QString> get_all_icons_paths();
 
 private:
-    configuration_manager();
+    configuration_manager(QString config);
 
     static std::unique_ptr<configuration_manager> instance;
+
+    config_file_manager config_files;
 };
 
 #endif // CONFIGURATION_MANAGER_H

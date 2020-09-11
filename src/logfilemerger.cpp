@@ -48,3 +48,8 @@ void LogfileMerger::moveFileDownInTab() {
 
 
 }
+
+void LogfileMerger::addNewTab() {
+
+
+}

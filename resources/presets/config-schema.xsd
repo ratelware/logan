@@ -38,12 +38,14 @@
         <xs:sequence>
             <xs:element name="mapping" type="text_to_icon_mapping" maxOccurs="unbounded" />
         </xs:sequence>
+        <xs:attribute name="list_mode" type="list_mode" default="prepend" />
     </xs:complexType>
 
     <xs:complexType name="favorite_icons">
         <xs:sequence>
             <xs:element name="favorite" type="xs:string" maxOccurs="8" />
         </xs:sequence>
+        <xs:attribute name="list_mode" type="list_mode" default="prepend" />
     </xs:complexType>
 
     <xs:complexType name="icons_paths">
@@ -51,13 +53,14 @@
             <xs:element name="dir" maxOccurs="unbounded" type="xs:anyURI" />
             <xs:element name="file" minOccurs="0" maxOccurs="unbounded" type="xs:anyURI" />
         </xs:sequence>
+        <xs:attribute name="list_mode" type="list_mode" default="prepend" />
     </xs:complexType>
 
     <xs:complexType name="icons_config">
         <xs:all>
             <xs:element name="mappings" type="text_to_icon_mapping_list" />
             <xs:element name="favorites" type="favorite_icons" />
-            <xs:element name="dirs" type="icons_paths" />
+            <xs:element name="paths" type="icons_paths" />
         </xs:all>
     </xs:complexType>
 
@@ -108,10 +111,20 @@
         </xs:restriction>
     </xs:simpleType>
 
+    <xs:simpleType name="list_mode">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="replace" />
+            <xs:enumeration value="prepend" />
+            <xs:enumeration value="append" />
+        </xs:restriction>
+    </xs:simpleType>
+
+
     <xs:complexType name="initial_emphasis_colors">
         <xs:sequence>
             <xs:element name="color" type="rgb_color" maxOccurs="unbounded" />
         </xs:sequence>
+        <xs:attribute name="list_mode" type="list_mode" default="prepend" />
     </xs:complexType>
 
     <xs:complexType name="colors">
@@ -122,6 +135,11 @@
         </xs:all>
     </xs:complexType>
 
+    <xs:complexType name="parents">
+        <xs:sequence>
+            <xs:element name="parent" type="xs:anyURI" maxOccurs="unbounded" />
+        </xs:sequence>
+    </xs:complexType>
 
     <xs:complexType name="configuration">
         <xs:all>
@@ -130,6 +148,7 @@
             <xs:element name="tabs_config" type="tabs_config" />
             <xs:element name="icons_config" type="icons_config" />
             <xs:element name="colors" type="colors" />
+            <xs:element name="parents" type="parents" />
         </xs:all>
     </xs:complexType>
 

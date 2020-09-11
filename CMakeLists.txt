@@ -25,7 +25,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 #    endif()
 #endif()
 
-find_package(Qt5 COMPONENTS Widgets LinguistTools Core REQUIRED)
+find_package(Qt5 COMPONENTS Widgets LinguistTools Core Xml XmlPatterns REQUIRED)
 
 set(TRANSLATIONS_TS translations/logan_en_US.ts)
 
@@ -66,7 +66,7 @@ endif()
 
 add_subdirectory(libs/libarchive)
 
-target_link_libraries(logan PRIVATE Qt5::Widgets archive_static)
+target_link_libraries(logan PRIVATE Qt5::Widgets Qt5::Xml Qt5::Core Qt5::XmlPatterns archive_static)
 
 qt5_create_translation(QM_FILES ${CMAKE_SOURCE_DIR} ${TS_FILES})
 

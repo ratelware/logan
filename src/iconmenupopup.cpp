@@ -15,7 +15,7 @@ IconMenuPopup::IconMenuPopup(QWidget *parent) :
     ui->setupUi(this);
 
     auto& config = configuration_manager::get_instance();
-    auto& icons = config.get_favorite_icons_paths();
+    auto icons = config.get_favorite_icons_paths();
 
     overrideWindowFlags(windowFlags() | Qt::FramelessWindowHint | Qt::Popup);
     move(parent->pos());
