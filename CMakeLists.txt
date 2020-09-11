@@ -35,6 +35,7 @@ file(GLOB DESIGNS_UI ${PROJECT_SOURCE_DIR}/src/*.ui)
 
 include_directories(src)
 include_directories(libs/libarchive/libarchive)
+include_directories(libs/libssh2/include)
 
 qt5_add_resources(RESOURCES_QRC resources/resources.qrc)
 
@@ -65,8 +66,9 @@ else()
 endif()
 
 add_subdirectory(libs/libarchive)
+add_subdirectory(libs/libssh2)
 
-target_link_libraries(logan PRIVATE Qt5::Widgets Qt5::Xml Qt5::Core Qt5::XmlPatterns archive_static)
+target_link_libraries(logan PRIVATE Qt5::Widgets Qt5::Xml Qt5::Core Qt5::XmlPatterns archive_static libssh2)
 
 qt5_create_translation(QM_FILES ${CMAKE_SOURCE_DIR} ${TS_FILES})
 
