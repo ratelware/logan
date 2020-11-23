@@ -36,7 +36,7 @@
 
     <xs:complexType name="text_to_icon_mapping_list">
         <xs:sequence>
-            <xs:element name="mapping" type="text_to_icon_mapping" maxOccurs="unbounded" />
+            <xs:element name="mapping" ref="text_to_icon_mapping" maxOccurs="unbounded" />
         </xs:sequence>
         <xs:attribute name="list_mode" type="list_mode" default="prepend" />
     </xs:complexType>
@@ -58,9 +58,9 @@
 
     <xs:complexType name="icons_config">
         <xs:all>
-            <xs:element name="mappings" type="text_to_icon_mapping_list" />
-            <xs:element name="favorites" type="favorite_icons" />
-            <xs:element name="paths" type="icons_paths" />
+            <xs:element name="mappings" ref="text_to_icon_mapping_list" />
+            <xs:element name="favorites" ref="favorite_icons" />
+            <xs:element name="paths" ref="icons_paths" />
         </xs:all>
     </xs:complexType>
 
@@ -129,9 +129,9 @@
 
     <xs:complexType name="colors">
         <xs:all>
-            <xs:element name="generated_colors_config" type="generated_colors_config" />
+            <xs:element name="generated_colors_config" ref="generated_colors_config" />
             <xs:element name="selection_color" type="rgb_color" />
-            <xs:element name="initial_emphasis_colors" type="initial_emphasis_colors" />
+            <xs:element name="initial_emphasis_colors" ref="initial_emphasis_colors" />
         </xs:all>
     </xs:complexType>
 
@@ -143,14 +143,14 @@
 
     <xs:complexType name="configuration">
         <xs:all>
-            <xs:element name="grep_defaults" type="grep_defaults" />
-            <xs:element name="search_defaults" type="search_defaults" />
-            <xs:element name="tabs_config" type="tabs_config" />
-            <xs:element name="icons_config" type="icons_config" />
-            <xs:element name="colors" type="colors" />
-            <xs:element name="parents" type="parents" />
+            <xs:element name="grep_defaults" ref="grep_defaults" />
+            <xs:element name="search_defaults" ref="search_defaults" />
+            <xs:element name="tabs_config" ref="tabs_config" />
+            <xs:element name="icons_config" ref="icons_config" />
+            <xs:element name="colors" ref="colors" />
+            <xs:element name="parents" ref="parents" />
         </xs:all>
     </xs:complexType>
 
-    <xs:element name="configuration" type="configuration" />
+    <xs:element name="configuration" ref="configuration" />
 </xs:schema>
