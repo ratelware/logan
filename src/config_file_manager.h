@@ -4,15 +4,19 @@
 #include "xml_selector.h"
 
 #include <QString>
-
+#include <QFile>
 #include <QDomDocument>
-
-#include <QXmlSchema>
-#include <QXmlQuery>
 
 #include <vector>
 #include <functional>
 #include <algorithm>
+
+#include <libxml/xmlschemas.h>
+
+enum xml_schema_loading_status {
+    success,
+    error
+};
 
 class config_file_manager
 {
@@ -33,19 +37,22 @@ public:
         auto items = get_vector(q);
         auto elems = std::vector<T>();
         elems.resize(items.size());
-        std::transform(items.begin(), items.end(), elems.begin(), [&converter](QDomElement e) { return converter(e); });
+        std::transform(items.begin(), items.end(), elems.begin(), [&converter](QDomElement e) {
+            return converter(e);
+        });
 
         return elems;
     }
 
 private:
     std::vector<std::pair<QString, QDomDocument> > documents;
-    QXmlSchema schema;
+    std::unique_ptr<xmlSchema, void(*)(xmlSchemaPtr)> schema;
 
     std::vector<QDomElement> get_vector(xml_selector q) const;
     QDomElement get_item(xml_selector q) const;
 
     void load_doc(QString name);
+    xml_schema_loading_status load_xml_schema(QFile& file);
 };
 
 #endif // CONFIG_FILE_MANAGER_H

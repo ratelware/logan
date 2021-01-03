@@ -26,7 +26,6 @@ IconMenuPopup::IconMenuPopup(QWidget *parent) :
     }
     connect(ui->favorites, &QListWidget::itemDoubleClicked, this, &IconMenuPopup::favoriteIconSelectionFinished);
 
-
     auto allIcons = config.get_all_icons_paths();
 
     auto maxCols = icons.size();
@@ -51,13 +50,11 @@ IconMenuPopup::IconMenuPopup(QWidget *parent) :
 }
 
 void IconMenuPopup::favoriteIconSelectionFinished(QListWidgetItem* i) {
-    qDebug("Emitting %p", i);
     emit iconChosen(i->icon());
     close();
 }
 
 void IconMenuPopup::iconSelectionFinished(QTableWidgetItem* i) {
-    qDebug("Emitting 2x %p", i);
     emit iconChosen(i->icon());
     close();
 }

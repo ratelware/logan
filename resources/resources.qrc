@@ -112,5 +112,7 @@
         <file>libraries/list.csv</file>
         <file>presets/configuration.xml</file>
         <file>presets/config-schema.xsd</file>
+        <file>libraries/libssh2/ABOUT.txt</file>
+        <file>libraries/libssh2/LICENSE.txt</file>
     </qresource>
 </RCC>

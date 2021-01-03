@@ -4,19 +4,19 @@
 #include <QRegularExpression>
 
 QString qStringFromQDom(QDomElement e) {
-    return e.nodeValue();
+    return e.text();
 }
 
 QColor qColorFromQDom(QDomElement e) {
-    QString rgb = e.nodeValue();
+    QString rgb = e.text();
     return QColor(rgb.mid(1,2).toInt(nullptr, 16), rgb.mid(3,2).toInt(nullptr, 16), rgb.mid(5,2).toInt(nullptr, 16));
 }
 
 std::pair<QRegularExpression, QString> qIconMappingFromQDom(QDomElement e) {
-    auto regex = e.namedItem("regex");
-    auto icon = e.namedItem("icon");
+    auto regex = e.namedItem("regex").toElement();
+    auto icon = e.namedItem("icon").toElement();
 
-    return std::make_pair(QRegularExpression(regex.nodeValue()), icon.nodeValue());
+    return std::make_pair(QRegularExpression(regex.text()), icon.text());
 }
 
 std::unique_ptr<configuration_manager> configuration_manager::instance;
@@ -29,7 +29,7 @@ const std::vector<QColor> configuration_manager::get_initial_emphasis_colors() {
 }
 
 std::vector<QString> configuration_manager::get_favorite_icons_paths() {
-    return config_files.get_vector_of<QString>(xml_selector{"icons_config/favorites"}, qStringFromQDom);
+    return config_files.get_vector_of<QString>(xml_selector{"icons_config/favorites/favorite"}, qStringFromQDom);
 }
 
 std::vector<QString> configuration_manager::get_all_icons_paths() {

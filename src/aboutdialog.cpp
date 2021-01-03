@@ -17,7 +17,6 @@ AboutDialog::AboutDialog(QWidget *parent) :
 }
 
 void AboutDialog::openItem(int index) {
-    qDebug("%d", index);
     if(index < 0 || index >= items.size()) {
         return;
     }
