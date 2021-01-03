@@ -29,7 +29,8 @@ public slots:
     void displayGrepWindow();
     void displaySearchWindow();
     void displayAboutWindow();
-    void openNewFile();
+    void openNewLocalFile();
+    void openNewRemoteFile();
 
 private:
     QString getSelectedText() const;

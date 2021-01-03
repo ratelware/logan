@@ -34,7 +34,8 @@ Logan::Logan(QWidget *parent)
 
     connect(&g, &GrepWindow::greppingRequested, ui->loganDisplay, &RootLogfileDisplay::applyGrepToCurrent);
     connect(&s, &SearchWindow::searchingRequested, ui->loganDisplay, &RootLogfileDisplay::applySearchToCurrent);
-    connect(ui->actionOpen, &QAction::triggered, this, &Logan::openNewFile);
+    connect(ui->actionAddLocalFile, &QAction::triggered, this, &Logan::openNewLocalFile);
+    connect(ui->actionAddRemoteFile, &QAction::triggered, this, &Logan::openNewRemoteFile);
 
     connect(ui->actionGrep, &QAction::triggered, this, &Logan::displayGrepWindow);
     connect(ui->actionSearch, &QAction::triggered, this, &Logan::displaySearchWindow);
@@ -43,7 +44,14 @@ Logan::Logan(QWidget *parent)
     connect(ui->actionAbout, &QAction::triggered, this, &Logan::displayAboutWindow);
 }
 
-void Logan::openNewFile() {
+void Logan::openNewLocalFile() {
+    QFileDialog fileOpener(this);
+    connect(&fileOpener, &QFileDialog::fileSelected, ui->loganDisplay, &RootLogfileDisplay::fileSelected);
+    fileOpener.setFileMode(QFileDialog::ExistingFile);
+    fileOpener.exec();
+}
+
+void Logan::openNewRemoteFile() {
     QFileDialog fileOpener(this);
     connect(&fileOpener, &QFileDialog::fileSelected, ui->loganDisplay, &RootLogfileDisplay::fileSelected);
     fileOpener.setFileMode(QFileDialog::ExistingFile);

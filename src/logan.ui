@@ -56,9 +56,10 @@
     <property name="title">
      <string>File</string>
     </property>
-    <addaction name="actionNew_file"/>
-    <addaction name="actionOpen_project"/>
-    <addaction name="actionOpen"/>
+    <addaction name="actionNewProject"/>
+    <addaction name="actionOpenProject"/>
+    <addaction name="actionAddRemoteFile"/>
+    <addaction name="actionAddLocalFile"/>
     <addaction name="actionSettings"/>
     <addaction name="actionClose"/>
    </widget>
@@ -81,9 +82,9 @@
    <addaction name="menuHelp"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
-  <action name="actionOpen">
+  <action name="actionAddLocalFile">
    <property name="text">
-    <string>Add file to project</string>
+    <string>Add local file</string>
    </property>
   </action>
   <action name="actionSearch">
@@ -96,12 +97,12 @@
     <string>Grep</string>
    </property>
   </action>
-  <action name="actionOpen_project">
+  <action name="actionOpenProject">
    <property name="text">
     <string>Open project</string>
    </property>
   </action>
-  <action name="actionNew_file">
+  <action name="actionNewProject">
    <property name="text">
     <string>New project</string>
    </property>
@@ -124,6 +125,11 @@
   <action name="actionManual">
    <property name="text">
     <string>Manual</string>
+   </property>
+  </action>
+  <action name="actionAddRemoteFile">
+   <property name="text">
+    <string>Add remote file</string>
    </property>
   </action>
  </widget>
