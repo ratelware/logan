@@ -44,7 +44,6 @@
             </mapping>
         </mappings>
         <favorites>
-            <favorite />
             <favorite>:/icons/exclaim.png</favorite>
             <favorite>:/icons/exclaim-question.png</favorite>
             <favorite>:/icons/question.png</favorite>
@@ -52,6 +51,7 @@
             <favorite>:/icons/pass.png</favorite>
             <favorite>:/icons/lightning.png</favorite>
             <favorite>:/icons/bug.png</favorite>
+            <favorite>:/icons/trophy.png</favorite>
         </favorites>
         <paths>
             <dir>:/icons/</dir>
