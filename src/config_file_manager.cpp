@@ -116,7 +116,7 @@ std::vector<QDomElement> config_file_manager::get_vector(xml_selector q) const {
             nextAnalysis = std::vector<QDomElement>();
         }
 
-        for(auto a = analysis.rbegin(); a != analysis.rend(); ++a) {
+        for(auto a = analysis.begin(); a != analysis.end(); ++a) {
             elems.push_back(*a);
         }
     }
