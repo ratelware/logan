@@ -13,9 +13,3 @@
 [submodule "production/libs/spdlog/spdlog"]
 	path = production/libs/spdlog/spdlog
 	url = https://github.com/gabime/spdlog
-[submodule "production/libs/rapidjson/rapidjson"]
-	path = production/libs/rapidjson/rapidjson
-	url = https://github.com/Tencent/rapidjson
-[submodule "production/libs/libwebsocket/libwebsocket"]
-	path = production/libs/libwebsocket/libwebsocket
-	url = https://github.com/warmcat/libwebsocket
