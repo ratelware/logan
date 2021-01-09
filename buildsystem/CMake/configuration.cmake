@@ -1,6 +1,6 @@
 SET(THE_NAME_OF_PROJECT "TheExecutable" CACHE STRING "Name that will be used for executable")
 
-SET(USE_BOOST ON CACHE BOOL "Use Boost for this project")
+SET(USE_BOOST OFF CACHE BOOL "Use Boost for this project")
 
 IF(${USE_BOOST})
     SET(Boost_VERSION "1.55.0" CACHE STRING "Required version of Boost to use")
