@@ -13,3 +13,6 @@
 [submodule "production/libs/spdlog/spdlog"]
 	path = production/libs/spdlog/spdlog
 	url = https://github.com/gabime/spdlog
+[submodule "production/libs/Lyra/Lyra"]
+	path = production/libs/Lyra/Lyra
+	url = https://github.com/bfgroup/Lyra.git
