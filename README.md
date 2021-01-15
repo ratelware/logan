@@ -43,6 +43,9 @@ These include:
  * PugiXML (master branch) as, well, XML library (in production code)
  * spdlog (master branch) as logger (in production code)
  * sqlite (3.8.8.3 amalgamation) as database management library (in production code)
+ * wolfssl for ssl support 
+ * libwebsockets for websockets and http calls
+ * Lyra for command line option parsing
 
 Some or all might be included as submodules, so make sure you fetch them all before compiling
 
@@ -50,11 +53,14 @@ There is also embedded support for some common C++ libraries:
  * Boost for general-purpose utilities
  * OpenCV for stuff related to image processing
 
-It is also planned to extend range of supported out-of-the-box libraries, mainly with:
- * Dlib for machine learning
- * VTK for 3D graphics
- * SOCI for ORM mapping
- * Crypto++ as cryptographic library
+
+The future is mildly likely to bring in:
+ 
+ - Qt
+ - libssh2
+ - libxml2
+ - libarchive
+ - rapidjson
 
 =================
 **Building**
@@ -64,5 +70,3 @@ Project uses CMake (version 2.8 is minimal supported) as its buildsystem, so it 
 Simply invoke `cmake .` in the main directory or - in case of out-of-source (recommended) builds, invoke it from a different directory. Just like any other CMake invocation.
 
 If you wish to use provided libraries on MSVS, make sure you have installed at least MSVS 2013 Update 4, as some stuff in ChaiScript library requires it.
-
-Additionally, an experimental support for building with Premake5 is (shall be) supported. Please note that this will most likely remain experimental, as Premake5 itself is in alpha phase.
