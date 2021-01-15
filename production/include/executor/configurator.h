@@ -3,13 +3,7 @@
 
 #include <memory>
 
-namespace boost
-{
-	namespace program_options
-	{
-		class variables_map;
-	}
-}
+#include <lyra/lyra.hpp>
 
 namespace executor
 {
@@ -18,8 +12,7 @@ namespace executor
 	class configurator
 	{
 	public:
-		configurator(const boost::program_options::variables_map& application_params);
-		~configurator();
+		explicit configurator(lyra::parse_result&& args);
 
 		application& get_application() const;
 

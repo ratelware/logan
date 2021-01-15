@@ -1,4 +1,7 @@
 #include <executor/os_proxy.h>
+
+#ifdef USE_BOOST_OS_PROXY
+
 #include <boost/filesystem.hpp>
 #include <boost/algorithm/string.hpp>
 
@@ -15,3 +18,5 @@ namespace executor
 		return boost::filesystem::current_path().string();
 	}
 }
+
+#endif
