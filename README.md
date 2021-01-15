@@ -47,7 +47,6 @@ These include:
  * **libwebsockets** for websockets and http calls (in production code)
  * **Lyra** for command line option parsing (in production code)
  * **libssh2** for handling SSH connections (in production code)
- * **libxml2** for XML schemas (in production code)
  * **libarchive** for compression (in production code)
  * **rapidjson** for JSON (in production code)
 
@@ -60,7 +59,8 @@ There is also embedded support for some common C++ libraries:
 
 The future is mildly likely to bring in:
  
- - Qt
+* **Qt** for UI-related stuff
+* **libxml2** for XML schemas (in production code)
 
 =================
 **Building**
