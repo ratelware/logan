@@ -16,3 +16,9 @@
 [submodule "production/libs/Lyra/Lyra"]
 	path = production/libs/Lyra/Lyra
 	url = https://github.com/bfgroup/Lyra.git
+[submodule "production/libs/libwebsockets/libwebsockets"]
+	path = production/libs/libwebsockets/libwebsockets
+	url = https://github.com/warmcat/libwebsockets.git
+[submodule "production/libs/libwebsockets/wolfssl"]
+	path = production/libs/libwebsockets/wolfssl
+	url = https://github.com/wolfSSL/wolfssl.git
