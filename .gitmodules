@@ -22,3 +22,12 @@
 [submodule "production/libs/libwebsockets/wolfssl"]
 	path = production/libs/libwebsockets/wolfssl
 	url = https://github.com/wolfSSL/wolfssl.git
+[submodule "production/libs/rapidjson/rapidjson"]
+	path = production/libs/rapidjson/rapidjson
+	url = https://github.com/Tencent/rapidjson.git
+[submodule "production/libs/libssh2/libssh2"]
+	path = production/libs/libssh2/libssh2
+	url = https://github.com/libssh2/libssh2.git
+[submodule "production/libs/libarchive/libarchive"]
+	path = production/libs/libarchive/libarchive
+	url = https://github.com/libarchive/libarchive.git
