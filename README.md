@@ -37,30 +37,30 @@ contact development team.
 There are a few libraries included so that you might get see an example of how the system was supposed to work.
 These include:
 
- * Turtle (master branch) as mocking library (only in tests)
- * Celero (master branch) as benchmarking library (only in tests)
- * ChaiScript (develop branch) as scripting language (in production code)
- * PugiXML (master branch) as, well, XML library (in production code)
- * spdlog (master branch) as logger (in production code)
- * sqlite (3.8.8.3 amalgamation) as database management library (in production code)
- * wolfssl for ssl support 
- * libwebsockets for websockets and http calls
- * Lyra for command line option parsing
+ * **Turtle** (master branch) as mocking library (only in tests)
+ * **Celero** (master branch) as benchmarking library (only in tests)
+ * **ChaiScript** (develop branch) as scripting language (in production code)
+ * **PugiXML** (master branch) as, well, XML library (in production code)
+ * **spdlog** (master branch) as logger (in production code)
+ * **sqlite** (3.8.8.3 amalgamation) as database management library (in production code)
+ * **wolfssl** for ssl support  (in production code)
+ * **libwebsockets** for websockets and http calls (in production code)
+ * **Lyra** for command line option parsing (in production code)
+ * **libssh2** for handling SSH connections (in production code)
+ * **libxml2** for XML schemas (in production code)
+ * **libarchive** for compression (in production code)
+ * **rapidjson** for JSON (in production code)
 
 Some or all might be included as submodules, so make sure you fetch them all before compiling
 
 There is also embedded support for some common C++ libraries:
- * Boost for general-purpose utilities
- * OpenCV for stuff related to image processing
+ * **Boost** for general-purpose utilities
+ * **OpenCV** for stuff related to image processing
 
 
 The future is mildly likely to bring in:
  
  - Qt
- - libssh2
- - libxml2
- - libarchive
- - rapidjson
 
 =================
 **Building**
