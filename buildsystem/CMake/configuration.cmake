@@ -19,11 +19,11 @@ SET(WITH_TESTCASES ON CACHE BOOL "Compile test suite for the project")
 SET(WITH_BENCHMARKS ON CACHE BOOL "Compile benchmarks for the project")
 
 IF (CMAKE_CXX_COMPILER_ID STREQUAL "GNU" OR CMAKE_CXX_COMPILER_ID STREQUAL "Clang")		
-	SET(USE_ADDRESS_SANITIZER ON CACHE BOOL "Use Address Sanitizer for the build")
+	SET(USE_ADDRESS_SANITIZER OFF CACHE BOOL "Use Address Sanitizer for the build")
     SET(USE_MEMORY_SANITIZER OFF CACHE BOOL "Use Memory Sanitizer for the build")
     SET(USE_THREAD_SANITIZER OFF CACHE BOOL "Use Thread Sanitizer for the build")
 	
-    SET(USE_UNDEFINED_BEHAVIOR_SANITIZER ON CACHE BOOL "Use Undefined Behavior Sanitizer for the build")
+    SET(USE_UNDEFINED_BEHAVIOR_SANITIZER OFF CACHE BOOL "Use Undefined Behavior Sanitizer for the build")
 ENDIF (CMAKE_CXX_COMPILER_ID STREQUAL "GNU" OR CMAKE_CXX_COMPILER_ID STREQUAL "Clang")
 
 

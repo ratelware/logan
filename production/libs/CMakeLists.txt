@@ -41,4 +41,10 @@ ADD_SUBDIRECTORY(libssh2)
 MESSAGE(STATUS "Using libssh2 from: " ${LIBSSH2_INCLUDE_DIR})
 SET(LIBSSH2_INCLUDE_DIR ${LIBSSH2_INCLUDE_DIR} PARENT_SCOPE)
 
-SET(SEMI_INTERNAL_LIBRARIES pugixml sqlite websockets wolfssl archive_static libssh2 PARENT_SCOPE)
+SET(SEMI_INTERNAL_LIBRARIES
+        pugixml
+        sqlite
+        ${LIBWEBSOCKETS_EXPORTS}
+        archive_static
+        libssh2
+        PARENT_SCOPE)

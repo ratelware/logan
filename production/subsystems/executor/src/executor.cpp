@@ -19,11 +19,6 @@ namespace
 		return cli;
 	}
 
-	lyra::parse_result setup_options(int argc, char** argv, lyra::cli& cli)
-	{
-	    return cli.parse({argc, argv } );
-	}
-
 	lyra::parse_result setup_parameters(int argc, char** argv, lyra::cli& cli)
 	{
         return cli.parse( { argc, argv });
