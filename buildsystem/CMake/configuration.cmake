@@ -1,5 +1,7 @@
 SET(THE_NAME_OF_PROJECT "TheExecutable" CACHE STRING "Name that will be used for executable")
 
+SET(USE_QT OFF CACHE BOOL "Use Qt for this project")
+
 SET(USE_BOOST OFF CACHE BOOL "Use Boost for this project")
 
 IF(${USE_BOOST})
