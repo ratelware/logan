@@ -1,4 +1,4 @@
-#include "linenumberarea.h"
+#include "ui/linenumberarea.h"
 #include "ui_linenumberarea.h"
 
 LineNumberArea::LineNumberArea(QWidget *parent) :

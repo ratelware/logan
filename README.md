@@ -57,12 +57,14 @@ Some or all might be included as submodules, so make sure you fetch them all bef
 There is also embedded support for some common C++ libraries:
  * **Boost** for general-purpose utilities
  * **OpenCV** for stuff related to image processing
+ * **Qt** for UI-related stuff
+ * **libxml2** for XML schemas (in production code)
 
 
-The future is mildly likely to bring in:
- 
-* **Qt** for UI-related stuff
-* **libxml2** for XML schemas (in production code)
+=================
+**Notes**
+=================
+When using Qt, remember to set `Qt6_DIR` variable to Qt6 installation directory and `-DQT_QMAKE_EXECUTABLE:STRING` to qmake location
 
 =================
 **Building**

@@ -1,12 +1,12 @@
-#include "rootlogfiledisplay.h"
+#include "ui/rootlogfiledisplay.h"
 #include "ui_rootlogfiledisplay.h"
 
 #include <QFileInfo>
 #include <QDropEvent>
 #include <QMimeData>
 
-#include "logsdisplay.h"
-#include "bookmark.h"
+#include "ui/logsdisplay.h"
+#include "ui/bookmark.h"
 
 RootLogfileDisplay::RootLogfileDisplay(QWidget *parent) :
     QWidget(parent),

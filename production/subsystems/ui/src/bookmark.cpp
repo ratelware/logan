@@ -1,4 +1,4 @@
-#include "bookmark.h"
+#include "ui/bookmark.h"
 
 Bookmark::Bookmark(QListWidget* parent, bookmark_structure b): QListWidgetItem(parent), b(b)
 {

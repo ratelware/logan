@@ -1,10 +1,10 @@
-#include "singlelogdisplay.h"
+#include "ui/singlelogdisplay.h"
 #include "ui_singlelogdisplay.h"
 
-#include "logsdisplay.h"
-#include "emphasis_color_manager.h"
-#include "newbookmarkwindow.h"
-#include "configuration_manager.h"
+#include "ui/logsdisplay.h"
+#include "ui/emphasis_color_manager.h"
+#include "ui/newbookmarkwindow.h"
+#include "ui/configuration_manager.h"
 
 #include <QAction>
 #include <QClipboard>

@@ -1,4 +1,4 @@
-#include "grepwindow.h"
+#include "ui/grepwindow.h"
 #include "ui_grepwindow.h"
 GrepWindow::GrepWindow(QWidget *parent) :
     QDialog(parent),

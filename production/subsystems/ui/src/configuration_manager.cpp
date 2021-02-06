@@ -1,4 +1,4 @@
-#include "configuration_manager.h"
+#include "ui/configuration_manager.h"
 
 #include <QDir>
 #include <QRegularExpression>

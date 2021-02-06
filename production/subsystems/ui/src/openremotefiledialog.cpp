@@ -1,4 +1,4 @@
-#include "openremotefiledialog.h"
+#include "ui/openremotefiledialog.h"
 #include "ui_openremotefiledialog.h"
 
 OpenRemoteFileDialog::OpenRemoteFileDialog(QWidget *parent) :

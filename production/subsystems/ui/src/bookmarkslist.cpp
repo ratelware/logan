@@ -1,7 +1,7 @@
-#include "bookmarkslist.h"
+#include "ui/bookmarkslist.h"
 #include "ui_bookmarkslist.h"
-#include "bookmark.h"
-#include "newbookmarkwindow.h"
+#include "ui/bookmark.h"
+#include "ui/newbookmarkwindow.h"
 
 #include <QAction>
 #include <QGuiApplication>

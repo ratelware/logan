@@ -1,6 +1,9 @@
 SET(THE_NAME_OF_PROJECT "TheExecutable" CACHE STRING "Name that will be used for executable")
 
-SET(USE_QT OFF CACHE BOOL "Use Qt for this project")
+SET(USE_QT ON CACHE BOOL "Use Qt for this project")
+IF(${USE_QT})
+    SET(Qt6_DIR "" CACHE STRING "Location of Qt6 directory")
+ENDIF(${USE_QT})
 
 SET(USE_BOOST OFF CACHE BOOL "Use Boost for this project")
 

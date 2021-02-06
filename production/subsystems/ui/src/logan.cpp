@@ -9,13 +9,13 @@
 #include <iostream>
 
 
-#include "logan.h"
-#include "logsdisplay.h"
-#include "singlelogdisplay.h"
+#include "ui/logan.h"
+#include "ui/logsdisplay.h"
+#include "ui/singlelogdisplay.h"
 #include "ui_singlelogdisplay.h"
 
-#include "grepwindow.h"
-#include "aboutdialog.h"
+#include "ui/grepwindow.h"
+#include "ui/aboutdialog.h"
 
 
 #include "ui_logan.h"

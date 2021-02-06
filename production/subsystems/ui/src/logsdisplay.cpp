@@ -4,8 +4,8 @@
 #include <QTextOption>
 
 
-#include "logsdisplay.h"
-#include "singlelogdisplay.h"
+#include "ui/logsdisplay.h"
+#include "ui/singlelogdisplay.h"
 #include "ui_logsdisplay.h"
 #include "ui_singlelogdisplay.h"
 

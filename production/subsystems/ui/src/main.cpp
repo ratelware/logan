@@ -1,5 +1,5 @@
-#include "logan.h"
-#include "configuration_manager.h"
+#include "ui/logan.h"
+#include "ui/configuration_manager.h"
 
 #include <QApplication>
 #include <QCommandLineParser>

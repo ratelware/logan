@@ -1,4 +1,4 @@
-#include "emphasis_color_manager.h"
+#include "ui/emphasis_color_manager.h"
 
 std::unique_ptr<emphasis_color_manager> emphasis_color_manager::instance;
 

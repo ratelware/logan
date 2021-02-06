@@ -1,11 +1,11 @@
-#include "newbookmarkwindow.h"
+#include "ui/newbookmarkwindow.h"
 #include "ui_newbookmarkwindow.h"
 
-#include "bookmark_structure.h"
-#include "iconmenupopup.h"
-#include "configuration_manager.h"
-#include "bookmarkslist.h"
-#include "rootlogfiledisplay.h"
+#include "ui/bookmark_structure.h"
+#include "ui/iconmenupopup.h"
+#include "ui/configuration_manager.h"
+#include "ui/bookmarkslist.h"
+#include "ui/rootlogfiledisplay.h"
 
 NewBookmarkWindow::NewBookmarkWindow(line_number_t lineNum, QString defaultText, RootLogfileDisplay* target, QWidget *parent) :
     QDialog(parent),

@@ -1,4 +1,4 @@
-#include "logfilemerger.h"
+#include "ui/logfilemerger.h"
 #include "ui_logfilemerger.h"
 
 LogfileMerger::LogfileMerger(QWidget *parent) :
