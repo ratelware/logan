@@ -1,3 +1,5 @@
+# logan
+This project is a log analyzer, for text logs.
 
 ProjectTemplate
 ================

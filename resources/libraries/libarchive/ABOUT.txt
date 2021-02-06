@@ -1,0 +1,1 @@
+libarchive v. 3.4.3 is licensed mostly under New BSD License. For details read license notice below.
