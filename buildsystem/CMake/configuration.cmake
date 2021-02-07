@@ -16,6 +16,7 @@ IF(${USE_BOOST})
 ENDIF(${USE_BOOST})
 
 SET(USE_OPENCV OFF CACHE BOOL "Use OpenCV for the project")
+SET(USE_LIBXML2 ON CACHE BOOL "Use external libxml2 for the project")
 
 SET(USE_MULTITHREADING ON CACHE BOOL "Use multithreading for the project")
 

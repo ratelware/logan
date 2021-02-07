@@ -27,8 +27,8 @@ Logan::Logan(QWidget *parent)
     ui->setupUi(this);
     setWindowIcon(QIcon(":icons/racoon.png"));
 
-    shortcuts.push_back(std::unique_ptr<QShortcut>(new QShortcut(QKeySequence(Qt::CTRL + Qt::Key_G), this)));
-    shortcuts.push_back(std::unique_ptr<QShortcut>(new QShortcut(QKeySequence(Qt::CTRL + Qt::Key_F), this)));
+    shortcuts.push_back(std::unique_ptr<QShortcut>(new QShortcut(QKeySequence(Qt::CTRL | Qt::Key_G), this)));
+    shortcuts.push_back(std::unique_ptr<QShortcut>(new QShortcut(QKeySequence(Qt::CTRL | Qt::Key_F), this)));
     connect(shortcuts[0].get(), &QShortcut::activated, this, &Logan::displayGrepWindow);
     connect(shortcuts[1].get(), &QShortcut::activated, this, &Logan::displaySearchWindow);
 

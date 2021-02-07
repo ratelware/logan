@@ -4,6 +4,11 @@ PROJECT (MasterProject)
 SET(ROOT_DIR ${CMAKE_SOURCE_DIR})
 SET_PROPERTY(GLOBAL PROPERTY USE_FOLDERS ON)
 
+# Important especially for Qt
+# Allows CMake to look for Find_XXX in directory where the file that requests XXX is located
+set(CMAKE_INCLUDE_CURRENT_DIR ON)
+
+
 INCLUDE(${ROOT_DIR}/buildsystem/CMake/configuration.cmake)
 INCLUDE(${ROOT_DIR}/buildsystem/CMake/compiler_support.cmake)
 INCLUDE(${ROOT_DIR}/buildsystem/CMake/library_support.cmake)
@@ -28,7 +33,17 @@ ADD_DEFINITIONS(-DUSE_LYRA_PROGRAM_OPTIONS=${USE_LYRA_PROGRAM_OPTIONS})
 MESSAGE(STATUS "Using C++ compiler: ${CMAKE_CXX_COMPILER_ID} ${CMAKE_CXX_COMPILER_VERSION}")
 
 IF(${USE_QT})
-    ADD_DEPENDENCY_TO_QT()
+    FIND_PACKAGE(Qt6 COMPONENTS Widgets LinguistTools Core Xml REQUIRED)
+
+    SET(CMAKE_AUTOUIC ON)
+    SET(CMAKE_AUTOMOC ON)
+    SET(CMAKE_AUTORCC ON)
+
+    qt6_add_resources(RESOURCES_QRC )
+    qt6_create_translation(QM_FILES ${CMAKE_SOURCE_DIR}/translations ${TS_FILES})
+    SET(RESOURCES ${CMAKE_SOURCE_DIR}/resources/resources.qrc ${TRANSLATIONS_TS})
+
+    SET(QT_INCLUDE_DIRS ${Qt6Widgets_INCLUDE_DIRS} ${Qt6Core_INCLUDE_DIRS} ${Qt6Xml_INCLUDE_DIRS})
     SET(EXTERNAL_LIBRARIES Qt::Widgets Qt::Xml Qt::Core)
 ENDIF(${USE_QT})
 

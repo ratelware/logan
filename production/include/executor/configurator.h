@@ -3,8 +3,6 @@
 
 #include <memory>
 
-#include <lyra/lyra.hpp>
-
 namespace executor
 {
 	class application;
@@ -12,8 +10,6 @@ namespace executor
 	class configurator
 	{
 	public:
-		explicit configurator(lyra::parse_result&& args);
-
 		application& get_application() const;
 
 	private:

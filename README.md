@@ -64,7 +64,12 @@ There is also embedded support for some common C++ libraries:
 =================
 **Notes**
 =================
-When using Qt, remember to set `Qt6_DIR` variable to Qt6 installation directory and `-DQT_QMAKE_EXECUTABLE:STRING` to qmake location
+When using Qt, remember to set and `-DCMAKE_PREFIX_PATH` to Qt6 installation and
+`Qt6_DIR` variable to where `Qt6Config.cmake` lies (usually `./[toolchain]/lib/cmake/Qt6` in Qt6 installation directory)
+
+If you use CLion, take a look here: https://www.jetbrains.com/help/clion/qt-tutorial.html#qt-setup-in-clion (perhaps on VS and other
+editors it'll help too).
+Or just use QtCreator, it works pretty well with Qt stuff.
 
 =================
 **Building**

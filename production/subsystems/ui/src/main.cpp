@@ -4,7 +4,7 @@
 #include <QApplication>
 #include <QCommandLineParser>
 
-int main(int argc, char *argv[])
+int runLogan(int argc, char *argv[])
 {
     QCommandLineParser parser;
 
