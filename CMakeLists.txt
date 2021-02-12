@@ -8,7 +8,6 @@ SET_PROPERTY(GLOBAL PROPERTY USE_FOLDERS ON)
 # Allows CMake to look for Find_XXX in directory where the file that requests XXX is located
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
-
 INCLUDE(${ROOT_DIR}/buildsystem/CMake/configuration.cmake)
 INCLUDE(${ROOT_DIR}/buildsystem/CMake/compiler_support.cmake)
 INCLUDE(${ROOT_DIR}/buildsystem/CMake/library_support.cmake)
