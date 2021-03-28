@@ -10,15 +10,13 @@
 class doc_supervisor;
 class logfile_proxy;
 
-extern bool operator<(const grep_structure, const grep_structure);
-
 class logfile_handler
 {
 public:
     logfile_handler(doc_supervisor& parent, QStringList& contentByLines, std::vector<line_descriptor> relevantLines);
 
     logfile_proxy as(QString name);
-    logfile_handler& grep(grep_structure g);
+    logfile_handler& grep(std::unique_ptr<filter>&& g);
 
     QString get_text();
     line_number_t line_number(block_number_t block_number) const;
@@ -29,7 +27,9 @@ private:
     std::vector<line_descriptor> relevantLines;
 
     doc_supervisor& supervisor;
-    std::map<grep_structure, logfile_handler> children;
+
+    typedef std::pair<std::unique_ptr<filter>, logfile_handler> child_handler;
+    std::vector<child_handler> children;
 };
 
 class logfile_proxy {
@@ -40,7 +40,7 @@ public:
     logfile_proxy alias(QString newName);
 
     QString text() const;
-    logfile_proxy grep(grep_structure s);
+    logfile_proxy grep(std::unique_ptr<filter>&& s);
 
     line_number_t line_number(block_number_t block_number) const;
     doc_position_t line_start_position(line_number_t line) const;

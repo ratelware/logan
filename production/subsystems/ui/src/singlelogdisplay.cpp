@@ -49,19 +49,36 @@ void SingleLogDisplay::setUpActions() {
     auto bookmarkAction = new QAction("Named bookmark");
     auto fastBookmarkAction = new QAction("Fast bookmark");
     auto colourAction = new QAction("Make colorful");
+    auto trimAbove = new QAction("Trim above");
+    auto trimBelow = new QAction("Trim below");
 
-    auto all = QList<QAction*>({copyAction, bookmarkAction, fastBookmarkAction, colourAction});
+    auto all = QList<QAction*>({copyAction, bookmarkAction, fastBookmarkAction, colourAction, trimAbove, trimBelow});
 
     connect(copyAction, &QAction::triggered, this, &SingleLogDisplay::copySelectionToClipboard);
     connect(colourAction, &QAction::triggered, this, &SingleLogDisplay::emphasiseSelection);
     connect(bookmarkAction, &QAction::triggered, this, &SingleLogDisplay::bookmark);
     connect(fastBookmarkAction, &QAction::triggered, this, &SingleLogDisplay::fastBookmark);
-
+    connect(trimAbove, &QAction::triggered, this, &SingleLogDisplay::trimAboveLine);
+    connect(trimBelow, &QAction::triggered, this, &SingleLogDisplay::trimBelowLine);
     insertActions(nullptr, all);
 }
 
 void SingleLogDisplay::copySelectionToClipboard() {
     QGuiApplication::clipboard()->setText(ui->display->textCursor().selection().toPlainText());
+}
+
+void SingleLogDisplay::trimAboveLine() {
+    filter_above* f = new filter_above{};
+    f->first_line = ui->display->textCursor().blockNumber();
+
+    root.applyGrepToCurrent(f);
+}
+
+void SingleLogDisplay::trimBelowLine() {
+    filter_below* f = new filter_below{};
+    f->last_line = ui->display->textCursor().blockNumber();
+
+    root.applyGrepToCurrent(f);
 }
 
 void SingleLogDisplay::emphasiseSelection() {

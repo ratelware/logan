@@ -29,7 +29,7 @@ void LogsDisplay::handleTabClosing(int tabId) {
     }
 }
 
-void LogsDisplay::applyGrep(grep_structure g) {
+void LogsDisplay::applyGrep(std::unique_ptr<filter>&& g) {
     auto active = currentWidget();
     if(active == nullptr) {
         return;
@@ -37,14 +37,14 @@ void LogsDisplay::applyGrep(grep_structure g) {
 
     if(active->objectName() == QString("SingleLogDisplay")) {
         if(currentIndex() == 0) {
-            newTab(log_handler.grep(g));
+            newTab(log_handler.grep(std::move(g)));
         } else {
             auto activeTab = currentIndex();
-            mutateToNewTree()->applyGrep(g);
+            mutateToNewTree()->applyGrep(std::move(g));
             setCurrentIndex(activeTab);
         }
     } else if(active->objectName() == QString("MultiLogDisplay")) {
-        dynamic_cast<LogsDisplay*>(active)->applyGrep(g);
+        dynamic_cast<LogsDisplay*>(active)->applyGrep(std::move(g));
     }
 }
 

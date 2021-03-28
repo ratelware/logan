@@ -105,9 +105,9 @@
         <number>10</number>
        </property>
        <item>
-        <widget class="QCheckBox" name="isReverse">
+        <widget class="QCheckBox" name="isInverted">
          <property name="text">
-          <string>Reverse</string>
+          <string>Invert</string>
          </property>
         </widget>
        </item>

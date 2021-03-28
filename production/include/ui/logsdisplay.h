@@ -26,7 +26,7 @@ public:
     LogsDisplay* mutateToNewTree();
 
 public:
-    void applyGrep(grep_structure g);
+    void applyGrep(std::unique_ptr<filter>&& g);
     void applySearch(search_structure g);
 
     void scrollToLine(line_number_t line);

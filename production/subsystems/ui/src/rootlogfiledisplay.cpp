@@ -41,10 +41,10 @@ void RootLogfileDisplay::scrollToLineOnCurrent(QListWidgetItem* bkmark) {
     dynamic_cast<LogsDisplay*>(ui->tabs->currentWidget())->scrollToLine(line);
 }
 
-void RootLogfileDisplay::applyGrepToCurrent(grep_structure g) {
+void RootLogfileDisplay::applyGrepToCurrent(filter* g) {
     auto logs = dynamic_cast<LogsDisplay*>(ui->tabs->currentWidget());
     if(logs != nullptr) {
-        logs->applyGrep(g);
+        logs->applyGrep(std::unique_ptr<filter>(g));
     }
 }
 

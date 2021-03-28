@@ -8,7 +8,7 @@
 doc_supervisor::doc_supervisor(QStringList file)
 {
     std::vector<line_descriptor> file_lines = std::vector<line_descriptor>(file.length());
-    for(std::size_t i = 0; i < file.length(); ++i) {
+    for(qsizetype i = 0; i < file.length(); ++i) {
         file_lines[i].line_number = i;
         file_lines[i].line_length = file[i].length() + EOL.length();
         file_lines[i].line_start = (i == 0) ? 0 : file_lines[i - 1].line_start + file_lines[i - 1].line_length;

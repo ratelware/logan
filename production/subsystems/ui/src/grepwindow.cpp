@@ -18,23 +18,23 @@ GrepWindow::GrepWindow(QWidget *parent) :
 }
 
 void GrepWindow::formGrep() {
-    grep_structure s;
-    s.is_regex = ui->useRegex->isChecked();
-    s.is_case_sensitive = ui->caseSensitive->isChecked();
-    s.is_reverse = ui->isReverse->isChecked();
+    regex_filter* s = new regex_filter{};
+    s->is_regex = ui->useRegex->isChecked();
+    s->is_case_sensitive = ui->caseSensitive->isChecked();
+    s->is_inverted = ui->isInverted->isChecked();
 
-    s.search_query = ui->searchQuery->currentText();
+    s->search_query = ui->searchQuery->currentText();
 
     for(int i = 0; i < ui->searchQuery->count(); ++i) {
-        if(ui->searchQuery->itemText(i) == s.search_query) {
+        if(ui->searchQuery->itemText(i) == s->search_query) {
             ui->searchQuery->removeItem(i);
             break;
         }
     }
 
-    ui->searchQuery->addItem(s.search_query);
+    ui->searchQuery->addItem(s->search_query);
 
-    if(!s.search_query.isEmpty()) {
+    if(!s->search_query.isEmpty()) {
         emit greppingRequested(s);
     }
 

@@ -27,7 +27,7 @@ public slots:
     void fileSelected(const QString& filename);
     void scrollToLineOnCurrent(QListWidgetItem* bookmarkItem);
 
-    void applyGrepToCurrent(grep_structure g);
+    void applyGrepToCurrent(filter* g);
     void applySearchToCurrent(search_structure s);
     void handleTabClosing(int tabId);
 

@@ -32,18 +32,16 @@ line_number_t logfile_handler::line_number(block_number_t block_number) const {
     return relevantLines[block_number].line_number;
 }
 
-logfile_handler& logfile_handler::grep(grep_structure g) {
-    auto found = children.find(g);
-    if(found != children.end()) {
-        return found->second;
+logfile_handler& logfile_handler::grep(std::unique_ptr<filter>&& g) {
+    for(auto& c: children) {
+        if(c.first->same_as(*g)) {
+            return c.second;
+        }
     }
-
-    QRegularExpression regexp(g.search_query, (g.is_case_sensitive) ? QRegularExpression::NoPatternOption : QRegularExpression::CaseInsensitiveOption);
-    regexp.optimize();
 
     std::vector<line_descriptor> entries;
     std::for_each(relevantLines.begin(), relevantLines.end(), [&](line_descriptor d){
-        if(regexp.match(content[d.line_number]).hasMatch() ^ g.is_reverse) {
+        if(g->matches(content[d.line_number], d.line_number)) {
             line_descriptor new_descriptor;
             new_descriptor.line_length = d.line_length;
             new_descriptor.line_start = entries.empty() ? 0 : entries.back().line_start + entries.back().line_length;
@@ -52,8 +50,8 @@ logfile_handler& logfile_handler::grep(grep_structure g) {
         }
     });
 
-    auto it = children.insert(std::make_pair(g, logfile_handler(supervisor, content, entries)));
-    return it.first->second;
+    children.push_back(std::make_pair(std::move(g), logfile_handler(supervisor, content, entries)));
+    return children.back().second;
 }
 
 QString logfile_handler::get_text() {
@@ -64,19 +62,6 @@ QString logfile_handler::get_text() {
 
     return l.join("\n");
 }
-
-bool operator<(const grep_structure g1, const grep_structure g2) {
-    auto direct = g1.search_query.compare(g2.search_query);
-    if(direct != 0) {
-        return direct;
-    }
-
-    auto other_g1 = (g1.is_regex << 3) | (g1.is_reverse << 2) | (g1.is_case_sensitive << 1);
-    auto other_g2 = (g2.is_regex << 3) | (g2.is_reverse << 2) | (g2.is_case_sensitive << 1);
-
-    return other_g1 < other_g2;
-}
-
 
 logfile_proxy::logfile_proxy(logfile_handler& h, QString name): fileName(name), handler(h) {
 }
@@ -101,7 +86,8 @@ logfile_proxy logfile_proxy::alias(QString name) {
     return logfile_proxy(handler, name);
 }
 
-logfile_proxy logfile_proxy::grep(grep_structure g) {
-    logfile_handler& h = handler.grep(g);
-    return logfile_proxy(h, g.search_query);
+logfile_proxy logfile_proxy::grep(std::unique_ptr<filter>&& g) {
+    QString name = g->name();
+    logfile_handler& h = handler.grep(std::move(g));
+    return logfile_proxy(h, name);
 }

@@ -36,6 +36,9 @@ public slots:
     void bookmark();
     void fastBookmark();
 
+    void trimAboveLine();
+    void trimBelowLine();
+
     void mousePressEvent(QMouseEvent *event);
 private:
     void setUpActions();

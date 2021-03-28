@@ -25,7 +25,7 @@ public slots:
     void formGrep();
 
 signals:
-    void greppingRequested(grep_structure g);
+    void greppingRequested(filter* g);
 
 private:
     Ui::GrepWindow *ui;
