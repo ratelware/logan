@@ -41,7 +41,7 @@ void RootLogfileDisplay::scrollToLineOnCurrent(QListWidgetItem* bkmark) {
     dynamic_cast<LogsDisplay*>(ui->tabs->currentWidget())->scrollToLine(line);
 }
 
-void RootLogfileDisplay::scrollToLineOnCurrent(line_number_t line) {
+void RootLogfileDisplay::scrollToLineNumberOnCurrent(line_number_t line) {
     dynamic_cast<LogsDisplay*>(ui->tabs->currentWidget())->scrollToLine(line);
 }
 

@@ -80,7 +80,7 @@ void SingleLogDisplay::trimBelowLine() {
 
     f->last_line = logfile.line_number(line);
     root.applyGrepToCurrent(f);
-    root.scrollToLineOnCurrent(line);
+    root.scrollToLineNumberOnCurrent(line);
 }
 
 void SingleLogDisplay::emphasiseSelection() {
