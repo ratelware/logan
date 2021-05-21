@@ -42,6 +42,8 @@ Logan::Logan(QWidget *parent)
 
     connect(ui->actionClose, &QAction::triggered, this, &QMainWindow::close);
     connect(ui->actionAbout, &QAction::triggered, this, &Logan::displayAboutWindow);
+
+    statusBar()->showMessage(tr("Logan ready"));
 }
 
 void Logan::openNewLocalFile() {

@@ -1,0 +1,29 @@
+<?xml version='1.0' encoding='utf8' ?>
+<Wix xmlns='http://schemas.microsoft.com/wix/2006/wi'>
+  <Product Name="Logan" Manufacturer="Ratelware" Version="0.3.0" />
+  <Package Id="*" Keywords="Installer" Description="Logan for Windows installer" InstallerVersion="100" Compressed="yes" />
+
+  <Directory Id='ProgramFilesFolder' Name='PFiles'>
+    <Directory Id='Acme' Name='Acme'>
+      <Directory Id='INSTALLDIR' Name='Logan 0.3.0'>
+        <Component Id="MainExecutable">
+          <File Id="LoganEXE" Name="Logan.exe" Source="Logan.exe" KeyPath="yes">
+            <Shortcut Id="startmenuLogan" Directory="ProgramMenuDir" Name="Foobar 1.0"
+                      WorkingDirectory='INSTALLDIR' Icon="Logan.exe" IconIndex="0" Advertise="yes" />
+            <Shortcut Id="desktopLogan" Directory="DesktopFolder" Name="Foobar 1.0"
+                      WorkingDirectory='INSTALLDIR' Icon="Logan.exe" IconIndex="0" Advertise="yes" />
+          </File>
+        </Component>
+
+        <Component Id="QtLibs">
+
+        </Component>
+
+        <Component Id="Manual">
+
+        </Component>
+
+      </Directory>
+    </Directory>
+  </Directory>
+</Wix>
