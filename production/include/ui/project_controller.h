@@ -8,7 +8,7 @@ class project_controller
 public:
     project_controller();
 
-    void set_up(QFile directory);
+    void set_up(QString path);
 
 
 

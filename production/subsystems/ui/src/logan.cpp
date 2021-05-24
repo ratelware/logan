@@ -43,7 +43,29 @@ Logan::Logan(QWidget *parent)
     connect(ui->actionClose, &QAction::triggered, this, &QMainWindow::close);
     connect(ui->actionAbout, &QAction::triggered, this, &Logan::displayAboutWindow);
 
+    connect(ui->actionNewProject, &QAction::triggered, this, &Logan::createNewProjectAction);
+    connect(ui->actionOpenProject, &QAction::triggered, this, &Logan::openExistingProjectAction);
+
     statusBar()->showMessage(tr("Logan ready"));
+}
+
+void Logan::createNewProjectAction() {
+    QFileDialog fileOpener(this);
+    fileOpener.setFileMode(QFileDialog::Directory);
+    connect(&fileOpener, &QFileDialog::fileSelected, this, &Logan::setActiveProjectLocation);
+    fileOpener.exec();
+}
+
+void Logan::openExistingProjectAction() {
+    QFileDialog fileOpener(this);
+    fileOpener.setFileMode(QFileDialog::ExistingFile);
+    fileOpener.setNameFilter("*.logan");
+    connect(&fileOpener, &QFileDialog::fileSelected, this, &Logan::setActiveProjectLocation);
+    fileOpener.exec();
+}
+
+void Logan::setActiveProjectLocation(QString location) {
+    project_controller.set_up(location);
 }
 
 void Logan::openNewLocalFile() {

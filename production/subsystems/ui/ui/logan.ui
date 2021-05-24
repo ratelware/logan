@@ -132,6 +132,11 @@
     <string>Add remote file</string>
    </property>
   </action>
+  <action name="actionOpen_with_merger">
+   <property name="text">
+    <string>Open with merger</string>
+   </property>
+  </action>
  </widget>
  <customwidgets>
   <customwidget>

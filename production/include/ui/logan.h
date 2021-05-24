@@ -12,6 +12,7 @@
 #include "grepwindow.h"
 #include "searchwindow.h"
 #include "logfile_manager.h"
+#include "project_controller.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class Logan; }
@@ -31,6 +32,9 @@ public slots:
     void displayAboutWindow();
     void openNewLocalFile();
     void openNewRemoteFile();
+    void createNewProjectAction();
+    void openExistingProjectAction();
+    void setActiveProjectLocation(QString location);
 
 private:
     QString getSelectedText() const;
@@ -39,5 +43,6 @@ private:
     std::vector<std::unique_ptr<QShortcut>> shortcuts;
     GrepWindow g;
     SearchWindow s;
+    project_controller project_controller;
 };
 #endif // LOGAN_H
