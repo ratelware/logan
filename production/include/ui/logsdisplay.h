@@ -4,10 +4,10 @@
 #include <QTabWidget>
 #include <QFile>
 
-#include "grep_structure.h"
-#include "search_structure.h"
-#include "line_descriptor.h"
-#include "logfile_handler.h"
+#include <executor/grep_structure.h>
+#include <executor/search_structure.h>
+#include <executor/line_descriptor.h>
+#include <executor/logfile_handler.h>
 #include "rootlogfiledisplay.h"
 
 namespace Ui {

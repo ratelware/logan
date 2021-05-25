@@ -1,5 +1,5 @@
 #include "ui/logan.h"
-#include "ui/configuration_manager.h"
+#include <executor/configuration_manager.h>
 
 #include <QApplication>
 #include <QCommandLineParser>
@@ -17,6 +17,7 @@ int runLogan(int argc, char *argv[])
     parser.addOption(configOption);
 
     QApplication a(argc, argv);
+    a.addLibraryPath(QString(qEnvironmentVariable("SQLDRIVERS_DIR", ".")));
 
     parser.process(a);
 

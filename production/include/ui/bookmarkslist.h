@@ -3,8 +3,8 @@
 
 #include <QWidget>
 
-#include "doc_supervisor.h"
-#include "rootlogfiledisplay.h"
+#include <executor/doc_supervisor.h>
+#include <ui/rootlogfiledisplay.h>
 
 namespace Ui {
 class BookmarksList;

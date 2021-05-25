@@ -1,8 +1,8 @@
 #include "ui/iconmenupopup.h"
 #include "ui_iconmenupopup.h"
 
-#include "ui/configuration_manager.h"
-#include "ui/newbookmarkwindow.h"
+#include <executor/configuration_manager.h>
+#include <ui/newbookmarkwindow.h>
 
 #include <QAction>
 #include <QPaintEvent>

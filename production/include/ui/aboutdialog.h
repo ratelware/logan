@@ -1,7 +1,7 @@
 #ifndef ABOUTDIALOG_H
 #define ABOUTDIALOG_H
 
-#include "license_item_t.h"
+#include <executor/license_item_t.h>
 
 #include <QDialog>
 

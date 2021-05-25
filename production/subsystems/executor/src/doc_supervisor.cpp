@@ -1,9 +1,9 @@
-#include "ui/doc_supervisor.h"
+#include <executor/doc_supervisor.h>
 #include <iterator>
 #include <memory>
 #include <algorithm>
 
-#include "ui/constants.h"
+#include <executor/constants.h>
 
 doc_supervisor::doc_supervisor(QStringList file)
 {

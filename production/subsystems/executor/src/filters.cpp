@@ -1,4 +1,4 @@
-#include <ui/grep_structure.h>
+#include <executor/grep_structure.h>
 
 bool regex_filter::matches(QString text, line_number_t) {
     initialize_regex();

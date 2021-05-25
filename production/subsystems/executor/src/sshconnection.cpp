@@ -1,4 +1,4 @@
-#include "ui/sshconnection.h"
+#include <executor/sshconnection.h>
 
 #include <libssh2.h>
 #include <mutex>

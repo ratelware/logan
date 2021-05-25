@@ -1,4 +1,4 @@
-#include "ui/logfile_manager.h"
+#include <executor/logfile_manager.h>
 
 #include <QFile>
 #include <QTextStream>

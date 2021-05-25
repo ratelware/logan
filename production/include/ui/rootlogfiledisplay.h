@@ -4,9 +4,9 @@
 #include <QWidget>
 #include <QListWidgetItem>
 
-#include "logfile_manager.h"
-#include "line_descriptor.h"
-#include "search_structure.h"
+#include <executor/logfile_manager.h>
+#include <executor/line_descriptor.h>
+#include <executor/search_structure.h>
 
 namespace Ui {
 class RootLogfileDisplay;

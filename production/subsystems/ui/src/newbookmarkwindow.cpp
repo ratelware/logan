@@ -1,9 +1,9 @@
 #include "ui/newbookmarkwindow.h"
 #include "ui_newbookmarkwindow.h"
 
-#include "ui/bookmark_structure.h"
+#include <executor/bookmark_structure.h>
 #include "ui/iconmenupopup.h"
-#include "ui/configuration_manager.h"
+#include <executor/configuration_manager.h>
 #include "ui/bookmarkslist.h"
 #include "ui/rootlogfiledisplay.h"
 

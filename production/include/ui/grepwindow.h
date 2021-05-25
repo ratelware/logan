@@ -3,7 +3,7 @@
 
 #include <QDialog>
 
-#include "grep_structure.h"
+#include <executor/grep_structure.h>
 
 namespace Ui {
 class GrepWindow;

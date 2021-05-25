@@ -3,7 +3,7 @@
 
 #include <QDialog>
 
-#include "search_structure.h"
+#include <executor/search_structure.h>
 
 namespace Ui {
 class SearchWindow;

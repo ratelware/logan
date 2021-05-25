@@ -8,11 +8,11 @@
 #include <QList>
 #include <QListWidgetItem>
 
-#include "grep_structure.h"
+#include <executor/grep_structure.h>
 #include "grepwindow.h"
 #include "searchwindow.h"
-#include "logfile_manager.h"
-#include "project_controller.h"
+#include <executor/logfile_manager.h>
+#include <executor/project_controller.h>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class Logan; }

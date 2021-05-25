@@ -1,7 +1,7 @@
 #include <QRegularExpression>
 
-#include "ui/logfile_handler.h"
-#include "ui/logfile_manager.h"
+#include <executor/logfile_handler.h>
+#include <executor/logfile_manager.h>
 
 logfile_handler::logfile_handler(
         doc_supervisor& parent,

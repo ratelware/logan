@@ -3,7 +3,7 @@
 
 #include <QDialog>
 
-#include "project_controller.h"
+#include <executor/project_controller.h>
 
 namespace Ui {
 class OpenRemoteFileDialog;

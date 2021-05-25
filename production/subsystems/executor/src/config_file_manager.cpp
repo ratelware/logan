@@ -1,5 +1,5 @@
-#include "ui/config_file_manager.h"
-#include "ui/xml_selector.h"
+#include <executor/config_file_manager.h>
+#include <executor/xml_selector.h>
 
 #include <QFile>
 

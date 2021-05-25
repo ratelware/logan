@@ -4,8 +4,8 @@
 #include <QWidget>
 #include <QTextBlockFormat>
 
-#include "search_structure.h"
-#include "logfile_handler.h"
+#include <executor/search_structure.h>
+#include <executor/logfile_handler.h>
 
 class LogsDisplay;
 class RootLogfileDisplay;

@@ -4,8 +4,8 @@
 #include <QDialog>
 #include <QIcon>
 
-#include "line_descriptor.h"
-#include "bookmark_structure.h"
+#include <executor/line_descriptor.h>
+#include <executor/bookmark_structure.h>
 
 namespace Ui {
 class NewBookmarkWindow;
