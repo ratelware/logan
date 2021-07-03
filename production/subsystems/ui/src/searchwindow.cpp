@@ -1,6 +1,8 @@
 #include "ui/searchwindow.h"
 #include "ui_searchwindow.h"
 
+#include <QLineEdit>
+
 SearchWindow::SearchWindow(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::SearchWindow)
@@ -27,14 +29,17 @@ void SearchWindow::formSearch() {
     s.wrap_around = ui->wrapAround->isChecked();
     s.search_query = ui->searchQuery->currentText();
 
+    bool found = false;
     for(int i = 0; i < ui->searchQuery->count(); ++i) {
         if(ui->searchQuery->itemText(i) == s.search_query) {
-            ui->searchQuery->removeItem(i);
+            found = true;
             break;
         }
     }
 
-    ui->searchQuery->addItem(s.search_query);
+    if(!found) {
+        ui->searchQuery->addItem(s.search_query);
+    }
 
     if(!s.search_query.isEmpty()) {
         emit searchingRequested(s);
@@ -53,6 +58,7 @@ void SearchWindow::cleanQuery() {
 
 void SearchWindow::setQuery(QString query) {
     this->ui->searchQuery->setCurrentText(query);
+    this->ui->searchQuery->lineEdit()->selectAll();
 }
 
 SearchWindow::~SearchWindow()
