@@ -114,5 +114,6 @@
         <file>presets/config-schema.xsd</file>
         <file>libraries/libssh2/ABOUT.txt</file>
         <file>libraries/libssh2/LICENSE.txt</file>
+        <file>presets/defaults.logan.chai</file>
     </qresource>
 </RCC>

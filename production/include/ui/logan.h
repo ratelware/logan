@@ -44,5 +44,6 @@ private:
     GrepWindow g;
     SearchWindow s;
     project_controller project_controller;
+    std::shared_ptr<project_workspace> active_project_workspace;
 };
 #endif // LOGAN_H

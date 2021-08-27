@@ -36,6 +36,8 @@ public:
     std::vector<QString> get_favorite_icons_paths();
     std::vector<QString> get_all_icons_paths();
 
+
+
 private:
     configuration_manager(QString config);
 

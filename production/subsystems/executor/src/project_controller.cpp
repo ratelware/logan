@@ -7,8 +7,9 @@
 #include <executor/project_controller.h>
 #include <executor/project_workspace.h>
 
-const char* PROJECT_FILE_NAME = "project.logan";
-const char* CONFIG_FILE_NAME = "config.json";
+#include <chaiscript/chaiscript.hpp>
+
+const char* PROJECT_FILE_NAME = "project.logan.chai";
 const char* LOG_ARCHIVE_DIR = "logs_archive";
 const char* DIAGNOSTICS_DIR = "diagnostics";
 

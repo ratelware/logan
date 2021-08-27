@@ -14,15 +14,18 @@ class OpenRemoteFileDialog : public QDialog
     Q_OBJECT
 
 public:
-    explicit OpenRemoteFileDialog(project_controller&, QWidget *parent = nullptr);
+    explicit OpenRemoteFileDialog(std::shared_ptr<project_workspace>, QWidget *parent = nullptr);
     ~OpenRemoteFileDialog();
+
+signals:
+    void remoteFileSelected(QString downloadedPath);
 
 public slots:
     void downloadAndOpenRemoteFile();
 
 private:
     Ui::OpenRemoteFileDialog *ui;
-    project_controller& controller;
+    std::shared_ptr<project_workspace> workspace;
 };
 
 #endif // OPENREMOTEFILEDIALOG_H

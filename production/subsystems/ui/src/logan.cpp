@@ -11,6 +11,8 @@
 
 #include "ui/logan.h"
 #include "ui/logsdisplay.h"
+#include "ui/openremotefiledialog.h"
+
 #include "ui/singlelogdisplay.h"
 #include "ui_singlelogdisplay.h"
 
@@ -65,7 +67,7 @@ void Logan::openExistingProjectAction() {
 }
 
 void Logan::setActiveProjectLocation(QString location) {
-    project_controller.set_up(location);
+    active_project_workspace = project_controller.set_up(location);
 }
 
 void Logan::openNewLocalFile() {
@@ -76,10 +78,9 @@ void Logan::openNewLocalFile() {
 }
 
 void Logan::openNewRemoteFile() {
-    QFileDialog fileOpener(this);
-    connect(&fileOpener, &QFileDialog::fileSelected, ui->loganDisplay, &RootLogfileDisplay::fileSelected);
-    fileOpener.setFileMode(QFileDialog::ExistingFile);
-    fileOpener.exec();
+    OpenRemoteFileDialog remote(active_project_workspace, this);
+    connect(&remote, &OpenRemoteFileDialog::remoteFileSelected, ui->loganDisplay, &RootLogfileDisplay::fileSelected);
+    remote.exec();
 }
 
 void Logan::displayGrepWindow() {

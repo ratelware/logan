@@ -1,7 +1,7 @@
 #ifndef CONFIG_FILE_MANAGER_H
 #define CONFIG_FILE_MANAGER_H
 
-#include "xml_selector.h"
+#include "field_selector.h"
 
 #include <QString>
 #include <QFile>
@@ -12,47 +12,70 @@
 #include <algorithm>
 
 #include <libxml/xmlschemas.h>
+#include <chaiscript/chaiscript.hpp>
 
-enum xml_schema_loading_status {
-    success,
-    error
-};
+namespace config {
+    struct grep {
+        bool is_regex;
+        bool is_inverse;
+        bool is_case_sensitive;
+    };
+
+    struct search {
+        bool is_regex;
+        bool is_case_sensitive;
+        bool is_reverse;
+        bool wrap_around;
+    };
+
+    struct tabs {
+        std::string root_tab_name;
+    };
+
+    struct colors {
+
+    };
+
+    struct icons {
+
+    };
+
+    struct ssh_connections {
+
+    };
+
+    struct file_processing_flows {
+
+    };
+
+    struct flag_templates {
+
+    };
+}
 
 class config_file_manager
 {
 public:
     config_file_manager(QString initial_file);
 
-    int get_int(xml_selector q) const;
-    bool get_bool(xml_selector q) const;
-    QString get_string(xml_selector q) const;
+    int get_int(field_selector q) const;
+    bool get_bool(field_selector q) const;
+    QString get_string(field_selector q) const;
 
-    template <typename T>
-    T get_t(xml_selector q, std::function<T(QDomElement)> converter) const {
-        return converter(get_item(q));
-    }
-
-    template <typename T>
-    std::vector<T> get_vector_of(xml_selector q, std::function<T(QDomElement)> converter) const {
-        auto items = get_vector(q);
-        auto elems = std::vector<T>();
-        elems.resize(items.size());
-        std::transform(items.begin(), items.end(), elems.begin(), [&converter](QDomElement e) {
-            return converter(e);
-        });
-
-        return elems;
-    }
+    config::grep grep;
+    config::search search;
+    config::tabs tabs;
+    config::colors colors;
+    config::icons icons;
+    config::ssh_connections ssh_connections;
+    config::file_processing_flows file_processing_flows;
+    config::flag_templates flag_templates;
 
 private:
-    std::vector<std::pair<QString, QDomDocument> > documents;
-    std::unique_ptr<xmlSchema, void(*)(xmlSchemaPtr)> schema;
+    chaiscript::ChaiScript engine;
 
-    std::vector<QDomElement> get_vector(xml_selector q) const;
-    QDomElement get_item(xml_selector q) const;
-
-    void load_doc(QString name);
-    xml_schema_loading_status load_xml_schema(QFile& file);
+    void load_chai_config(QString filename);
+    void setup_config_chai_env();
 };
 
 #endif // CONFIG_FILE_MANAGER_H

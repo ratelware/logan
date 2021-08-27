@@ -45,7 +45,6 @@ void SearchWindow::formSearch() {
         emit searchingRequested(s);
     }
 
-
 }
 
 void SearchWindow::startNewSearch() {

@@ -3,7 +3,7 @@
 
 #include <QString>
 
-struct xml_selector {
+struct field_selector {
     QString selector;
 };
 
