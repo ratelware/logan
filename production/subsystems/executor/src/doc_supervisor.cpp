@@ -2,6 +2,7 @@
 #include <iterator>
 #include <memory>
 #include <algorithm>
+#include <any>
 
 #include <executor/constants.h>
 
@@ -15,14 +16,14 @@ doc_supervisor::doc_supervisor(QStringList file)
     }
 
     files_split_to_records.push_back(file);
-    handler.reset(new logfile_handler(*this, files_split_to_records.back(), file_lines));
+    handler = std::make_unique<logfile_handler>(*this, files_split_to_records.back(), file_lines);
 }
 
-logfile_handler& doc_supervisor::get_root() {
+logfile_handler& doc_supervisor::get_root() const {
     return *handler;
 }
 
-void doc_supervisor::add_bookmark(bookmark_t b) {
+void doc_supervisor::add_bookmark(const bookmark_t &b) {
     for(auto i = bookmarks.begin(); i != bookmarks.end(); ++i) {
         if(i->line_number > b.line_number) {
             bookmarks.insert(i, b);
@@ -38,24 +39,20 @@ const std::vector<bookmark_t>& doc_supervisor::get_bookmarks() const {
 }
 
 void doc_supervisor::remove_bookmarks(const std::vector<line_number_t> & removed) {
-    bookmarks.erase(std::remove_if(bookmarks.begin(), bookmarks.end(), [&removed](bookmark_t& b) {
-                        for(auto& r: removed) {
-                            if(r == b.line_number) {
-                                return true;
-                            }
-                        }
-                        return false;
-                    }),
-            bookmarks.end()
+    bookmarks.erase(
+        std::remove_if(bookmarks.begin(), bookmarks.end(), [&removed](bookmark_t& b) {
+            return std::any_of(removed.begin(), removed.end(), [&b](line_number_t& l) { return l == b.line_number; });
+    }),
+    bookmarks.end()
             );
 }
 
 
-void doc_supervisor::update_bookmark(line_number_t line, bookmark_t structure) {
+void doc_supervisor::update_bookmark(line_number_t line, const bookmark_t &bookmark) {
     for(auto& b : bookmarks) {
         if(b.line_number == line) {
-            b.bookmark_name = structure.bookmark_name;
-            b.icon = structure.icon;
+            b.bookmark_name = bookmark.bookmark_name;
+            b.icon = bookmark.icon;
             return;
         }
     }
