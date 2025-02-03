@@ -3,8 +3,8 @@
 #include <QFile>
 #include <QTextStream>
 
-#include <libarchive/archive.h>
-#include <libarchive/archive_entry.h>
+#include <archive.h>
+#include <archive_entry.h>
 
 const int BUFFER_SIZE = 64 * 1024;
 

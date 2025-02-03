@@ -23,4 +23,4 @@ QT_WRAP_UI(${DESIGNS_UI})
 SET(CMAKE_AUTOUIC_SEARCH_PATHS ${DESIGNS_DIR})
 
 ADD_LIBRARY(${PROJECT_NAME} ${SOURCES} ${DESIGNS_UI} ${HEADERS})
-target_link_libraries(${PROJECT_NAME} executor archive_static)
+target_link_libraries(${PROJECT_NAME} executor)
