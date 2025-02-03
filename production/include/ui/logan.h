@@ -43,6 +43,6 @@ private:
     std::vector<std::unique_ptr<QShortcut>> shortcuts;
     GrepWindow g;
     SearchWindow s;
-    project_controller project_controller;
+    project_controller controller;
 };
 #endif // LOGAN_H

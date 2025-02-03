@@ -3,6 +3,12 @@
 #include <libssh2.h>
 #include <mutex>
 
+#ifndef WIN32
+#include <sys/socket.h>
+#include <unistd.h>
+#include <arpa/inet.h>
+#include <netinet/in.h>
+#endif
 
 namespace {
 

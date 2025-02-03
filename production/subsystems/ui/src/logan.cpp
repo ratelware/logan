@@ -65,7 +65,7 @@ void Logan::openExistingProjectAction() {
 }
 
 void Logan::setActiveProjectLocation(QString location) {
-    project_controller.set_up(location);
+    controller.set_up(location);
 }
 
 void Logan::openNewLocalFile() {

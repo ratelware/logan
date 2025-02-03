@@ -45,7 +45,7 @@ SET(SEMI_INTERNAL_LIBRARIES
         sqlite
 #        ${LIBWEBSOCKETS_EXPORTS}
         archive_static
-        libssh2
+#        libssh2
         PARENT_SCOPE)
 
 SET(TRANSITIVE_DEPENDENCIES
