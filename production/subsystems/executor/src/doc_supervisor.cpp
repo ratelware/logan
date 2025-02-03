@@ -41,7 +41,7 @@ const std::vector<bookmark_t>& doc_supervisor::get_bookmarks() const {
 void doc_supervisor::remove_bookmarks(const std::vector<line_number_t> & removed) {
     bookmarks.erase(
         std::remove_if(bookmarks.begin(), bookmarks.end(), [&removed](bookmark_t& b) {
-            return std::any_of(removed.begin(), removed.end(), [&b](line_number_t& l) { return l == b.line_number; });
+            return std::any_of(removed.begin(), removed.end(), [&b](const line_number_t l) { return l == b.line_number; });
     }),
     bookmarks.end()
             );
@@ -56,4 +56,8 @@ void doc_supervisor::update_bookmark(line_number_t line, const bookmark_t &bookm
             return;
         }
     }
+}
+
+void doc_supervisor::apply_filters(const filter_package &filters) {
+
 }

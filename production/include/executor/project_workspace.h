@@ -5,7 +5,7 @@
 
 class project_workspace {
 public:
-    project_workspace(QString path);
+    explicit project_workspace(QString path);
 
 private:
     QString path_;

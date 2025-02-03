@@ -37,7 +37,7 @@ public:
     std::vector<QString> get_all_icons_paths();
 
 private:
-    configuration_manager(QString config);
+    explicit configuration_manager(QString config);
 
     static std::unique_ptr<configuration_manager> instance;
 

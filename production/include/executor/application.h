@@ -6,14 +6,14 @@ namespace executor
 	class application
 	{
 	public:
-		virtual ~application(){}
+		virtual ~application()= default;
 		virtual int run() = 0;
 	};
 
 	class whole_application : public application
 	{
 	public:
-		int run();
+		int run() override;
 	};
 }
 

@@ -2,6 +2,7 @@
 
 #include <libssh2.h>
 #include <mutex>
+#include <utility>
 
 #ifndef WIN32
 #include <sys/socket.h>
@@ -52,13 +53,13 @@ SSHConnection::SSHConnection(
     std::string privkey_password
         ):
     server(server),
-    path(path),
-    username(username),
+    path(std::move(path)),
+    username(std::move(username)),
     auth_type(auth_type),
-    password(password),
-    pubkey_file(pubkey_file),
-    privkey_file(privkey_file),
-    privkey_password(privkey_password)
+    password(std::move(password)),
+    pubkey_file(std::move(pubkey_file)),
+    privkey_file(std::move(privkey_file)),
+    privkey_password(std::move(privkey_password))
 {
     int portstart = server.find(':');
     if(portstart != -1) {
@@ -77,7 +78,7 @@ char* SSHConnection::fetch_file() {
 
     // I have no idea what happens here
     libssh2_socket_t sock = socket(AF_INET, SOCK_STREAM, 0);
-    sockaddr_in addr;
+    sockaddr_in addr{};
     addr.sin_family = AF_INET;
     addr.sin_port = htons(atoi(port.c_str()));
     addr.sin_addr.s_addr = inet_addr(server.c_str());

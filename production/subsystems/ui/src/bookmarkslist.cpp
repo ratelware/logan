@@ -26,7 +26,7 @@ void BookmarksList::reload(doc_supervisor& s)
 
     ui->bookmarksList->setIconSize(QSize(24, 24));
 
-    for(auto b: bs) {
+    for(const auto& b: bs) {
         ui->bookmarksList->addItem(new Bookmark(ui->bookmarksList, b));
     }
 }

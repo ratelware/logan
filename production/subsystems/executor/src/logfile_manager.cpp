@@ -57,7 +57,7 @@ QByteArray archive_uncompress(const char* path) {
     return content;
 }
 
-bool is_compressed(QString file) {
+bool is_compressed(const QString &file) {
     return file.endsWith(".tar") ||
             file.endsWith(".gz") ||
             file.endsWith(".tgz") ||
@@ -67,10 +67,7 @@ bool is_compressed(QString file) {
             file.endsWith(".7z");
 }
 
-logfile_manager::logfile_manager()
-{
-
-}
+logfile_manager::logfile_manager() = default;
 
 void logfile_manager::remove_supervisor(int index) {
     supervisors.erase(std::next(supervisors.begin(), index));
@@ -84,18 +81,23 @@ doc_supervisor& logfile_manager::open_file(const char* path) {
     } else {
         QFile file(path);
         if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
-            throw new std::runtime_error("Failed to open file");
+            throw std::runtime_error("Failed to open file");
         return new_supervisor(QTextStream(&file));
     }
 }
 
 doc_supervisor& logfile_manager::open_file(const QString& path) {
-    return open_file(path.toStdString().c_str());
+    auto& s = open_file(path.toStdString().c_str());
+    s.apply_filters(filters_for(path));
+    return s;
+}
+
+filter_package logfile_manager::filters_for(const QString& path) const {
+    return filter_package{};
 }
 
 doc_supervisor& logfile_manager::new_supervisor(QTextStream&& file) {
-    supervisors.emplace_back(file.readAll().split(QString("\n")));
-    return supervisors.back();
+    return supervisors.emplace_back(file.readAll().split(QString("\n")));
 }
 
 doc_supervisor& logfile_manager::supervisor_at(int index) {

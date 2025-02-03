@@ -6,7 +6,7 @@
 const int UNUSED = 0;
 const QString defaultConfig = ":/presets/configuration.xml";
 
-config_file_manager::config_file_manager(QString initial_file) : schema(nullptr, &xmlSchemaFree)
+config_file_manager::config_file_manager(const QString &initial_file) : schema(nullptr, &xmlSchemaFree)
 {
     QFile schemaFile(":/presets/config-schema.xsd");
     if(!schemaFile.open(QIODevice::ReadOnly)) {

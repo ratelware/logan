@@ -10,7 +10,7 @@ namespace executor
 	class configurator
 	{
 	public:
-		application& get_application() const;
+		[[nodiscard]] application& get_application() const;
 
 	private:
 		std::unique_ptr<::executor::application> app;

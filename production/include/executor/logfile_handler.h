@@ -1,9 +1,6 @@
 #ifndef LOGFILE_HANDLER_H
 #define LOGFILE_HANDLER_H
 
-#include <QStringList>
-#include <map>
-
 #include "line_descriptor.h"
 #include "grep_structure.h"
 
@@ -19,8 +16,8 @@ public:
     logfile_handler& grep(std::unique_ptr<filter>&& g);
 
     QString get_text();
-    line_number_t line_number(block_number_t block_number) const;
-    doc_position_t line_start_position(line_number_t line) const;
+    [[nodiscard]] line_number_t line_number(block_number_t block_number) const;
+    [[nodiscard]] doc_position_t line_start_position(line_number_t line) const;
 
 private:
     QStringList& content;
@@ -36,14 +33,14 @@ class logfile_proxy {
 public:
     logfile_proxy(logfile_handler& handler, QString name);
 
-    QString name() const;
+    [[nodiscard]] QString name() const;
     logfile_proxy alias(QString newName);
 
-    QString text() const;
+    [[nodiscard]] QString text() const;
     logfile_proxy grep(std::unique_ptr<filter>&& s);
 
-    line_number_t line_number(block_number_t block_number) const;
-    doc_position_t line_start_position(line_number_t line) const;
+    [[nodiscard]] line_number_t line_number(block_number_t block_number) const;
+    [[nodiscard]] doc_position_t line_start_position(line_number_t line) const;
 
 private:
     QString fileName;

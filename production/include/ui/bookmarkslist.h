@@ -34,7 +34,7 @@ public slots:
     void keyReleaseEvent(QKeyEvent*);
 
 private:
-    RootLogfileDisplay* root;
+    RootLogfileDisplay* root{};
     doc_supervisor* supervisor;
     Ui::BookmarksList *ui;
 };

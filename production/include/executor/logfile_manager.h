@@ -8,6 +8,7 @@
 #include <memory>
 
 #include "doc_supervisor.h"
+#include "filter_package.h"
 #include "logfile_handler.h"
 
 class logfile_manager
@@ -19,6 +20,8 @@ public:
     doc_supervisor& open_file(const QString& path);
     doc_supervisor& new_supervisor(QTextStream&& file);
     doc_supervisor& supervisor_at(int index);
+
+    [[nodiscard]] filter_package filters_for(const QString& path) const;
 
     void remove_supervisor(int index);
 private:
