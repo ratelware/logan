@@ -193,7 +193,7 @@ void SingleLogDisplay::bookmark() {
 }
 
 void SingleLogDisplay::fastBookmark() {
-    bookmark_structure b;
+    bookmark_t b;
     b.line_number = logfile.line_number(ui->display->textCursor().blockNumber());
     b.bookmark_name = ui->display->textCursor().block().text();
     b.icon = QIcon(QPixmap(configuration_manager::get_instance().icon_for_text(b.bookmark_name)));

@@ -68,7 +68,7 @@ void RootLogfileDisplay::fileSelected(const QString& fileName) {
     ui->tabs->setCurrentIndex(newOne);
 }
 
-void RootLogfileDisplay::addBookmarkToCurrent(bookmark_structure b) {
+void RootLogfileDisplay::addBookmarkToCurrent(bookmark_t b) {
     auto& active_supervisor = manager.supervisor_at(ui->tabs->currentIndex());
     active_supervisor.add_bookmark(b);
     ui->bookmarksList->reload(active_supervisor);

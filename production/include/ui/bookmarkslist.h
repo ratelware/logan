@@ -22,7 +22,7 @@ public:
 
     void setRoot(RootLogfileDisplay*);
 
-    void updateBookmark(bookmark_structure b);
+    void updateBookmark(bookmark_t b);
 
 public slots:
     void copyActive();

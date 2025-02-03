@@ -22,7 +22,7 @@ void BookmarksList::reload(doc_supervisor& s)
 {
     ui->bookmarksList->clear();
     supervisor = &s;
-    const std::vector<bookmark_structure>& bs = supervisor->get_bookmarks();
+    const std::vector<bookmark_t>& bs = supervisor->get_bookmarks();
 
     ui->bookmarksList->setIconSize(QSize(24, 24));
 
@@ -64,7 +64,7 @@ void BookmarksList::editActive() {
     }
 }
 
-void BookmarksList::updateBookmark(bookmark_structure b) {
+void BookmarksList::updateBookmark(bookmark_t b) {
     supervisor->update_bookmark(b.line_number, b);
     reload(*supervisor);
 }

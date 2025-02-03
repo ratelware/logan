@@ -20,7 +20,7 @@ public:
     explicit RootLogfileDisplay(QWidget *parent = nullptr);
     ~RootLogfileDisplay();
 
-    void addBookmarkToCurrent(bookmark_structure b);
+    void addBookmarkToCurrent(bookmark_t b);
 
 public slots:
     void tabChanged(int newActive);

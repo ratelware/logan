@@ -94,11 +94,10 @@ doc_supervisor& logfile_manager::open_file(const QString& path) {
 }
 
 doc_supervisor& logfile_manager::new_supervisor(QTextStream&& file) {
-    supervisors.push_back(doc_supervisor(file.readAll().split(QString("\n"))));
+    supervisors.emplace_back(file.readAll().split(QString("\n")));
     return supervisors.back();
 }
 
 doc_supervisor& logfile_manager::supervisor_at(int index) {
     return *(std::next(supervisors.begin(), index));
 }
-

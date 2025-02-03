@@ -1,7 +1,7 @@
 #include "ui/newbookmarkwindow.h"
 #include "ui_newbookmarkwindow.h"
 
-#include <executor/bookmark_structure.h>
+#include <executor/bookmark_t.h>
 #include "ui/iconmenupopup.h"
 #include <executor/configuration_manager.h>
 #include "ui/bookmarkslist.h"
@@ -19,7 +19,7 @@ NewBookmarkWindow::NewBookmarkWindow(line_number_t lineNum, QString defaultText,
     initialize();
 }
 
-NewBookmarkWindow::NewBookmarkWindow(bookmark_structure original, BookmarksList* bookmarks, QWidget *parent):
+NewBookmarkWindow::NewBookmarkWindow(bookmark_t original, BookmarksList* bookmarks, QWidget *parent):
     QDialog(parent),
     ui(new Ui::NewBookmarkWindow),
     bookmarkLine(original.line_number),
@@ -50,7 +50,7 @@ void NewBookmarkWindow::setBookmarkIcon(QIcon i) {
 }
 
 void NewBookmarkWindow::addBookmark() {
-    bookmark_structure b;
+    bookmark_t b;
 
     b.line_number = bookmarkLine;
     b.bookmark_name = ui->bookmarkName->text();

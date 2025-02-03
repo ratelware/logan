@@ -6,7 +6,7 @@
 
 #include "line_descriptor.h"
 
-struct bookmark_structure {
+struct bookmark_t {
     line_number_t line_number;
     QString bookmark_name;
     QIcon icon;

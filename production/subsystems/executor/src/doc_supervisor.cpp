@@ -22,7 +22,7 @@ logfile_handler& doc_supervisor::get_root() {
     return *handler;
 }
 
-void doc_supervisor::add_bookmark(bookmark_structure b) {
+void doc_supervisor::add_bookmark(bookmark_t b) {
     for(auto i = bookmarks.begin(); i != bookmarks.end(); ++i) {
         if(i->line_number > b.line_number) {
             bookmarks.insert(i, b);
@@ -33,12 +33,12 @@ void doc_supervisor::add_bookmark(bookmark_structure b) {
     bookmarks.push_back(b);
 }
 
-const std::vector<bookmark_structure>& doc_supervisor::get_bookmarks() const {
+const std::vector<bookmark_t>& doc_supervisor::get_bookmarks() const {
     return bookmarks;
 }
 
 void doc_supervisor::remove_bookmarks(const std::vector<line_number_t> & removed) {
-    bookmarks.erase(std::remove_if(bookmarks.begin(), bookmarks.end(), [&removed](bookmark_structure& b) {
+    bookmarks.erase(std::remove_if(bookmarks.begin(), bookmarks.end(), [&removed](bookmark_t& b) {
                         for(auto& r: removed) {
                             if(r == b.line_number) {
                                 return true;
@@ -51,7 +51,7 @@ void doc_supervisor::remove_bookmarks(const std::vector<line_number_t> & removed
 }
 
 
-void doc_supervisor::update_bookmark(line_number_t line, bookmark_structure structure) {
+void doc_supervisor::update_bookmark(line_number_t line, bookmark_t structure) {
     for(auto& b : bookmarks) {
         if(b.line_number == line) {
             b.bookmark_name = structure.bookmark_name;

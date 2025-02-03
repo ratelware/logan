@@ -5,7 +5,7 @@
 #include <QIcon>
 
 #include <executor/line_descriptor.h>
-#include <executor/bookmark_structure.h>
+#include <executor/bookmark_t.h>
 
 namespace Ui {
 class NewBookmarkWindow;
@@ -20,7 +20,7 @@ class NewBookmarkWindow : public QDialog
 
 public:
     explicit NewBookmarkWindow(line_number_t lineNum, QString defaultText, RootLogfileDisplay* target, QWidget *parent = nullptr);
-    NewBookmarkWindow(bookmark_structure original, BookmarksList* bookmarks, QWidget *parent = nullptr);
+    NewBookmarkWindow(bookmark_t original, BookmarksList* bookmarks, QWidget *parent = nullptr);
     ~NewBookmarkWindow();
 
 
