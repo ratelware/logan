@@ -1,4 +1,4 @@
-SET(THE_NAME_OF_PROJECT "TheExecutable" CACHE STRING "Name that will be used for executable")
+SET(THE_NAME_OF_PROJECT "logan" CACHE STRING "Name that will be used for executable")
 
 SET(USE_QT ON CACHE BOOL "Use Qt for this project")
 IF(${USE_QT})

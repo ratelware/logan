@@ -1,5 +1,5 @@
 CMAKE_MINIMUM_REQUIRED(VERSION 3.8)
-PROJECT (logan)
+PROJECT (logan-root)
 
 SET(ROOT_DIR ${CMAKE_SOURCE_DIR})
 SET_PROPERTY(GLOBAL PROPERTY USE_FOLDERS ON)
@@ -11,7 +11,7 @@ set(CMAKE_INCLUDE_CURRENT_DIR ON)
 INCLUDE(${ROOT_DIR}/buildsystem/CMake/configuration.cmake)
 INCLUDE(${ROOT_DIR}/buildsystem/CMake/compiler_support.cmake)
 INCLUDE(${ROOT_DIR}/buildsystem/CMake/library_support.cmake)
-INCLUDE(${ROOT_DIR}/buildsystem/CMake/package.cmake)
+
 
 MESSAGE(STATUS "Using library output directory: ${CMAKE_LIBRARY_OUTPUT_DIRECTORY}")
 MESSAGE(STATUS "Using runtime output directory: ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}")

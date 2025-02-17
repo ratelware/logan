@@ -39,7 +39,7 @@ void config_file_manager::load_doc(QString name) {
     QDomDocument doc(name);
     QFile file(name);
     if(!file.open(QIODevice::ReadOnly)) {
-        qWarning(("Failed to open file " + name).toStdString().c_str());
+        qWarning("Failed to open file %s", name.toStdString().c_str());
         return;
     } else {
         QByteArray docContent = file.readAll();
@@ -52,18 +52,18 @@ void config_file_manager::load_doc(QString name) {
 
         if(validationResult > 0) {
             file.close();
-            qWarning(("Validation failed for file: " + name).toStdString().c_str());
+            qWarning("Validation failed for file: %s", name.toStdString().c_str());
             return;
         }
 
         if(validationResult < 0) {
             file.close();
-            qWarning(("Failed to validate XML - cannot read " + name).toStdString().c_str());
+            qWarning("Failed to validate XML - cannot read %s", name.toStdString().c_str());
             return;
         }
 
         if(!doc.setContent(docContent)) {
-            qWarning(("Failed to load XML - cannot read " + name).toStdString().c_str());
+            qWarning("Failed to load XML - cannot read %s", name.toStdString().c_str());
         }
 
         file.close();
@@ -160,7 +160,7 @@ int config_file_manager::get_int(xml_selector q) const {
 xml_schema_loading_status config_file_manager::load_xml_schema(QFile& file) {
 
     QByteArray arr = file.readAll();
-    xmlSchemaParserCtxtPtr parser = xmlSchemaNewMemParserCtxt(arr.data(), arr.count());
+    xmlSchemaParserCtxtPtr parser = xmlSchemaNewMemParserCtxt(arr.data(), arr.size());
     if(parser == nullptr) {
         return xml_schema_loading_status::error;
     }

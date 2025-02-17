@@ -20,5 +20,9 @@ TARGET_LINK_LIBRARIES(${PROJECT_NAME}
         ${TRANSITIVE_DEPENDENCIES}
         )
 
+INSTALL(TARGETS ${PROJECT_NAME})
+
 get_target_property(FINAL_LINKED_LIBS ${PROJECT_NAME} LINK_LIBRARIES)
 message("Final list of linked libraries: ${FINAL_LINKED_LIBS}")
+
+INCLUDE(${ROOT_DIR}/buildsystem/CMake/package.cmake)
