@@ -12,7 +12,7 @@ struct bookmark_template {
 };
 
 struct tab_tree_node {
-    QString pattern;
+    std::unique_ptr<filter> selection_filter;
     std::vector<tab_tree_node> children;
 };
 
