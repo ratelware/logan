@@ -162,3 +162,5 @@ compile_commands.json
 
 build/
 buildqtc/
+build-*
+_packages
