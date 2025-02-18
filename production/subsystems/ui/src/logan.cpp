@@ -34,11 +34,13 @@ Logan::Logan(QWidget *parent)
 
     connect(&g, &GrepWindow::greppingRequested, ui->loganDisplay, &RootLogfileDisplay::applyGrepToCurrent);
     connect(&s, &SearchWindow::searchingRequested, ui->loganDisplay, &RootLogfileDisplay::applySearchToCurrent);
+
     connect(ui->actionAddLocalFile, &QAction::triggered, this, &Logan::openNewLocalFile);
     connect(ui->actionAddRemoteFile, &QAction::triggered, this, &Logan::openNewRemoteFile);
 
     connect(ui->actionGrep, &QAction::triggered, this, &Logan::displayGrepWindow);
     connect(ui->actionSearch, &QAction::triggered, this, &Logan::displaySearchWindow);
+    connect(ui->actionLogfileMerger, &QAction::triggered, this, &Logan::displayLogfileMergerWindow);
 
     connect(ui->actionClose, &QAction::triggered, this, &QMainWindow::close);
     connect(ui->actionAbout, &QAction::triggered, this, &Logan::displayAboutWindow);
@@ -119,6 +121,11 @@ void Logan::displaySearchWindow() {
 
         s.activateWindow();
     }
+}
+
+void Logan::displayLogfileMergerWindow() {
+    merger.show();
+    merger.activateWindow();
 }
 
 void Logan::displayAboutWindow() {

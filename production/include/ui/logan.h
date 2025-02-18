@@ -10,6 +10,7 @@
 
 #include <executor/grep_structure.h>
 #include "grepwindow.h"
+#include "logfilemerger.h"
 #include "searchwindow.h"
 #include <executor/logfile_manager.h>
 #include <executor/project_controller.h>
@@ -30,6 +31,7 @@ public slots:
     void displayGrepWindow();
     void displaySearchWindow();
     void displayAboutWindow();
+    void displayLogfileMergerWindow();
     void openNewLocalFile();
     void openNewRemoteFile();
     void createNewProjectAction();
@@ -43,6 +45,7 @@ private:
     std::vector<std::unique_ptr<QShortcut>> shortcuts;
     GrepWindow g;
     SearchWindow s;
+    LogfileMerger merger;
     project_controller controller;
 };
 #endif // LOGAN_H

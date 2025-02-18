@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>915</width>
+    <width>460</width>
     <height>501</height>
    </rect>
   </property>
@@ -30,89 +30,56 @@
        <property name="defaultDropAction">
         <enum>Qt::ActionMask</enum>
        </property>
-      </widget>
-     </item>
-     <item>
-      <layout class="QVBoxLayout" name="verticalLayout_2">
-       <item>
-        <widget class="QPushButton" name="addFileToSelected">
-         <property name="text">
-          <string>---&gt;</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QPushButton" name="removeFileFromSelected">
-         <property name="text">
-          <string>&lt;---</string>
-         </property>
-        </widget>
-       </item>
-      </layout>
-     </item>
-     <item>
-      <widget class="QListWidget" name="selectedFiles">
-       <property name="acceptDrops">
-        <bool>true</bool>
-       </property>
-       <property name="dragEnabled">
-        <bool>true</bool>
-       </property>
-       <property name="alternatingRowColors">
-        <bool>true</bool>
-       </property>
-       <property name="selectionMode">
-        <enum>QAbstractItemView::MultiSelection</enum>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <layout class="QVBoxLayout" name="verticalLayout">
-       <item>
-        <widget class="QPushButton" name="addFileToTab">
-         <property name="text">
-          <string>---&gt;</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QPushButton" name="removeFileFromTab">
-         <property name="text">
-          <string>&lt;---</string>
-         </property>
-        </widget>
-       </item>
-      </layout>
-     </item>
-     <item>
-      <widget class="QToolBox" name="filesPerTab">
-       <property name="acceptDrops">
-        <bool>true</bool>
-       </property>
-       <property name="currentIndex">
-        <number>0</number>
-       </property>
-       <widget class="QWidget" name="page">
-        <property name="geometry">
-         <rect>
-          <x>0</x>
-          <y>0</y>
-          <width>122</width>
-          <height>423</height>
-         </rect>
+       <attribute name="headerVisible">
+        <bool>false</bool>
+       </attribute>
+       <column>
+        <property name="text">
+         <string notr="true">1</string>
         </property>
-        <attribute name="label">
-         <string>Page 1</string>
-        </attribute>
-       </widget>
+       </column>
       </widget>
      </item>
      <item>
       <layout class="QVBoxLayout" name="verticalLayout_4">
        <item>
-        <widget class="QPushButton" name="addNewTab">
+        <widget class="QPushButton" name="addRemote">
          <property name="text">
-          <string>+</string>
+          <string>Add remote</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="addLocal">
+         <property name="text">
+          <string>Add local</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <spacer name="verticalSpacer">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>40</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item>
+        <widget class="QRadioButton" name="sequentialMerge">
+         <property name="text">
+          <string>Sequential</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QRadioButton" name="parallelMerge">
+         <property name="text">
+          <string>Parallel</string>
          </property>
         </widget>
        </item>
@@ -127,6 +94,13 @@
         <widget class="QPushButton" name="fileDown">
          <property name="text">
           <string>v</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QToolButton" name="mergingRules">
+         <property name="text">
+          <string>Merging rules</string>
          </property>
         </widget>
        </item>

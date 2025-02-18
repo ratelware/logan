@@ -7,7 +7,6 @@ LogfileMerger::LogfileMerger(QWidget *parent) :
 {
     ui->setupUi(this);
 
-
 }
 
 LogfileMerger::~LogfileMerger()

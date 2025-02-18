@@ -40,6 +40,9 @@
      <property name="contextMenuPolicy">
       <enum>Qt::CustomContextMenu</enum>
      </property>
+     <property name="features">
+      <set>QDockWidget::NoDockWidgetFeatures</set>
+     </property>
      <widget class="BookmarksList" name="bookmarksList">
       <property name="sizePolicy">
        <sizepolicy hsizetype="Expanding" vsizetype="Expanding">

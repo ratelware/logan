@@ -38,6 +38,7 @@ void AboutDialog::setUpLicenses() {
     for(QString l: licenses) {
         license_item_t lic;
         QStringList desc = l.split(",");
+        if(desc.length() < 2) continue;
 
         lic.name = desc[0];
         QFile about(QString(":/libraries/") + desc[1].trimmed() + "/ABOUT.txt");

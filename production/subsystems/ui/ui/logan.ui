@@ -40,7 +40,7 @@
      <x>0</x>
      <y>0</y>
      <width>815</width>
-     <height>21</height>
+     <height>20</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
@@ -60,6 +60,8 @@
     </property>
     <addaction name="actionSearch"/>
     <addaction name="actionGrep"/>
+    <addaction name="separator"/>
+    <addaction name="actionLogfileMerger"/>
    </widget>
    <widget class="QMenu" name="menuHelp">
     <property name="title">
@@ -126,6 +128,11 @@
   <action name="actionOpen_with_merger">
    <property name="text">
     <string>Open with merger</string>
+   </property>
+  </action>
+  <action name="actionLogfileMerger">
+   <property name="text">
+    <string>Logfile Merger</string>
    </property>
   </action>
  </widget>
