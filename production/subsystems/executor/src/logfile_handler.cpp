@@ -42,15 +42,15 @@ logfile_handler& logfile_handler::grep(std::unique_ptr<filter>&& g) {
     std::vector<line_descriptor> entries;
     std::for_each(relevantLines.begin(), relevantLines.end(), [&](line_descriptor d){
         if(g->matches(content[d.line_number], d.line_number)) {
-            line_descriptor new_descriptor;
-            new_descriptor.line_length = d.line_length;
-            new_descriptor.line_start = entries.empty() ? 0 : entries.back().line_start + entries.back().line_length;
-            new_descriptor.line_number = d.line_number;
-            entries.push_back(new_descriptor);
+            entries.push_back(line_descriptor{
+                .line_number = d.line_number,
+                .line_length = d.line_length,
+                .line_start = entries.empty() ? 0 : entries.back().line_start + entries.back().line_length,
+            });
         }
     });
 
-    children.push_back(std::make_pair(std::move(g), logfile_handler(supervisor, content, entries)));
+    children.emplace_back(std::move(g), logfile_handler(supervisor, content, entries));
     return children.back().second;
 }
 

@@ -29,7 +29,7 @@ void LogsDisplay::handleTabClosing(int tabId) {
     }
 }
 
-void LogsDisplay::applyGrep(std::unique_ptr<filter>&& g) {
+void LogsDisplay::applyFilter(std::unique_ptr<filter>&& g) {
     auto active = currentWidget();
     if(active == nullptr) {
         return;
@@ -40,11 +40,11 @@ void LogsDisplay::applyGrep(std::unique_ptr<filter>&& g) {
             newTab(log_handler.grep(std::move(g)));
         } else {
             auto activeTab = currentIndex();
-            mutateToNewTree()->applyGrep(std::move(g));
+            mutateToNewTree()->applyFilter(std::move(g));
             setCurrentIndex(activeTab);
         }
     } else if(active->objectName() == QString("MultiLogDisplay")) {
-        dynamic_cast<LogsDisplay*>(active)->applyGrep(std::move(g));
+        dynamic_cast<LogsDisplay*>(active)->applyFilter(std::move(g));
     }
 }
 

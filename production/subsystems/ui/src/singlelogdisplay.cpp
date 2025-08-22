@@ -68,18 +68,18 @@ void SingleLogDisplay::copySelectionToClipboard() {
 }
 
 void SingleLogDisplay::trimAboveLine() {
-    filter_above* f = new filter_above{};
+    auto f = std::make_unique<filter_above>();
     f->first_line = logfile.line_number(ui->display->textCursor().blockNumber());
 
-    root.applyGrepToCurrent(f);
+    root.applyFilterToCurrent(f.release());
 }
 
 void SingleLogDisplay::trimBelowLine() {
-    filter_below* f = new filter_below{};
+    auto f = std::make_unique<filter_below>();
     line_number_t line = ui->display->textCursor().blockNumber();
 
     f->last_line = logfile.line_number(line);
-    root.applyGrepToCurrent(f);
+    root.applyFilterToCurrent(f.release());
     root.scrollToLineNumberOnCurrent(line);
 }
 

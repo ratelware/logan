@@ -32,7 +32,7 @@ Logan::Logan(QWidget *parent)
     connect(shortcuts[0].get(), &QShortcut::activated, this, &Logan::displayGrepWindow);
     connect(shortcuts[1].get(), &QShortcut::activated, this, &Logan::displaySearchWindow);
 
-    connect(&g, &GrepWindow::greppingRequested, ui->loganDisplay, &RootLogfileDisplay::applyGrepToCurrent);
+    connect(&g, &GrepWindow::greppingRequested, ui->loganDisplay, &RootLogfileDisplay::applyFilterToCurrent);
     connect(&s, &SearchWindow::searchingRequested, ui->loganDisplay, &RootLogfileDisplay::applySearchToCurrent);
 
     connect(ui->actionAddLocalFile, &QAction::triggered, this, &Logan::openNewLocalFile);

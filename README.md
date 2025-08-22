@@ -1,65 +1,42 @@
 # logan
 This project is a log analyzer, for text logs.
 
-ProjectTemplate
-================
-================
-**Overview**
-================
+The goal is to provide a simple GUI-based tool for going through logs, including deep-dives.
 
-A template for starting with new C++ applications.
+Current features include:
 
-Some example libraries are included to make your life easier and understanding of "what happens where" simpler.
-These libraries are listed below.
+ - opening local files
+ - opening remote files (connection through ssh)
+ - bookmarks
+ - coloring selected texts
+ - trimming content
+ - tab-based grepping
+ - search
 
-=================
-**Installation**
-=================
+Roadmap includes:
 
-Just clone the repository (or even download and unpack)and template is ready.
+ - grepping and bookmarking profiles
+ - merging multiple log files into one (sequential)
+ - merging mutliple log files into one (time-based)
+ - checkpoints and autosave
+ - streaming support
+ - decreasing memory consumption
+ - tagging lines + selectable filters
 
-=================
-**Usage**
-=================
-
-Template uses CMake 
 
 =================
 **Dependencies**
 =================
 
-Template in first version requires boost for parsing command line options and as testing framework. Right now it is not
-prepared for boostless projects, but we may consider it if a need arises. If you're interested in such feature, please
-contact development team.
-
-=================
-**Libraries**
-=================
-
 There are a few libraries included so that you might get see an example of how the system was supposed to work.
 These include:
 
- * **Turtle** (master branch) as mocking library (only in tests)
- * **Celero** (master branch) as benchmarking library (only in tests)
- * **ChaiScript** (develop branch) as scripting language (in production code)
- * **PugiXML** (master branch) as, well, XML library (in production code)
- * **spdlog** (master branch) as logger (in production code)
- * **sqlite** (3.8.8.3 amalgamation) as database management library (in production code)
- * **wolfssl** for ssl support  (in production code)
- * **libwebsockets** for websockets and http calls (in production code)
- * **Lyra** for command line option parsing (in production code)
  * **libssh2** for handling SSH connections (in production code)
  * **libarchive** for compression (in production code)
- * **rapidjson** for JSON (in production code)
-
-Some or all might be included as submodules, so make sure you fetch them all before compiling
-
-There is also embedded support for some common C++ libraries:
- * **Boost** for general-purpose utilities
- * **OpenCV** for stuff related to image processing
- * **Qt** for UI-related stuff
+ * **Qt6** for UI-related stuff
  * **libxml2** for XML schemas (in production code)
 
+You need to install those libraries prior to building source code, otherwise you won't be able to build.
 
 =================
 **Notes**

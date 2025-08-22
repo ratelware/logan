@@ -45,10 +45,10 @@ void RootLogfileDisplay::scrollToLineNumberOnCurrent(line_number_t line) {
     dynamic_cast<LogsDisplay*>(ui->tabs->currentWidget())->scrollToLine(line);
 }
 
-void RootLogfileDisplay::applyGrepToCurrent(filter* g) {
+void RootLogfileDisplay::applyFilterToCurrent(filter* g) {
     auto logs = dynamic_cast<LogsDisplay*>(ui->tabs->currentWidget());
     if(logs != nullptr) {
-        logs->applyGrep(std::unique_ptr<filter>(g));
+        logs->applyFilter(std::unique_ptr<filter>(g));
     }
 }
 

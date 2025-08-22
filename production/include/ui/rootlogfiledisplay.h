@@ -28,7 +28,7 @@ public slots:
     void scrollToLineOnCurrent(QListWidgetItem* bookmarkItem);
     void scrollToLineNumberOnCurrent(line_number_t line);
 
-    void applyGrepToCurrent(filter* g);
+    void applyFilterToCurrent(filter* g);
     void applySearchToCurrent(search_structure s);
     void handleTabClosing(int tabId);
 

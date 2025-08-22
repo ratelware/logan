@@ -26,7 +26,7 @@ private:
     doc_supervisor& supervisor;
 
     typedef std::pair<std::unique_ptr<filter>, logfile_handler> child_handler;
-    std::vector<child_handler> children;
+    std::list<child_handler> children;
 };
 
 class logfile_proxy {
