@@ -24,6 +24,7 @@ public:
 
     void newTab(logfile_proxy logfile);
     LogsDisplay* mutateToNewTree();
+    void refreshTab(int tabId);
 
 public:
     void applyFilter(std::unique_ptr<filter>&& g);

@@ -15,15 +15,22 @@ doc_supervisor::doc_supervisor(QStringList file)
         file_lines[i].line_start = (i == 0) ? 0 : file_lines[i - 1].line_start + file_lines[i - 1].line_length;
     }
 
-    files_split_to_records.push_back(file);
-    handler = std::make_unique<logfile_handler>(*this, files_split_to_records.back(), file_lines);
+    auto& file_ref = files_split_to_records.emplace_back(file);
+    handler = std::make_unique<logfile_handler>(*this, file_ref, file_lines);
+    bookmarked_handler = std::make_unique<logfile_handler>(*this, file_ref, std::vector<line_descriptor>{});
 }
 
 logfile_handler& doc_supervisor::get_root() const {
     return *handler;
 }
 
+logfile_handler& doc_supervisor::get_bookmarked() const {
+    return *bookmarked_handler;
+}
+
 void doc_supervisor::add_bookmark(const bookmark_t &b) {
+    bookmarked_handler->add_line(b.line_number);
+
     for(auto i = bookmarks.begin(); i != bookmarks.end(); ++i) {
         if(i->line_number > b.line_number) {
             bookmarks.insert(i, b);

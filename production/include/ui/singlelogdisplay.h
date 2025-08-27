@@ -35,6 +35,7 @@ public slots:
     void applySearch(search_structure s);
     void bookmark();
     void fastBookmark();
+    void refresh();
 
     void trimAboveLine();
     void trimBelowLine();

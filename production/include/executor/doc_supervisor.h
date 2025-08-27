@@ -14,6 +14,7 @@ public:
     explicit doc_supervisor(QStringList file);
 
     [[nodiscard]] logfile_handler& get_root() const;
+    [[nodiscard]] logfile_handler& get_bookmarked() const;
 
     void add_bookmark(const bookmark_t &bookmark);
     [[nodiscard]] const std::vector<bookmark_t>& get_bookmarks() const;
@@ -23,8 +24,9 @@ public:
     void apply_filters(const filter_package& filters);
 
 private:
-    std::vector<QStringList> files_split_to_records;
+    std::list<QStringList> files_split_to_records;
     std::unique_ptr<logfile_handler> handler;
+    std::unique_ptr<logfile_handler> bookmarked_handler;
 
     std::vector<bookmark_t> bookmarks;
 };

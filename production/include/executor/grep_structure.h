@@ -48,4 +48,12 @@ public:
     [[nodiscard]] QString name() const override;
 };
 
+class bookmark_filter : public filter {
+public:
+    std::vector<line_number_t> included_lines;
+    bool matches(QString, line_number_t) override;
+    bool same_as(filter&) override;
+    [[nodiscard]] QString name() const override;
+};
+
 #endif // GREP_STRUCTURE_H

@@ -67,6 +67,10 @@ void SingleLogDisplay::copySelectionToClipboard() {
     QGuiApplication::clipboard()->setText(ui->display->textCursor().selection().toPlainText());
 }
 
+void SingleLogDisplay::refresh() {
+    ui->display->setPlainText(logfile.text());
+}
+
 void SingleLogDisplay::trimAboveLine() {
     auto f = std::make_unique<filter_above>();
     f->first_line = logfile.line_number(ui->display->textCursor().blockNumber());
@@ -177,7 +181,7 @@ void SingleLogDisplay::applySearch(search_structure s) {
 void SingleLogDisplay::scrollToLine(line_number_t line) {
     auto location = logfile.line_start_position(line);
     auto initialHorizontalPosition = ui->display->horizontalScrollBar()->sliderPosition();
-
+    
     auto cursor = ui->display->textCursor();
     cursor.setPosition(location);
     cursor.select(QTextCursor::LineUnderCursor);

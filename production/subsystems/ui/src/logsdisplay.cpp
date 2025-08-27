@@ -20,6 +20,7 @@ LogsDisplay::LogsDisplay(logfile_proxy log, QWidget *parent, RootLogfileDisplay&
     this->setContentsMargins(0, 0, 0, 0);
 
     connect(this, &LogsDisplay::tabCloseRequested, this, &LogsDisplay::handleTabClosing);
+    connect(this, &LogsDisplay::currentChanged, this, &LogsDisplay::refreshTab);
 }
 
 void LogsDisplay::handleTabClosing(int tabId) {
@@ -27,6 +28,15 @@ void LogsDisplay::handleTabClosing(int tabId) {
         qDebug("Deleting tab %d out of %d", tabId, count());
         removeTab(tabId);
     }
+}
+
+void LogsDisplay::refreshTab(int tabId) {
+    auto w = widget(tabId);
+    auto sld = dynamic_cast<SingleLogDisplay *>(w);
+    if(sld == nullptr) {
+        return;
+    }
+    sld->refresh();
 }
 
 void LogsDisplay::applyFilter(std::unique_ptr<filter>&& g) {

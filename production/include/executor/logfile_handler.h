@@ -10,18 +10,19 @@ class logfile_proxy;
 class logfile_handler
 {
 public:
-    logfile_handler(doc_supervisor& parent, QStringList& contentByLines, std::vector<line_descriptor> relevantLines);
+    logfile_handler(doc_supervisor& parent, QStringList& content_by_lines, std::vector<line_descriptor> relevant_lines);
 
     logfile_proxy as(QString name);
     logfile_handler& grep(std::unique_ptr<filter>&& g);
 
+    void add_line(line_number_t new_line);
+
     QString get_text();
     [[nodiscard]] line_number_t line_number(block_number_t block_number) const;
     [[nodiscard]] doc_position_t line_start_position(line_number_t line) const;
-
 private:
     QStringList& content;
-    std::vector<line_descriptor> relevantLines;
+    std::vector<line_descriptor> relevant_lines;
 
     doc_supervisor& supervisor;
 

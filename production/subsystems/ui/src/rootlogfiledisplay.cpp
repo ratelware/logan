@@ -64,7 +64,12 @@ void RootLogfileDisplay::fileSelected(const QString& fileName) {
     auto handler = file_handler.get_root().as(QString("<base>"));
     auto newLogs = new LogsDisplay(handler, this, *this);
     newLogs->newTab(handler);
+
+    auto bookmarkedHandler = file_handler.get_bookmarked().as(QString("<bookmarked>"));
+    newLogs->newTab(bookmarkedHandler);
+
     auto newOne = ui->tabs->addTab(newLogs, QFileInfo(fileName).fileName());
+    newLogs->setCurrentIndex(0);
     ui->tabs->setCurrentIndex(newOne);
 }
 
